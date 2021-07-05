@@ -29,7 +29,8 @@ const themeColors = {
     // badge: "#2643e9",
   },
   secondary: {
-    main: "#f7fafc",
+    main: "#212121",
+    light: "#424242",
     snackbar: "#f8fbfc",
     badgeBgHover: "#cadeeb",
     btnOutline: "#4385b1",

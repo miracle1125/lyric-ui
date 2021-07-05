@@ -17,8 +17,11 @@ import Box from "@material-ui/core/Box";
 // core components
 // import CardStats from "components/Cards/CardStats.js";
 import Header from "../components/Headers/Header";
+import EarnCard from "../components/Cards/EarnCard";
+import ListenerCard from "../components/Cards/ListenerCard";
 
 import componentStyles from "../assets/theme/layouts/admin";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles(componentStyles);
 
@@ -26,7 +29,7 @@ const Admin = () => {
   const classes = useStyles();
   // const theme = useTheme();
   return (
-    <Box position="relative" className={classes.mainContent}>
+    <Box position="relative">
       <Header 
         logo={{
           innerLink: "/dashboard",
@@ -42,6 +45,34 @@ const Admin = () => {
           imgAlt: "user-avatar",
         }}
       />
+      <Box px={3.75} py={5} className={classes.mainContent}>
+        <Grid container>
+          <Grid item xs={12} sm={8}>
+            <Box>
+              <Grid container>
+                <Grid xs={12} sm={6} item>
+                  <EarnCard 
+                    amount = "895.89"
+                  />
+                </Grid>
+                <Grid xs={12} sm={6} item>
+                  <ListenerCard
+                    totalAmount = "11,235"
+                    listenerIcon={{
+                      imgSrc: require("../assets/img/headphone.png").default,
+                      imgAlt: "listener-icon",
+                    }}
+                    differAmount = "+1,200"
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+
+          </Grid>
+        </Grid>
+      </Box>
     </Box>
   );
 };

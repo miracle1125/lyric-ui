@@ -1,6 +1,6 @@
 const componentStyles = (theme) => ({
     mainContent: {
-      
+      backgroundColor: "black"
     },
   });
   

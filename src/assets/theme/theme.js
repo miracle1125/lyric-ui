@@ -8,11 +8,10 @@ import themeColors from "../theme/colors";
 // these are the default styles that go on all headings (h1,h2,h3,h4,h5,h6)
 // the difference only consists in the font size and text transform
 const defaultHeaderStyles = {
-  marginBottom: ".5rem",
   fontFamily: "inherit",
   fontWeight: 600,
-  lineHeight: 1.5,
-  color: themeColors.gray[800],
+  lineHeight: 1.2,
+  color: "#fff",
 };
 
 // A custom theme for this app
@@ -46,7 +45,8 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: "Inter",
     h1: {
-      fontSize: "1.625rem",
+      fontSize: "3.438rem",
+      fontWeight: "700",
       ...defaultHeaderStyles,
     },
     h2: {
