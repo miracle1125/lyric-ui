@@ -27,7 +27,21 @@ const Admin = () => {
   // const theme = useTheme();
   return (
     <Box position="relative" className={classes.mainContent}>
-      <Header />
+      <Header 
+        logo={{
+          innerLink: "/dashboard",
+          imgSrc: require("../assets/img/logo.png").default,
+          imgAlt: "logo-image",
+        }}
+        help={{
+          imgSrc: require("../assets/img/help_icon.png").default,
+          imgAlt: "help-icon",
+        }}
+        avatar={{
+          imgSrc: require("../assets/img/user_avatar.png").default,
+          imgAlt: "user-avatar",
+        }}
+      />
     </Box>
   );
 };

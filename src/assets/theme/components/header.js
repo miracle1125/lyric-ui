@@ -1,7 +1,33 @@
 const componentStyles = (theme) => ({
     uploadBtn: {
       backgroundColor: "#fff",
-      
+      padding: ".375rem 1.125rem",
+      fontWeight: "400",
+      lineHeight: "1"
+    },
+    logoText: {
+      fontWeight: "600",
+      fontSize: "1.375rem"
+    },
+    logoClasses: {
+      maxHeight: "2rem",
+      maxWidth: "100%",
+      verticalAlign: "middle",
+      borderStyle: "none",
+      [theme.breakpoints.up("md")]: {
+        maxHeight: "2.5rem",
+      },
+    },
+    logoLinkClasses: {
+      fontSize: "1.25rem",
+      lineHeight: "inherit",
+      whiteSpace: "nowrap",
+      textDecoration: "none",
+      display: "block",
+      textAlign: "center",
+    },
+    verticalAlign: {
+      verticalAlign: "middle",
     },
     cardRoot: {
       marginBottom: "1.5rem",
