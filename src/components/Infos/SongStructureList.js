@@ -19,12 +19,13 @@ const useStyles = makeStyles(componentStyles);
 export default function SongStructureList({ }) {
   const classes = useStyles();
   const theme = useTheme();
+
   return (
     <Box bgcolor="primary.light" borderRadius="4px" pt={2.75} pb={.75} px={2.25}>
       <Box mb={4} className="overallStructure">
         <SongStructureItem
           structureTitle="Overall"
-          structureAmount="81"
+          Amount={81}
           structureColor="overallColor"
         >
         </SongStructureItem>
@@ -33,7 +34,7 @@ export default function SongStructureList({ }) {
         <Grid item xs={12} sm={6}>
           <SongStructureItem
             structureTitle="Melody"
-            structureAmount="72"
+            Amount={72}
             structureColor="melodyColor"
           >
           </SongStructureItem>
@@ -41,7 +42,7 @@ export default function SongStructureList({ }) {
         <Grid item xs={12} sm={6}>
           <SongStructureItem
             structureTitle="Chords"
-            structureAmount="81"
+            Amount={81}
             structureColor="chordsColor"
           >
           </SongStructureItem>
@@ -49,7 +50,7 @@ export default function SongStructureList({ }) {
         <Grid item xs={12} sm={6}>
           <SongStructureItem
             structureTitle="Structure"
-            structureAmount="78"
+            Amount={78}
             structureColor="structureColor"
           >
           </SongStructureItem>
@@ -57,7 +58,7 @@ export default function SongStructureList({ }) {
         <Grid item xs={12} sm={6}>
           <SongStructureItem
             structureTitle="Familarity"
-            structureAmount="72"
+            Amount={72}
             structureColor="familarityColor"
           >
           </SongStructureItem>
