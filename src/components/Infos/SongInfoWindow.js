@@ -11,6 +11,7 @@ import Divider from '@material-ui/core/Divider';
 // core components
 import SongInfoHeader from "./SongInfoHeader"
 import SongInfoTag from "./SongInfoTag"
+import SongInfoGraph from "./SongInfoGraph"
 import SongInfoDetail from "./SongInfoDetail"
 import componentStyles from "../../assets/theme/components/Infos/SongInfoWindow";
 
@@ -22,9 +23,18 @@ export default function SongInfoWindow({ amount }) {
   // const theme = useTheme();
 
   return (
-    <Box bgcolor="secondary.main">
+    <Box bgcolor="secondary.main" borderRadius="4px">
       <SongInfoHeader>
       </SongInfoHeader>
+      <Divider>
+      </Divider>
+      <SongInfoGraph
+        songGraphImg={{
+          imgSrc: require("../../assets/img/audio_graph.png").default,
+          imgAlt: "song-graph-icon",
+        }}
+      >
+      </SongInfoGraph>
       <Divider>
       </Divider>
       <SongInfoTag

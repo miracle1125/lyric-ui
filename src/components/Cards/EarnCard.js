@@ -25,7 +25,7 @@ export default function EarnCard({ amount }) {
   // const theme = useTheme();
 
   return (
-    <Box className={classes.bgSecondary} height={180}>
+    <Box className={classes.bgSecondary} height={180} borderRadius="4px">
       <Typography className={classes.earnTitle}>Project Earnings</Typography>
       <Typography className={classes.earnAmount}>${amount}</Typography>
       <ResponsiveContainer height={110} width="100%">

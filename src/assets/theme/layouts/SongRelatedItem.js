@@ -3,6 +3,9 @@ const componentStyles = (theme) => ({
       marginBottom: "3px",
       fontWeight: "700"
     },
+    songRelatedImg: {
+      borderRadius: "10px",
+    },
   });
   
   export default componentStyles;

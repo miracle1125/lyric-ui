@@ -21,7 +21,9 @@ export default function SongRelatedList({ }) {
   const theme = useTheme();
   return (
     <Box bgcolor="secondary.main" borderRadius="4px" pt={2.75} pb={0} px={2.25} mt={2}>
-      <Typography variant="h3">Similar Songs</Typography>
+      <Box mb={3.5}>
+        <Typography variant="h3">Similar Songs</Typography>
+      </Box>
       <SongRelatedItem
         relatedImg={{
           imgSrc: require("../../assets/img/song1_author.png").default,

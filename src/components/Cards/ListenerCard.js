@@ -20,19 +20,19 @@ export default function ListenerCard({ totalAmount, listenerIcon, differAmount }
   // const theme = useTheme();
 
   return (
-    <Box className={classes.bgSecondary} p={2.5} height={180}>
+    <Box className={classes.bgSecondary} p={2.5} height={180} borderRadius="4px">
       <Grid container justify="space-between" alignItems="center">
         <Grid item>
             <Typography className={classes.listenTitle}>Projected Listeners</Typography>
             <Typography variant="h1" className={classes.listenAmount}>{totalAmount}</Typography>
-            <Box py={0.25} px={0.625} className={classes.increaseListener}>
+            <Box py={0.25} px={0.625} className={classes.increaseListener} borderRadius="3px">
               <ArrowUpwardIcon>
               </ArrowUpwardIcon>
               {differAmount}
             </Box>
         </Grid>
         <Grid item>
-          <Box p={1.75} className={classes.bgSecondaryLight}>
+          <Box p={1.75} className={classes.bgSecondaryLight} borderRadius="4px">
             <img alt={listenerIcon.imgAlt} className={classes.verticalAlign} src={listenerIcon.imgSrc} />
           </Box>
         </Grid>

@@ -19,7 +19,7 @@ export default function SongInfoDetail({ }) {
   const classes = useStyles();
   const theme = useTheme();
   return (
-    <Box px={2} pt={1.25} pb={3.75}>
+    <Box px={2} pt={1.25} pb={3}>
       <Typography variant="h3">
         Song Name
       </Typography>

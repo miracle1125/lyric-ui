@@ -21,12 +21,14 @@ export default function SongStructureList({ }) {
   const theme = useTheme();
   return (
     <Box bgcolor="primary.light" borderRadius="4px" pt={2.75} pb={.75} px={2.25}>
-      <SongStructureItem
-        structureTitle="Overall"
-        structureAmount="81"
-        structureColor="overallColor"
-      >
-      </SongStructureItem>
+      <Box mb={4} className="overallStructure">
+        <SongStructureItem
+          structureTitle="Overall"
+          structureAmount="81"
+          structureColor="overallColor"
+        >
+        </SongStructureItem>
+      </Box>
       <Grid container>
         <Grid item xs={12} sm={6}>
           <SongStructureItem

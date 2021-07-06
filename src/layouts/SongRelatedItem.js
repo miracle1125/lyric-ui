@@ -22,7 +22,7 @@ export default function SongRelatedItem({ relatedImg, relatedTitle, relatedAutho
   return (
     <Box display="flex" pb={1.75}>
         <Box mr={1.5}>
-          <img alt={relatedImg.imgAlt} className={classes.verticalAlign} src={relatedImg.imgSrc} width="58px" height="58px"/>
+          <img alt={relatedImg.imgAlt} className={classes.songRelatedImg} src={relatedImg.imgSrc} width="58px" height="58px"/>
         </Box>
         <Box>
           <Typography className={classes.relatedTitle}>{relatedTitle}</Typography>

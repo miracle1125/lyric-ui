@@ -22,3 +22,7 @@
 .text-bold {
   font-weight: 700 !important;
 }
+.overallStructure > div {
+  height: 140px;
+  padding-top: 1.5rem;
+}

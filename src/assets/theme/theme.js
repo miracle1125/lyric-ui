@@ -536,8 +536,10 @@ const theme = createMuiTheme({
         right: "5px"
       },
       select: {
+        borderRadius: "4px",
         "&:focus": {
-          backgroundColor: "#424242"
+          backgroundColor: "#424242",
+          borderRadius: "4px",
         },
       }
     },
