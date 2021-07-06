@@ -1,6 +1,6 @@
 const themeColors = {
   white: {
-    main: "#8D6DC8",
+    main: "#fff",
   },
   black: {
     light: "#12263F",
@@ -22,6 +22,8 @@ const themeColors = {
   },
   primary: {
     main: "#8D6DC8",
+    light: "#A58AD5",
+    melody: "#F4516C"
     // dark: "#233dd2",
     // snackbar: "#7889e8",
     // badgeBg: "#eaecfb",

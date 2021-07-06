@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+.overallColor > div {
+  background-color: unset;
+}
+.overallColor {
+  display: none !important;
+}
+.melodyColor > div {
+  background-color: #F4516C;
+}
+.chordsColor > div {
+  background-color: #4DB6AC;
+}
+.structureColor > div {
+  background-color: #4FC3F7;
+}
+.familarityColor > div {
+  background-color: #FFB74D;
+}
+.text-bold {
+  font-weight: 700 !important;
+}

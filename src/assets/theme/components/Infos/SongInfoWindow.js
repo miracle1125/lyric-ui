@@ -3,8 +3,7 @@ const componentStyles = (theme) => ({
       backgroundColor: "#fff",
       padding: ".375rem 1.125rem",
       fontWeight: "400",
-      lineHeight: "1",
-      color: "#8D6DC8"
+      lineHeight: "1"
     },
     logoText: {
       fontWeight: "600",

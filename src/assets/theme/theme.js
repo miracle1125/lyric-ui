@@ -27,6 +27,9 @@ const theme = createMuiTheme({
   },
   palette: {
     ...themeColors,
+    melody: {
+      main: themeColors.primary.melody
+    },
     buttonLightLabel: {
       main: "rgba(" + hexToRgb(themeColors.white.main) + ", 0.95)",
     },
@@ -45,17 +48,19 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: "Inter",
     h1: {
+      ...defaultHeaderStyles,
       fontSize: "3.438rem",
       fontWeight: "700",
-      ...defaultHeaderStyles,
     },
     h2: {
       fontSize: "1.25rem",
       ...defaultHeaderStyles,
     },
     h3: {
-      fontSize: "1.0625rem",
       ...defaultHeaderStyles,
+      fontSize: "1.125rem",
+      fontWeight: "400",
+      marginBottom: ".875rem",
     },
     h4: {
       fontSize: ".9375rem",
@@ -69,6 +74,10 @@ const theme = createMuiTheme({
       fontSize: ".625rem",
       ...defaultHeaderStyles,
     },
+    body2: {
+      fontSize: ".75rem",
+      lineHeight: "20px",
+    }
   },
   overrides: {
     MuiDrawer: {
@@ -130,6 +139,9 @@ const theme = createMuiTheme({
           fontSize: "1rem",
           verticalAlign: "-17%",
         },
+        "&.Mui-selected": {
+          backgroundColor: "#8D6DC8 !important"
+        }
       },
     },
     MuiFormLabel: {
@@ -149,16 +161,14 @@ const theme = createMuiTheme({
     MuiInputBase: {
       input: {
         display: "block",
-        width: "100%",
+        width: "192px",
         height: "calc(1.5em + 1.25rem + 2px)",
         padding: ".625rem .75rem",
         fontWeight: 400,
         lineHeight: 1.5,
-        color: themeColors.gray[600],
-        backgroundColor: themeColors.white.main,
+        color: "#BDBDBD",
+        backgroundColor: themeColors.secondary.light,
         backgroundClip: "padding-box",
-        border: "1px solid #cad1d7",
-        borderRadius: ".375rem",
         boxShadow: "none",
         transition: "all .2s cubic-bezier(.68,-.55,.265,1.55)",
         fontSize: ".875rem",
@@ -405,10 +415,11 @@ const theme = createMuiTheme({
         borderRadius: ".375rem",
       },
       containedSizeLarge: {
-        fontSize: ".875rem",
+        fontSize: "1.25rem",
+        fontWeight: "500",
         lineHeight: 1.5,
-        padding: ".875rem 1rem",
-        borderRadius: ".4375rem",
+        padding: ".5rem 2.125rem",
+        borderRadius: "3px",
       },
       containedPrimary: {
         borderColor: themeColors.primary.main,
@@ -427,21 +438,26 @@ const theme = createMuiTheme({
         boxShadow: "none",
         "&:hover": {
           boxShadow: "none",
-          backgroundColor: themeColors.dark.main,
-          color: themeColors.white.main,
+          backgroundColor: "unset",
         },
       },
       outlinedSizeSmall: {
         fontSize: ".75rem",
-        padding: ".25rem .5rem",
+        padding: ".25rem .75rem",
         lineHeight: "1.5",
         borderRadius: ".375rem",
+        marginTop: ".625rem",
+        marginRight: ".5rem",
+        minWidth: "unset"
       },
       outlinedSizeLarge: {
-        fontSize: ".875rem",
+        fontSize: "1.25rem",
+        fontWeight: "500",
         lineHeight: 1.5,
-        padding: ".875rem 1rem",
-        borderRadius: ".4375rem",
+        padding: ".5rem .875rem",
+        borderRadius: "3px",
+        color: "#9575CD",
+        borderColor: "#9575CD"
       },
       outlinedPrimary: {
         color: themeColors.primary.main,
@@ -508,9 +524,22 @@ const theme = createMuiTheme({
     },
     MuiSvgIcon: {
       root: {
-        width: "14px",
-        height: "14px",
+        
       },
+    },
+    MuiSelect: {
+      icon: {
+        top: "calc(50% - 10px)",
+        color: "#BDBDBD",
+        width: "20px",
+        height: "20px",
+        right: "5px"
+      },
+      select: {
+        "&:focus": {
+          backgroundColor: "#424242"
+        },
+      }
     },
     MuiTable: {
       root: {
@@ -546,8 +575,7 @@ const theme = createMuiTheme({
     },
     MuiLinearProgress: {
       root: {
-        height: "8px",
-        marginBottom: "1rem",
+        height: "4px",
         overflow: "hidden",
         borderRadius: ".25rem",
         backgroundColor: themeColors.gray[200] + "!important",
@@ -643,8 +671,12 @@ const theme = createMuiTheme({
     },
     MuiDivider: {
       root: {
-        backgroundColor: "rgba(" + hexToRgb(themeColors.black.main) + ", 0.1)",
+        backgroundColor: "#000",
       },
+      middle: {
+        marginLeft: "1.875rem",
+        marginRight: "1.875rem",
+      }
     },
     MuiSlider: {
       root: {

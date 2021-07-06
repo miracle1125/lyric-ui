@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
 
-
+import "./App.css";
 import "./assets/plugins/inter/css/inter.css";
 
 import theme from "../src/assets/theme/theme";
