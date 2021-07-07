@@ -3,7 +3,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 // import { useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 // @material-ui/icons components
 // import ArrowDownward from "@material-ui/icons/ArrowDownward";
@@ -24,10 +23,6 @@ export default function SongInfoWindow({ amount }) {
 
   return (
     <Box bgcolor="secondary.main" borderRadius="4px">
-      <SongInfoHeader>
-      </SongInfoHeader>
-      <Divider>
-      </Divider>
       <SongInfoGraph
         songGraphImg={{
           imgSrc: require("../../assets/img/audio_graph.png").default,

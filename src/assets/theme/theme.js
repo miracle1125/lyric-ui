@@ -884,7 +884,14 @@ const theme = createMuiTheme({
       clearIndicator: {
         color: "#BDBDBD"
       }
-    }
+    },
+    MuiIconButton: {
+      root: {
+        "&:hover": {
+          backgroundColor: themeColors.primary.light,
+        },
+      }
+    },
   },
 });
 
