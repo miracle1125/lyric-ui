@@ -10,6 +10,8 @@ import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 // @material-ui/icons components
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
@@ -20,40 +22,11 @@ import componentStyles from "../../assets/theme/components/Infos/SongInfoHeader"
 
 
 const useStyles = makeStyles(componentStyles);
+const genres = ["rap","rock", "hip-hop","rnb"];
 
 export default function SongInfoHeader({ }) {
   const classes = useStyles();
   const theme = useTheme();
-  const [val,setVal] = useState(0);
-
-  const handleChange = (event) => {
-    setVal(event.target.value);
-  };
-
-  const minimalSelectClasses = useMinimalSelectStyles();
-
-  const iconComponent = (props) => {
-    return (
-      <ExpandMoreIcon className={props.className + " " + minimalSelectClasses.icon}/>
-    )};
-
-  // moves the menu below the select input
-  const menuProps = {
-    classes: {
-      paper: minimalSelectClasses.paper,
-      list: minimalSelectClasses.list
-    },
-    anchorOrigin: {
-      vertical: "bottom",
-        horizontal: "left"
-    },
-    transformOrigin: {
-      vertical: "top",
-        horizontal: "left"
-    },
-    getContentAnchorEl: null
-  };
-
 
   return (
     <Box px={1.75} py={1.375}>
@@ -64,21 +37,17 @@ export default function SongInfoHeader({ }) {
           </button>
         </Grid>
         <Grid item>
-          <FormControl>
-            <Select
-              disableUnderline
-              classes={{ root: minimalSelectClasses.select }}
-              MenuProps={menuProps}
-              IconComponent={iconComponent}
-              value={val}
-              onChange={handleChange}
-            >
-              <MenuItem value={0}>Genre</MenuItem>
-              <MenuItem value={1}>Genre1</MenuItem>
-              <MenuItem value={2}>Genre2</MenuItem>
-              <MenuItem value={3}>Genre3</MenuItem>
-            </Select>
-          </FormControl>
+          <Autocomplete
+            className={classes.genreSelect}
+            options={genres}
+            classes={{
+              clearIndicatorDirty: classes.clearIndicator,
+              popupIndicator: classes.popupIndicator
+            }}
+            getOptionLabel={(option) => option}
+            style={{ width: 192 }}
+            renderInput={(params) => <TextField {...params} label="Genre" variant="outlined" />}
+          />
         </Grid>
       </Grid>
     </Box>

@@ -146,11 +146,10 @@ const theme = createMuiTheme({
     },
     MuiFormLabel: {
       root: {
-        color: themeColors.gray[700],
+        color: "#BDBDBD",
         fontSize: ".875rem",
         fontWeight: "600",
         display: "inline-block",
-        marginBottom: ".5rem",
       },
     },
     MuiFormGroup: {
@@ -159,16 +158,21 @@ const theme = createMuiTheme({
       },
     },
     MuiInputBase: {
+      root: {
+        padding: "0px !important",
+        borderRadius: "4px"
+      },
       input: {
         display: "block",
         width: "192px",
-        height: "calc(1.5em + 1.25rem + 2px)",
+        height: "32px",
         padding: ".625rem .75rem",
         fontWeight: 400,
         lineHeight: 1.5,
         color: "#BDBDBD",
         backgroundColor: themeColors.secondary.light,
         backgroundClip: "padding-box",
+        borderRadius: "4px",
         boxShadow: "none",
         transition: "all .2s cubic-bezier(.68,-.55,.265,1.55)",
         fontSize: ".875rem",
@@ -177,7 +181,7 @@ const theme = createMuiTheme({
     },
     MuiInputLabel: {
       outlined: {
-        transform: "translate(14px, 15px) scale(1)",
+        transform: "translate(14px, 9px) scale(1)",
       },
     },
     MuiOutlinedInput: {
@@ -195,6 +199,9 @@ const theme = createMuiTheme({
       root: {
         paddingRight: "0",
       },
+      notchedOutline: {
+        borderColor: "#424242"
+      }
     },
     MuiFilledInput: {
       underline: {
@@ -856,6 +863,28 @@ const theme = createMuiTheme({
         justifyContent: "flex-end",
       },
     },
+    MuiOutlinedInput: {
+      root: {
+        "&:hover $notchedOutline": {
+          borderColor: themeColors.primary.main
+        },
+        "&$focused $notchedOutline": {
+          borderColor: themeColors.primary.main
+        }
+      }
+    },
+    MuiAutocomplete: {
+      option: {
+        "&:hover": {
+          backgroundColor: "black",
+          color: "white"
+        },
+        color: "black"
+      },
+      clearIndicator: {
+        color: "#BDBDBD"
+      }
+    }
   },
 });
 
