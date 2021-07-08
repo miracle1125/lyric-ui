@@ -160,7 +160,7 @@ const theme = createMuiTheme({
     MuiInputBase: {
       root: {
         padding: "0px !important",
-        borderRadius: "4px"
+        borderRadius: "4px",
       },
       input: {
         display: "block",
@@ -890,6 +890,25 @@ const theme = createMuiTheme({
         "&:hover": {
           backgroundColor: themeColors.primary.light,
         },
+      }
+    },
+    MuiDropzoneArea: {
+      root: {
+        borderColor: "transparent",
+        borderWidth: "10px",
+        borderRadius: "5px",
+        maxWidth: "700px",
+        width: "100%",
+        minHeight: "170px",
+        margin: "auto",
+        backgroundColor: "#0E0E13",
+      },
+      icon: {
+        color: "#9575CD",
+      },
+      text: {
+        fontSize: "1rem",
+        fontWeight: "500",
       }
     },
   },

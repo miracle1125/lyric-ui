@@ -26,3 +26,22 @@
   height: 140px;
   padding-top: 1.5rem;
 }
+.cancel-btn {
+  background-color: #252525 !important;
+  border-color: #252525 !important;
+  margin-right: 12px !important;
+}
+.cancel-btn:hover {
+  background-color: rgba(37, 37, 37, .8) !important;
+}
+.tagify {
+  background-color: #0E0E13;
+  border: 1px solid #111111 !important;
+  border-radius: 6px;
+  color: white;
+  font-size: 1rem;
+  --tag-bg: rgba(33, 150, 243, 0.29) !important;
+  --tag-text-color: #2196F3 !important;
+  --tags-border-color: #2196F3 !important;
+  --tag-text-color--edit: #fff !important;
+}

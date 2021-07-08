@@ -13,7 +13,8 @@ import theme from "../src/assets/theme/theme";
 
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 
-import AdminLayout from "./layouts/Admin";
+import Dashboard from "./views/Dashboard";
+import Upload from "./views/Upload";
 
 
 ReactDOM.render(
@@ -22,8 +23,12 @@ ReactDOM.render(
     <CssBaseline />
     <BrowserRouter>
       <Switch>
-        <Route path="/dashboard" render={(props) => <AdminLayout {...props} />} />
-        <Route path="/upload" />
+        <Route path="/dashboard">
+          <Dashboard></Dashboard>
+        </Route>
+        <Route path="/upload">
+          <Upload></Upload>
+        </Route>
         <Redirect from="/" to="/dashboard" />
       </Switch>
     </BrowserRouter>
