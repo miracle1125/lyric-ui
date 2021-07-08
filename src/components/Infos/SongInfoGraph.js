@@ -33,7 +33,7 @@ export default function SongInfoGraph({ songGraphImg }) {
     waveSurfer => {
       wavesurferRef.current = waveSurfer;
       if (wavesurferRef.current) {
-        wavesurferRef.current.load("/horse.mp3");
+        wavesurferRef.current.load("/Sivey - Pink Matter (Sivey Slow Burn Edit) - FREE DL.mp3");
         
         wavesurferRef.current.on("ready", () => {
           console.log("WaveSurfer is ready");
