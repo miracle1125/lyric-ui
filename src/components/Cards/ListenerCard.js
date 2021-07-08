@@ -22,7 +22,7 @@ export default function ListenerCard({ totalAmount, listenerIcon, differAmount }
   return (
     <Box className={classes.bgSecondary} p={2.5} height={180} borderRadius="4px">
       <Grid container justify="space-between" alignItems="center">
-        <Grid item>
+        <Grid item className={classes.prMobile}>
             <Typography className={classes.listenTitle}>Projected Listeners</Typography>
             <Typography variant="h1" className={classes.listenAmount}>{totalAmount}</Typography>
             <Box py={0.25} px={0.625} className={classes.increaseListener} borderRadius="3px">

@@ -24,7 +24,7 @@ export default function SongInfoTag({ songKey, songBpm, bpmImg }) {
   return (
     <Box pt={1} pb={2.5}>
       <Grid container className={classes.tagContainer}>
-        <Grid item xs={12} sm={6}>
+        <Grid item sm={12} md={4} lg={6} className={classes.mbMobile}>
             <Typography variant="h3" className={classes.keyName}>
               Key: {songKey}
             </Typography>
@@ -35,7 +35,7 @@ export default function SongInfoTag({ songKey, songBpm, bpmImg }) {
               <img alt={bpmImg.imgAlt} className={classes.bpmImg} src={bpmImg.imgSrc} width="18px" height="16px" />
             </Box>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item sm={12} md={8} lg={6}>
           <Typography variant="h3" >
             Elements/Tags
           </Typography>

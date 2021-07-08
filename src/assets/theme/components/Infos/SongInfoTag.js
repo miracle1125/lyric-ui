@@ -43,7 +43,12 @@ const componentStyles = (theme) => ({
     },
     reuploadBtn: {
       marginRight: "1.375rem"
-    }
+    },
+    mbMobile: {
+      "@media (max-width: 768px)": {
+        marginBottom: "2rem"
+      },
+    },
   });
   
   export default componentStyles;

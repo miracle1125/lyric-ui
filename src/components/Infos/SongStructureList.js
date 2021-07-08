@@ -21,7 +21,7 @@ export default function SongStructureList({ }) {
   const theme = useTheme();
 
   return (
-    <Box bgcolor="primary.light" borderRadius="4px" pt={2.75} pb={.75} px={2.25}>
+    <Box className={classes.structureList} bgcolor="primary.light" borderRadius="4px" pt={2.75} pb={.75} px={2.25}>
       <Box mb={4} className="overallStructure">
         <SongStructureItem
           structureTitle="Overall"

@@ -1,12 +1,8 @@
 import React from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-// import { useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Typography from '@material-ui/core/Typography';
-
-// @material-ui/icons components
-// import ArrowDownward from "@material-ui/icons/ArrowDownward";
 
 // core components
 import {
@@ -25,7 +21,7 @@ export default function EarnCard({ amount }) {
   // const theme = useTheme();
 
   return (
-    <Box className={classes.bgSecondary} height={180} borderRadius="4px">
+    <Box className={classes.earnCard} height={180} borderRadius="4px">
       <Typography className={classes.earnTitle}>Project Earnings</Typography>
       <Typography className={classes.earnAmount}>${amount}</Typography>
       <ResponsiveContainer height={110} width="100%">

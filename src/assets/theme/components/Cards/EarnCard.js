@@ -5,14 +5,17 @@ const componentStyles = (theme) => ({
         paddingTop: "10px",
         paddingLeft: "11px",
     },
-    bgSecondary: {
-        backgroundColor: theme.palette.secondary.main,
-    },
     earnTitle: {
         paddingLeft: "11px",
         paddingTop: "12px",
         fontWeight: "500"
     },
+    earnCard: {
+        backgroundColor: theme.palette.secondary.main,
+        "@media (max-width: 1100px)": {
+          marginBottom: "1rem"
+        },
+      },
   });
   
   export default componentStyles;

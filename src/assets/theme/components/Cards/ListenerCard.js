@@ -18,6 +18,11 @@ const componentStyles = (theme) => ({
         width: "fit-content",
         display: "flex",
         alignItems: "center",
+    },
+    prMobile: {
+        "@media (max-width: 410px)": {
+            paddingRight: "0px",
+        },
     }
   });
   
