@@ -8,7 +8,6 @@ import Divider from '@material-ui/core/Divider';
 // import ArrowDownward from "@material-ui/icons/ArrowDownward";
 
 // core components
-import SongInfoHeader from "./SongInfoHeader"
 import SongInfoTag from "./SongInfoTag"
 import SongInfoGraph from "./SongInfoGraph"
 import SongInfoDetail from "./SongInfoDetail"

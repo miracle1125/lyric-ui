@@ -9,7 +9,8 @@ const componentStyles = (theme) => ({
     cursor: "pointer",
     display: "flex",
     justifyContet: "center",
-    alignItems: "center"
+    alignItems: "center",
+    padding: "0px"
   },
   toggleIcon: {
     color: "white",
