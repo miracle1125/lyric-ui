@@ -1,8 +1,6 @@
 import React, {useMemo} from 'react';
-import {useDropzone} from 'react-dropzone';
 
 import { makeStyles } from "@material-ui/core/styles";
-import { useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Button from '@material-ui/core/Button';
 
@@ -46,22 +44,14 @@ const rejectStyle = {
 };
 
 
-export default function Dropzone(props) {
+export default function Dropzone({ acceptedFiles,
+  getRootProps,
+  getInputProps,
+  isDragActive,
+  isDragAccept,
+  isDragReject }) {
 
   const classes = useStyles();
-  const theme = useTheme();
-
-  const {
-    acceptedFiles,
-    getRootProps,
-    getInputProps,
-    isDragActive,
-    isDragAccept,
-    isDragReject
-  } = useDropzone({
-    accept: 'audio/*', 
-    maxFiles:1
-  });
 
   const style = useMemo(() => ({
     ...baseStyle,
@@ -86,7 +76,7 @@ export default function Dropzone(props) {
         <input {...getInputProps()} />
         <img alt="upload_icon" src={uploadIcon} width="49px" height="49px"/>
         <p>Choose a file or Drag it here</p>
-        <Button variant="contained" className={classes.dropzoneBtn} color="primary" size="middle">Choose a file</Button>
+        <Button variant="contained" className={classes.dropzoneBtn} color="primary">Choose a file</Button>
       </div>
       <aside>
         <ul>{files}</ul>

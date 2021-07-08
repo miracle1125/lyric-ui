@@ -65,7 +65,6 @@ export default function SongInfoGraph({ songGraphImg }) {
                 onIcon={<PauseIcon />}
                 offIcon={<PlayArrowIcon />}
                 className={classes.toggleIcon}
-                style={{width: "2rem"}}
               />
             </IconButton>
           </Grid>

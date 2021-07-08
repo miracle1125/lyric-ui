@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,6 +15,10 @@ const useStyles = makeStyles(componentStyles);
 
 export default function Header({ logo, help, avatar }) {
   const classes = useStyles();
+  const { url } = useRouteMatch();
+  console.log(url);
+  const isUploadVisible = url !== '/upload';
+
   let logoImage = (
     <img alt={logo.imgAlt} className={classes.logoClasses} src={logo.imgSrc} />
   );
@@ -31,17 +35,17 @@ export default function Header({ logo, help, avatar }) {
 
   return (
     <Box className={classes.bgPrimary} px={4} py={1} >
-      <Grid container>
+      <Grid container justify="space-between">
         <Grid container item sm={6} justify="flex-start" alignItems="center">
           <Box mr={1}>{logoObject}</Box>
           <Typography ml={1} className={classes.logoText}>Lyric</Typography>
         </Grid>
         <Grid container item sm={6} justify="flex-end" alignItems="center">
-          <Link to="/upload">
+          {isUploadVisible && <Link to="/upload">
             <Button variant="contained" className={classes.uploadBtn}>
               Upload
             </Button>
-          </Link>
+          </Link>}
           <Box mx={2.5}>
             <img alt={help.imgAlt} className={classes.verticalAlign} src={help.imgSrc} />
           </Box>

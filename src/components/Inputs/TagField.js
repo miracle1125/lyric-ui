@@ -24,10 +24,10 @@ const baseTagifySettings = {
   callbacks: {}
 };
 
-export default function TagField({ label, name, initialValue = [], suggestions = [] }) {
+export default function TagField({ label, name, initialValue = [], suggestions = [], setTags }) {
   
   const handleChange = e => {
-    console.log(e.type, " ==> ", e.detail.tagify.value.map(item => item.value));
+    setTags(e.detail.tagify.value.map(item => item.value));
   };
 
   const settings = {
