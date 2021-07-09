@@ -1,5 +1,5 @@
 const componentStyles = (theme) => ({
-    mainContent: {
+    blackBg: {
       backgroundColor: "black",
     },
     cardGroup: {

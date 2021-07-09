@@ -35,66 +35,70 @@ const Dashboard = () => {
           imgAlt: "help-icon",
         }}
       />
-      <Box px={4} py={5} className={classes.mainContent}>
-        <Grid container>
-          <Grid item sm={12} md={8} className={classes.widthMobile}>
-            <Box>
-              <Grid container className={classes.cardGroup}>
-                <Grid md={12} lg={6} item>
-                  <EarnCard 
-                    earnCardInfo = {{
-                      amount: musicInfo["data"]["projectedEarnings"]["amount"],
-                      currencySymbol: musicInfo["data"]["projectedEarnings"]["currencySymbol"]
+      <Box className="dashboard-container">
+        <Box className="dashboard-content">
+          <Box px={4}>
+            <Grid container>
+              <Grid item sm={12} md={8} className={classes.widthMobile}>
+                <Box>
+                  <Grid container className={classes.cardGroup}>
+                    <Grid md={12} lg={6} item>
+                      <EarnCard 
+                        earnCardInfo = {{
+                          amount: musicInfo["data"]["projectedEarnings"]["amount"],
+                          currencySymbol: musicInfo["data"]["projectedEarnings"]["currencySymbol"]
+                        }}
+                      />
+                    </Grid>
+                    <Grid  md={12} lg={6} item>
+                      <ListenerCard
+                        listenerCardInfo = {{
+                          amount: musicInfo["data"]["projectedListeners"]["amount"],
+                          changedAmount: musicInfo["data"]["projectedListeners"]["historicalChange"]
+                        }}
+                        listenerIcon= {{
+                          imgSrc: require("../assets/img/headphone.png").default,
+                          imgAlt: "listener-icon",
+                        }}
+                      />
+                    </Grid>
+                  </Grid>
+                </Box>
+                <Box mt={2}>
+                  <SongInfoWindow
+                    songInfoTag={{
+                      key: musicInfo["data"]["songCharacteristics"]["key"],
+                      bpm: musicInfo["data"]["songCharacteristics"]["bpm"],
+                      tags: musicInfo["data"]["songCharacteristics"]["tags"],
                     }}
-                  />
-                </Grid>
-                <Grid  md={12} lg={6} item>
-                  <ListenerCard
-                    listenerCardInfo = {{
-                      amount: musicInfo["data"]["projectedListeners"]["amount"],
-                      changedAmount: musicInfo["data"]["projectedListeners"]["historicalChange"]
+                    songDetail={{
+                      title: musicInfo["data"]["title"],
+                      description: musicInfo["data"]["description"],
                     }}
-                    listenerIcon= {{
-                      imgSrc: require("../assets/img/headphone.png").default,
-                      imgAlt: "listener-icon",
-                    }}
-                  />
-                </Grid>
+                    genres={musicInfo["data"]["genres"]}
+                  >
+                  </SongInfoWindow>
+                </Box>
               </Grid>
-            </Box>
-            <Box mt={2}>
-              <SongInfoWindow
-                songInfoTag={{
-                  key: musicInfo["data"]["songCharacteristics"]["key"],
-                  bpm: musicInfo["data"]["songCharacteristics"]["bpm"],
-                  tags: musicInfo["data"]["songCharacteristics"]["tags"],
-                }}
-                songDetail={{
-                  title: musicInfo["data"]["title"],
-                  description: musicInfo["data"]["description"],
-                }}
-                genres={musicInfo["data"]["genres"]}
-              >
-              </SongInfoWindow>
-            </Box>
-          </Grid>
-          <Grid item sm={12} md={4}>
-            <SongStructureList
-              songStructureInfo = {{
-                overall: musicInfo["data"]["score"]["overall"],
-                melody: musicInfo["data"]["score"]["melody"],
-                chords: musicInfo["data"]["score"]["chords"],
-                structure: musicInfo["data"]["score"]["starFactor"],
-                familiarity: musicInfo["data"]["score"]["familiarity"],
-              }}
-            >
-            </SongStructureList>
-            <SongRelatedList
-              relatedSongLists = {musicInfo["data"]["songCharacteristics"]["similarSongs"]}
-            >
-            </SongRelatedList>
-          </Grid>
-        </Grid>
+              <Grid item sm={12} md={4}>
+                <SongStructureList
+                  songStructureInfo = {{
+                    overall: musicInfo["data"]["score"]["overall"],
+                    melody: musicInfo["data"]["score"]["melody"],
+                    chords: musicInfo["data"]["score"]["chords"],
+                    structure: musicInfo["data"]["score"]["starFactor"],
+                    familiarity: musicInfo["data"]["score"]["familiarity"],
+                  }}
+                >
+                </SongStructureList>
+                <SongRelatedList
+                  relatedSongLists = {musicInfo["data"]["songCharacteristics"]["similarSongs"]}
+                >
+                </SongRelatedList>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
