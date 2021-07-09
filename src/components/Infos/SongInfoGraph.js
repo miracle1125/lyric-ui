@@ -23,9 +23,9 @@ import PauseIcon from '@material-ui/icons/Pause';
 import componentStyles from "../../assets/theme/components/Infos/SongInfoGraph";
 
 const useStyles = makeStyles(componentStyles);
-const genres = ["rap","rock", "hip-hop","rnb"];
+// const genres = ["rap","rock", "hip-hop","rnb"];
 
-export default function SongInfoGraph({ songGraphImg }) {
+export default function SongInfoGraph({ genres }) {
   const classes = useStyles();  
   const theme = useTheme();
   const wavesurferRef = useRef();

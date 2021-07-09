@@ -15,7 +15,7 @@ import componentStyles from "../../assets/theme/components/Cards/ListenerCard";
 
 const useStyles = makeStyles(componentStyles);
 
-export default function ListenerCard({ totalAmount, listenerIcon, differAmount }) {
+export default function ListenerCard({ listenerIcon, listenerCardInfo }) {
   const classes = useStyles();
   // const theme = useTheme();
 
@@ -24,11 +24,11 @@ export default function ListenerCard({ totalAmount, listenerIcon, differAmount }
       <Grid container justify="space-between" alignItems="center">
         <Grid item className={classes.prMobile}>
             <Typography className={classes.listenTitle}>Projected Listeners</Typography>
-            <Typography variant="h1" className={classes.listenAmount}>{totalAmount}</Typography>
+            <Typography variant="h1" className={classes.listenAmount}>{listenerCardInfo["amount"]}</Typography>
             <Box py={0.25} px={0.625} className={classes.increaseListener} borderRadius="3px">
               <ArrowUpwardIcon>
               </ArrowUpwardIcon>
-              {differAmount}
+              {listenerCardInfo["changedAmount"]}
             </Box>
         </Grid>
         <Grid item>

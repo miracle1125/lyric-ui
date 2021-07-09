@@ -1,15 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import { useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-
-// @material-ui/icons components
-// import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-
 
 // core components
 import componentStyles from "../../assets/theme/components/Infos/SongInfoTag";
@@ -17,40 +14,41 @@ import componentStyles from "../../assets/theme/components/Infos/SongInfoTag";
 
 const useStyles = makeStyles(componentStyles);
 
-export default function SongInfoTag({ songKey, songBpm, bpmImg }) {
+export default function SongInfoTag({ songInfoTag, bpmImgSrc }) {
+  
   const classes = useStyles();
-  const theme = useTheme();
+
+  let tagsList = songInfoTag["tags"] || [];
+
+  const SongTagsList = tagsList.map((tagsItem) => {
+    return <Button variant="outlined" size="small">{tagsItem}</Button>;
+  });
 
   return (
     <Box pt={1} pb={2.5}>
       <Grid container className={classes.tagContainer}>
         <Grid item sm={12} md={4} lg={6} className={classes.mbMobile}>
             <Typography variant="h3" className={classes.keyName}>
-              Key: {songKey}
+              Key: {songInfoTag["key"]}
             </Typography>
             <Box display="flex" alignItems="center">
               <Typography variant="h3" className={classes.songInfoBpm}>
-                BPM: {songBpm}
+                BPM: {songInfoTag["bpm"]}
               </Typography>
-              <img alt={bpmImg.imgAlt} className={classes.bpmImg} src={bpmImg.imgSrc} width="18px" height="16px" />
+              <img alt="bpm-icon" className={classes.bpmImg} src={bpmImgSrc} width="18px" height="16px" />
             </Box>
         </Grid>
         <Grid item sm={12} md={8} lg={6}>
           <Typography variant="h3" >
             Elements/Tags
           </Typography>
-          <Box className={classes.songTagGroup}>
-            <Button variant="outlined" className={classes.blueBtn} size="small">Stream</Button>
-            <Button variant="outlined" className={classes.greenBtn} size="small">Rock</Button>
-            <Button variant="outlined" className={classes.lightRedBtn} size="small">Stream</Button>
-            <Button variant="outlined" className={classes.redBtn} size="small">Rock</Button>
-            <Button variant="outlined" className={classes.greenBtn} size="small">Rock</Button>
-            <Button variant="outlined" className={classes.blueBtn} size="small">Stream</Button>
-            <Button variant="outlined" className={classes.greenBtn} size="small">Rock</Button>
-            <Button variant="outlined" className={classes.lightRedBtn} size="small">Stream</Button>
+          <Box className="songTagGroup">
+            {SongTagsList}
           </Box>
           <Box textAlign="right" mt={2.5}>
-            <Button variant="outlined" className={classes.reuploadBtn} size="large">Re-Upload</Button>
+            <Link to="/upload">
+              <Button variant="outlined" className={classes.reuploadBtn} size="large">Re-Upload</Button>
+            </Link>
             <Button variant="contained" color="primary" className={classes.buildBtn} size="large">Build</Button>
           </Box>
         </Grid>

@@ -42,14 +42,15 @@ const Upload = () => {
 
   const uploadMusicInfo = () => {
     const bodyFormData = new FormData();
-    console.log("-------------------"+musicInfo.title);
     bodyFormData.append('title', musicInfo.title);
     bodyFormData.append('description', musicInfo.description);
     bodyFormData.append('tags', tags);
     bodyFormData.append('file', dropzone.acceptedFiles[0]);
 
     getMusicInfo(bodyFormData)
-      .then(rlt => console.log(rlt))
+      .then(rlt => 
+          localStorage.setItem('musicInfo', JSON.stringify(rlt))
+        )
       .catch(err => console.log(err))
   }
 

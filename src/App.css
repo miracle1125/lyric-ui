@@ -45,3 +45,27 @@
   --tags-border-color: #2196F3 !important;
   --tag-text-color--edit: #fff !important;
 }
+.songTagGroup button:nth-child(4n+0) {
+  color: #2196F3;
+  border-color: #2196F3;
+  background-color: rgba(33, 150, 243, 0.29);
+  border-radius: 12px;
+}
+.songTagGroup button:nth-child(4n+1) {
+  color: #34BFA3;
+  border-color: #34BFA3;
+  background-color: rgba(52, 191, 163, 0.29);
+  border-radius: 12px;
+}
+.songTagGroup button:nth-child(4n+2) {
+  color: #C31162;
+  border-color: #C31162;
+  background-color: rgba(195, 17, 98, 0.29);
+  border-radius: 12px;
+}
+.songTagGroup button:nth-child(4n+3) {
+  color: #F4516C;
+  border-color: #F4516C;
+  background-color: rgba(244, 81, 108, 0.29);
+  border-radius: 12px;
+}

@@ -13,12 +13,13 @@ import componentStyles from "../../assets/theme/components/header";
 
 const useStyles = makeStyles(componentStyles);
 
-export default function Header({ logo, help, avatar }) {
+export default function Header({ logo, help }) {
   const classes = useStyles();
   const { url } = useRouteMatch();
   console.log(url);
   const isUploadVisible = url !== '/upload';
-
+  const musicInfo = JSON.parse(localStorage.getItem('musicInfo'));
+  const  avatar = musicInfo["data"]["profilePhoto"];
   let logoImage = (
     <img alt={logo.imgAlt} className={classes.logoClasses} src={logo.imgSrc} />
   );
@@ -50,7 +51,7 @@ export default function Header({ logo, help, avatar }) {
             <img alt={help.imgAlt} className={classes.verticalAlign} src={help.imgSrc} />
           </Box>
           <Box>
-            <img alt={avatar.imgAlt} className={classes.verticalAlign} src={avatar.imgSrc} />
+            <img alt="user-avatar" className={classes.avatarImg} src={avatar} width="34px" height="34px" />
           </Box>
         </Grid>
       </Grid>

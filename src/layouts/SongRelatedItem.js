@@ -16,17 +16,17 @@ import componentStyles from "../assets/theme/layouts/SongRelatedItem";
 
 const useStyles = makeStyles(componentStyles);
 
-export default function SongRelatedItem({ relatedImg, relatedTitle, relatedAuthor }) {
+export default function SongRelatedItem({ relatedSongList }) {
   const classes = useStyles();
   const theme = useTheme();
   return (
     <Box display="flex" pb={1.75}>
         <Box mr={1.5}>
-          <img alt={relatedImg.imgAlt} className={classes.songRelatedImg} src={relatedImg.imgSrc} width="58px" height="58px"/>
+          <img alt="related-song-img" className={classes.songRelatedImg} src={relatedSongList["albumArt"]} width="58px" height="58px"/>
         </Box>
         <Box>
-          <Typography className={classes.relatedTitle}>{relatedTitle}</Typography>
-          <Typography>{relatedAuthor}</Typography>
+          <Typography className={classes.relatedTitle}>{relatedSongList["title"]}</Typography>
+          <Typography>{relatedSongList["artist"]}</Typography>
         </Box>
     </Box>
   );

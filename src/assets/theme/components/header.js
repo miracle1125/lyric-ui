@@ -27,6 +27,10 @@ const componentStyles = (theme) => ({
       display: "block",
       textAlign: "center",
     },
+    avatarImg: {
+      verticalAlign: "middle",
+      borderRadius: "50%",
+    },
     verticalAlign: {
       verticalAlign: "middle",
     },
