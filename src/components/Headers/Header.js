@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button";
 
 // core components
 import componentStyles from "../../assets/theme/components/header";
+import demoJson from "../../demo.json"
 
 const useStyles = makeStyles(componentStyles);
 
@@ -18,7 +19,8 @@ export default function Header({ logo, help }) {
   const { url } = useRouteMatch();
   console.log(url);
   const isUploadVisible = url !== '/upload';
-  const musicInfo = JSON.parse(localStorage.getItem('musicInfo'));
+  const storedInfo = localStorage.getItem('musicInfo');
+  const musicInfo = storedInfo ? JSON.parse(storedInfo) : demoJson;
   const  avatar = musicInfo["data"]["profilePhoto"];
   let logoImage = (
     <img alt={logo.imgAlt} className={classes.logoClasses} src={logo.imgSrc} />

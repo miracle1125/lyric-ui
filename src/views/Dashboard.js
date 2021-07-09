@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from 'react';
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import { useTheme } from "@material-ui/core/styles";
@@ -14,13 +14,15 @@ import SongStructureList from "../components/Infos/SongStructureList";
 import SongRelatedList from "../components/Infos/SongRelatedList";
 
 import componentStyles from "../assets/theme/views/Dashboard";
+import demoJson from "../demo.json"
 
 const useStyles = makeStyles(componentStyles);
 
 const Dashboard = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const musicInfo = JSON.parse(localStorage.getItem('musicInfo'));
+  const storedInfo = localStorage.getItem('musicInfo');
+  const musicInfo = storedInfo ? JSON.parse(storedInfo) : demoJson;
 
   return (
     <Box position="relative">
