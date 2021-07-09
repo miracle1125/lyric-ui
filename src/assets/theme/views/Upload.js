@@ -1,6 +1,20 @@
 const componentStyles = (theme) => ({
-    mainContent: {
+    uploadContainer: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "black",
+        height: "100vh",
+    },
+    blackBg: {
         backgroundColor: "black"
+    },
+    uploadMain: {
+        // position: "absolute",
+        // top: "50%",
+        // left: "50%",
+        // transform: "translate(-50%, -50%)",
+        // width: "100%",
     },
     uploadInput: {
         width: "100%",

@@ -65,7 +65,7 @@ export default function Dropzone({ acceptedFiles,
   ]);
 
   const files = acceptedFiles.map(file => (
-    <li key={file.path}>
+    <li key={file.path} className={classes.fileDisplay}>
       {file.path} - {file.size} bytes
     </li>
   ));

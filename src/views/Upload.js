@@ -73,25 +73,29 @@ const Upload = () => {
         imgAlt: "user-avatar",
       }}
       />
-      <Box bgcolor={themeColors.black.main} py={8} px={2}>
-        <Dropzone {...dropzone}></Dropzone>
-        <Box maxWidth="700px" width="100%" margin="auto">
-          <Box mt={5}>
-            <Typography variant="h3" className={classes.inputLabel}>Title</Typography>
-            <input id="upload_title" className={classes.uploadInput} name="upload_title"  type="text" onChange={handleChangeInput('title')}></input>
-          </Box>
-          <Box mt={2.5}>
-            <Typography variant="h3" className={classes.inputLabel}>Description</Typography>
-            <textarea id="upload_des" className={classes.uploadInput} name="upload_des" rows="4" cols="50"  style={{resize: "vertical"}} onChange={handleChangeInput('description')}>
-            </textarea>
-          </Box>
-          <Box mt={2.5} mb={3}>
-            <Typography variant="h3" className={classes.inputLabel}>Tags</Typography>
-            <TagField initialValue={[]} suggestions={suggestions}  setTags={setTags}/>
-          </Box>
-          <Box textAlign="right">
-            <Button variant="contained" color="primary" className="cancel-btn" size="large">Cancel</Button>
-            <Button variant="contained" color="primary" className={classes.uploadBtnn} size="large" onClick={uploadMusicInfo}>Upload</Button>
+      <Box className={classes.blackBg} py={2.5}>
+        <Box className={classes.uploadContainer} my={2.5} px={2}>
+          <Box bgcolor={themeColors.black.main} width="700px">
+            <Dropzone {...dropzone}></Dropzone>
+            <Box maxWidth="700px" width="100%" margin="auto">
+              <Box mt={5}>
+                <Typography variant="h3" className={classes.inputLabel}>Title</Typography>
+                <input id="upload_title" className={classes.uploadInput} name="upload_title"  type="text" onChange={handleChangeInput('title')}></input>
+              </Box>
+              <Box mt={2.5}>
+                <Typography variant="h3" className={classes.inputLabel}>Description</Typography>
+                <textarea id="upload_des" className={classes.uploadInput} name="upload_des" rows="4" cols="50"  style={{resize: "vertical"}} onChange={handleChangeInput('description')}>
+                </textarea>
+              </Box>
+              <Box mt={2.5} mb={3}>
+                <Typography variant="h3" className={classes.inputLabel}>Tags</Typography>
+                <TagField initialValue={[]} suggestions={suggestions}  setTags={setTags}/>
+              </Box>
+              <Box textAlign="right">
+                <Button variant="contained" color="primary" className="cancel-btn" size="large">Cancel</Button>
+                <Button variant="contained" color="primary" className={classes.uploadBtnn} size="large" onClick={uploadMusicInfo}>Upload</Button>
+              </Box>
+            </Box>
           </Box>
         </Box>
       </Box>
