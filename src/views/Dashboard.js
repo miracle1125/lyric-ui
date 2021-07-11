@@ -37,9 +37,9 @@ const Dashboard = () => {
           imgAlt: "help-icon",
         }}
       />
-      <Box className="dashboard-container">
-        <Box className="dashboard-content">
-          <Box px={4}>
+      <Box className="dashboard-wrap">
+        <Box className="dashboard-container">
+          <Box px={4} className="dashboard-content">
             <Grid container>
               <Grid item sm={12} md={8} className={classes.widthMobile}>
                 <Box>
@@ -77,7 +77,10 @@ const Dashboard = () => {
                       title: musicInfo["data"]["title"],
                       description: musicInfo["data"]["description"],
                     }}
-                    genres={musicInfo["data"]["genres"]}
+                    songInfoGraph={{
+                      file: musicInfo["data"]["url"],
+                      genres: musicInfo["data"]["genres"]
+                    }}
                   >
                   </SongInfoWindow>
                 </Box>

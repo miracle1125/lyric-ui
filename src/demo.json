@@ -2,7 +2,7 @@
   "data": {
     "title": "Song Name",
     "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-    "url": "https://s3.eu-central-1.amazonaws.com/cyanite-file-storage/3980/26b5ed4c-3393-4511-bf1b-914427461eee?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJEAGRZG3TDV5AMHQ%2F20210708%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20210708T235400Z&X-Amz-Expires=900&X-Amz-Signature=42d95effa31723ab5e0abe7b36403aa9f916def46e71c3128f3d3b659b143647&X-Amz-SignedHeaders=host",
+    "url": "",
     "profilePhoto": "https://i.stack.imgur.com/34AD2.jpg",
     "genres": [
       "latin"
@@ -24,8 +24,8 @@
       "starFactor": 70
     },
     "songCharacteristics": {
-      "key": "A minor",
-      "bpm": 110,
+      "key": "eMinor",
+      "bpm": 117,
       "timeSignature": "3/4",
       "elements": [
         "aggressive",
@@ -36,10 +36,10 @@
         "Rock",
         "Stream",
         "Rock",
-        "Rock",
         "Stream",
         "Rock",
-        "Stream"
+        "Stream",
+        "Rock"
       ],
       "similarSongs": [
         {
@@ -66,7 +66,7 @@
   "status": 200,
   "statusText": "OK",
   "headers": {
-    "content-length": "886",
+    "content-length": "682",
     "content-type": "application/json; charset=utf-8"
   },
   "config": {

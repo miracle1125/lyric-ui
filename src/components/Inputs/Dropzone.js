@@ -71,7 +71,7 @@ export default function Dropzone({ acceptedFiles,
   ));
 
   return (
-    <Box maxWidth="700px" width="100%" margin="auto">
+    <Box className="dropzone-container">
       <div {...getRootProps({style})}>
         <input {...getInputProps()} />
         <img alt="upload_icon" src={uploadIcon} width="49px" height="49px"/>

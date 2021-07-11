@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useDropzone } from 'react-dropzone';
+import { useHistory } from "react-router-dom";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,6 +23,7 @@ const useStyles = makeStyles(componentStyles);
 const Upload = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const history = useHistory();
   const [musicInfo, setMusicInfo] = useState({
     title: '',
     description: ''
@@ -48,9 +50,10 @@ const Upload = () => {
     bodyFormData.append('file', dropzone.acceptedFiles[0]);
 
     getMusicInfo(bodyFormData)
-      .then(rlt => 
-          localStorage.setItem('musicInfo', JSON.stringify(rlt))
-        )
+      .then(rlt => {
+        localStorage.setItem('musicInfo', JSON.stringify(rlt))
+        history.push("/dashboard")
+      })
       .catch(err => console.log(err))
   }
 
@@ -73,11 +76,11 @@ const Upload = () => {
         imgAlt: "user-avatar",
       }}
       />
-      <Box className={classes.blackBg} py={2.5}>
-        <Box className={classes.uploadContainer} my={2.5} px={2}>
-          <Box bgcolor={themeColors.black.main} width="700px">
+      <Box className="upload-wrap">
+        <Box className="upload-container">
+          <Box bgcolor={themeColors.black.main} width="100%">
             <Dropzone {...dropzone}></Dropzone>
-            <Box maxWidth="700px" width="100%" margin="auto">
+            <Box className="upload-input-group">
               <Box mt={5}>
                 <Typography variant="h3" className={classes.inputLabel}>Title</Typography>
                 <input id="upload_title" className={classes.uploadInput} name="upload_title"  type="text" onChange={handleChangeInput('title')}></input>

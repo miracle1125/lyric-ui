@@ -14,13 +14,13 @@ import componentStyles from "../../assets/theme/components/Infos/SongInfoWindow"
 
 const useStyles = makeStyles(componentStyles);
 
-export default function SongInfoWindow({ songInfoTag, songDetail, genres }) {
+export default function SongInfoWindow({ songInfoTag, songDetail, songInfoGraph }) {
   const classes = useStyles();
   
   return (
     <Box bgcolor="secondary.main" borderRadius="4px">
       <SongInfoGraph
-        genres={genres}
+        songInfoGraph={songInfoGraph}
       >
       </SongInfoGraph>
       <Divider>

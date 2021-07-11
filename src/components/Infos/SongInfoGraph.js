@@ -23,9 +23,8 @@ import PauseIcon from '@material-ui/icons/Pause';
 import componentStyles from "../../assets/theme/components/Infos/SongInfoGraph";
 
 const useStyles = makeStyles(componentStyles);
-// const genres = ["rap","rock", "hip-hop","rnb"];
 
-export default function SongInfoGraph({ genres }) {
+export default function SongInfoGraph({ songInfoGraph }) {
   const classes = useStyles();  
   const theme = useTheme();
   const wavesurferRef = useRef();
@@ -33,7 +32,7 @@ export default function SongInfoGraph({ genres }) {
     waveSurfer => {
       wavesurferRef.current = waveSurfer;
       if (wavesurferRef.current) {
-        wavesurferRef.current.load("/Sivey - Pink Matter (Sivey Slow Burn Edit) - FREE DL.mp3");
+        wavesurferRef.current.load(songInfoGraph["file"]);
         
         wavesurferRef.current.on("ready", () => {
           console.log("WaveSurfer is ready");
@@ -71,7 +70,7 @@ export default function SongInfoGraph({ genres }) {
           <Grid item>
             <Autocomplete
               className={classes.genreSelect}
-              options={genres}
+              options={songInfoGraph["genres"]}
               classes={{
                 clearIndicatorDirty: classes.clearIndicator,
                 popupIndicator: classes.popupIndicator
