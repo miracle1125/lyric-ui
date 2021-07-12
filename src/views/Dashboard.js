@@ -23,6 +23,9 @@ const Dashboard = () => {
   const theme = useTheme();
   const storedInfo = localStorage.getItem('musicInfo');
   const musicInfo = storedInfo ? JSON.parse(storedInfo) : demoJson;
+  const songElementsArray = musicInfo["data"]["songCharacteristics"]["elements"];
+  const songTagsArray = musicInfo["data"]["songCharacteristics"]["tags"];
+  const songElementsTags = [...songElementsArray, ...songTagsArray];
 
   return (
     <Box position="relative">
@@ -71,7 +74,7 @@ const Dashboard = () => {
                     songInfoTag={{
                       key: musicInfo["data"]["songCharacteristics"]["key"],
                       bpm: musicInfo["data"]["songCharacteristics"]["bpm"],
-                      tags: musicInfo["data"]["songCharacteristics"]["tags"],
+                      elementsTags: songElementsTags,
                     }}
                     songDetail={{
                       title: musicInfo["data"]["title"],

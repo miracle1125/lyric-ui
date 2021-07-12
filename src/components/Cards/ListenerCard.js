@@ -5,12 +5,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from '@material-ui/core/Typography';
+import NumberFormat from 'react-number-format';
+
 
 // @material-ui/icons components
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 // core components
 import componentStyles from "../../assets/theme/components/Cards/ListenerCard";
+
 
 
 const useStyles = makeStyles(componentStyles);
@@ -24,11 +27,14 @@ export default function ListenerCard({ listenerIcon, listenerCardInfo }) {
       <Grid container justify="space-between" alignItems="center">
         <Grid item className={classes.prMobile}>
             <Typography className={classes.listenTitle}>Projected Listeners</Typography>
-            <Typography variant="h1" className={classes.listenAmount}>{listenerCardInfo["amount"]}</Typography>
+            <Typography variant="h1" className={classes.listenAmount}>
+              <NumberFormat value={listenerCardInfo["amount"]} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+            </Typography>
             <Box py={0.25} px={0.625} className={classes.increaseListener} borderRadius="3px">
               <ArrowUpwardIcon>
               </ArrowUpwardIcon>
-              {listenerCardInfo["changedAmount"]}
+              +
+              <NumberFormat value={listenerCardInfo["changedAmount"]} displayType={'text'} thousandSeparator={true} />
             </Box>
         </Grid>
         <Grid item>

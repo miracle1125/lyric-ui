@@ -3,6 +3,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Typography from '@material-ui/core/Typography';
+import NumberFormat from 'react-number-format';
 
 // core components
 import {
@@ -23,7 +24,9 @@ export default function EarnCard({ earnCardInfo }) {
   return (
     <Box className={classes.earnCard} height={180} borderRadius="4px">
       <Typography className={classes.earnTitle}>Project Earnings</Typography>
-      <Typography className={classes.earnAmount}>{earnCardInfo["currencySymbol"]}{earnCardInfo["amount"]}</Typography>
+      <Typography className={classes.earnAmount}>
+        <NumberFormat value={earnCardInfo["amount"]} displayType={'text'} thousandSeparator={true} prefix={earnCardInfo["currencySymbol"]} />
+      </Typography>
       <ResponsiveContainer height={110} width="100%">
         <ComposedChart data={getRandomData(10)}>
           <defs>
