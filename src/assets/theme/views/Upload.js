@@ -11,7 +11,7 @@ const componentStyles = (theme) => ({
     },
     inputLabel: {
         marginBottom: "7px",
-    }
+    },
 });
   
 export default componentStyles;
