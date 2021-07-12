@@ -6,9 +6,6 @@ const componentStyles = (theme) => ({
     bpmImg: {
       marginLeft: "5px"
     },
-    keyName: {
-      marginBottom: "1.5rem"
-    },
     tagContainer: {
       margin: "0",
     },

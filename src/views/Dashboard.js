@@ -75,6 +75,7 @@ const Dashboard = () => {
                       key: musicInfo["data"]["songCharacteristics"]["key"],
                       bpm: musicInfo["data"]["songCharacteristics"]["bpm"],
                       elementsTags: songElementsTags,
+                      timeSignature: musicInfo["data"]["songCharacteristics"]["timeSignature"],
                     }}
                     songDetail={{
                       title: musicInfo["data"]["title"],
