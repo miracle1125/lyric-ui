@@ -33,16 +33,16 @@ const App = () => {
 
   return (
     <Switch>
-      <Route path="/auth">
+      <Route exact path="/">
         <Auth></Auth>
       </Route>
-      <Route path="/dashboard">
+      <Route exact path="/dashboard">
         <Dashboard></Dashboard>
       </Route>
-      <Route path="/upload">
+      <Route exact path="/upload">
         <Upload></Upload>
       </Route>
-      <Redirect from="/" to="/auth" />
+      <Redirect from="/" to="/" />
     </Switch>
   )
 };

@@ -44,7 +44,7 @@ export default function AuthContent() {
       <Box className={classes.authContentContainer}>
         <Box>
           <Typography className={classes.registerTitle}>
-            { register ? "Sign In" : "SignUp" }
+            { register ? "Sign In" : "Sign Up" }
           </Typography>
           <Typography className={classes.registerDescription}>
             It is a long established fact that a reader will be distracted by the readable content.
@@ -53,8 +53,8 @@ export default function AuthContent() {
             { register ? 
               <>
                 <Box mt={2.5}>
-                  <Typography variant="h3" className={classes.authInputLabel}>User Name</Typography>
-                  <input id="user_name" className={classes.authInput} name="user_name"  type="text" placeholder="User Name"></input>
+                  <Typography variant="h3" className={classes.authInputLabel}>Email</Typography>
+                  <input id="email" className={classes.authInput} name="email"  type="text" placeholder="Email"></input>
                 </Box>
                 <Box mt={2.5}>
                   <Typography variant="h3" className={classes.authInputLabel}>Password</Typography>
@@ -77,32 +77,32 @@ export default function AuthContent() {
                 </Grid>
               </Box>
               <Box mt={2.5}>
-                <Typography variant="h3" className={classes.authInputLabel}>Artist name/moniker</Typography>
-                <input id="last_name" className={classes.authInput} name="last_name"  type="text" placeholder="Artist name/moniker"></input>
+                <Typography variant="h3" className={classes.authInputLabel}>Creator Alias</Typography>
+                <input id="creator" className={classes.authInput} name="creator"  type="text" placeholder="Creator Alias"></input>
               </Box>
             </> }
             { !register && <Box mt={2.5} mb={4.75}>
               <Typography variant="h3" className={classes.authInputLabel}>Genres of Interest</Typography>
-              <Box>
-                <Button className={clsx("genre-select-btn", {"selected": options.findIndex(option => option === "option1") > -1})}
-                  variant="outlined" size="small" onClick={() => handleSaveOption('option1')}>Option1</Button>
-                <Button className={clsx("genre-select-btn", {"selected": options.findIndex(option => option === "option2") > -1})}
-                  variant="outlined" size="small" onClick={() => handleSaveOption('option2')}>Option2</Button>
-                <Button className={clsx("genre-select-btn", {"selected": options.findIndex(option => option === "option3") > -1})}
-                  variant="outlined" size="small" onClick={() => handleSaveOption('option3')}>Option3</Button>
-                <Button className={clsx("genre-select-btn", {"selected": options.findIndex(option => option === "option4") > -1})}
-                  variant="outlined" size="small" onClick={() => handleSaveOption('option4')}>Option4</Button>
-              </Box>
-              <Box>
+              <Button className={clsx("genre-select-btn", {"selected": options.findIndex(option => option === "option1") > -1})}
+                variant="outlined" size="small" onClick={() => handleSaveOption('option1')}>Pop</Button>
+              <Button className={clsx("genre-select-btn", {"selected": options.findIndex(option => option === "option2") > -1})}
+                variant="outlined" size="small" onClick={() => handleSaveOption('option2')}>Hip-Hop/Rap</Button>
+              <Button className={clsx("genre-select-btn", {"selected": options.findIndex(option => option === "option3") > -1})}
+                variant="outlined" size="small" onClick={() => handleSaveOption('option3')}>Rock</Button>
+              <Button className={clsx("genre-select-btn", {"selected": options.findIndex(option => option === "option4") > -1})}
+                variant="outlined" size="small" onClick={() => handleSaveOption('option4')}>Dance/Electronic</Button>
               <Button className={clsx("genre-select-btn", {"selected": options.findIndex(option => option === "option5") > -1})}
-                variant="outlined" size="small" onClick={() => handleSaveOption('option5')}>Option5</Button>
+                variant="outlined" size="small" onClick={() => handleSaveOption('option5')}>Latin</Button>
               <Button className={clsx("genre-select-btn", {"selected": options.findIndex(option => option === "option6") > -1})}
-                  variant="outlined" size="small" onClick={() => handleSaveOption('option6')}>Option6</Button>
+                variant="outlined" size="small" onClick={() => handleSaveOption('option6')}>Alternative</Button>
               <Button className={clsx("genre-select-btn", {"selected": options.findIndex(option => option === "option7") > -1})}
-                variant="outlined" size="small" onClick={() => handleSaveOption('option7')}>Option7</Button>
+                variant="outlined" size="small" onClick={() => handleSaveOption('option7')}>Classical</Button>
               <Button className={clsx("genre-select-btn", {"selected": options.findIndex(option => option === "option8") > -1})}
-                variant="outlined" size="small" onClick={() => handleSaveOption('option8')}>Option8</Button>
-              </Box>
+                variant="outlined" size="small" onClick={() => handleSaveOption('option8')}>K-Pop</Button>
+              <Button className={clsx("genre-select-btn", {"selected": options.findIndex(option => option === "option9") > -1})}
+                variant="outlined" size="small" onClick={() => handleSaveOption('option9')}>Country</Button>
+              <Button className={clsx("genre-select-btn", {"selected": options.findIndex(option => option === "option10") > -1})}
+                variant="outlined" size="small" onClick={() => handleSaveOption('option10')}>Metal</Button>
             </Box> }
             { register ? <Button variant="contained" color="primary" className={classes.loginBtn} size="large" onClick={handleSignIn}>Sign In</Button>
             : <Button variant="contained" color="primary" className={classes.registerBtn} size="large" onClick={() => setRegister(!register)}>Sign Up</Button> }            
