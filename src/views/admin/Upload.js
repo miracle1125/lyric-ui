@@ -9,15 +9,15 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 // core components
-import Header from "../components/Headers/Header";
-import Dropzone from "../components/Inputs/Dropzone";
-import TagField from "../components/Inputs/TagField";
+import Header from "../../components/Headers/Header";
+import Dropzone from "../../components/Inputs/Dropzone";
+import TagField from "../../components/Inputs/TagField";
 import LoadingOverlay from 'react-loading-overlay';
 
 
-import themeColors from "../assets/theme/colors";
-import componentStyles from "../assets/theme/views/Upload";
-import { getMusicInfo } from "../service/api";
+import themeColors from "../../assets/theme/colors";
+import componentStyles from "../../assets/theme/views/Upload";
+import { getMusicInfo } from "../../service/api";
 
 const useStyles = makeStyles(componentStyles);
 
@@ -76,15 +76,15 @@ const Upload = () => {
         <Header 
         logo={{
           innerLink: "/dashboard",
-          imgSrc: require("../assets/img/logo.png").default,
+          imgSrc: require("../../assets/img/logo.png").default,
           imgAlt: "logo-image",
         }}
         help={{
-          imgSrc: require("../assets/img/help_icon.png").default,
+          imgSrc: require("../../assets/img/help_icon.png").default,
           imgAlt: "help-icon",
         }}
         avatar={{
-          imgSrc: require("../assets/img/user_avatar.png").default,
+          imgSrc: require("../../assets/img/user_avatar.png").default,
           imgAlt: "user-avatar",
         }}
         />

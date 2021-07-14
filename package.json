@@ -13,6 +13,7 @@
     "@yaireo/tagify": "3.2.2",
     "apexcharts": "^3.27.1",
     "axios": "^0.21.1",
+    "clsx": "^1.1.1",
     "highcharts": "^9.1.2",
     "material-ui-dropzone": "^3.5.0",
     "material-ui-toggle-icon": "^1.1.2",

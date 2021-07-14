@@ -6,15 +6,15 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 
 // core components
-import Header from "../components/Headers/Header";
-import EarnCard from "../components/Cards/EarnCard";
-import ListenerCard from "../components/Cards/ListenerCard";
-import SongInfoWindow from "../components/Infos/SongInfoWindow";
-import SongStructureList from "../components/Infos/SongStructureList";
-import SongRelatedList from "../components/Infos/SongRelatedList";
+import Header from "../../components/Headers/Header";
+import EarnCard from "../../components/Cards/EarnCard";
+import ListenerCard from "../../components/Cards/ListenerCard";
+import SongInfoWindow from "../../components/Infos/SongInfoWindow";
+import SongStructureList from "../../components/Infos/SongStructureList";
+import SongRelatedList from "../../components/Infos/SongRelatedList";
 
-import componentStyles from "../assets/theme/views/Dashboard";
-import demoJson from "../demo.json"
+import componentStyles from "../../assets/theme/views/Dashboard";
+import demoJson from "../../demo.json"
 
 const useStyles = makeStyles(componentStyles);
 
@@ -32,11 +32,11 @@ const Dashboard = () => {
       <Header 
         logo={{
           innerLink: "/dashboard",
-          imgSrc: require("../assets/img/logo.png").default,
+          imgSrc: require("../../assets/img/logo.png").default,
           imgAlt: "logo-image",
         }}
         help={{
-          imgSrc: require("../assets/img/help_icon.png").default,
+          imgSrc: require("../../assets/img/help_icon.png").default,
           imgAlt: "help-icon",
         }}
       />
@@ -62,7 +62,7 @@ const Dashboard = () => {
                           changedAmount: musicInfo["data"]["projectedListeners"]["historicalChange"]
                         }}
                         listenerIcon= {{
-                          imgSrc: require("../assets/img/headphone.png").default,
+                          imgSrc: require("../../assets/img/headphone.png").default,
                           imgAlt: "listener-icon",
                         }}
                       />
