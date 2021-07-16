@@ -66,7 +66,7 @@ export default function AuthContent() {
     };
     readUser(bodyFormData)
       .then(rlt => {
-        history.push('/dashboard');
+        history.push('/upload');
       })
       .catch(err => {
         alert(err);
