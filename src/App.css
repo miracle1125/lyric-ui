@@ -132,7 +132,6 @@
 }
 .auth-content-wrap {
   background-color: black;
-  padding: 3rem 0;
 }
 /* End Auth Page */
 @media(max-width: 1100px) {
@@ -168,8 +167,5 @@
     width: 60%;
     margin: auto;
     max-width: unset;
-  }
-  .auth-content-wrap {
-    padding: 0;
   }
 }
