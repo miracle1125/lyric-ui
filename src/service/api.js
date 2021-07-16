@@ -10,7 +10,18 @@ export function getMusicInfo(data) {
         config
     );
 }
-
+export function createUser(data) {
+    return axios.post(
+        'http://18.117.254.76/signup', 
+        data,
+    );
+}
+export function readUser(data) {
+    return axios.post(
+        'http://18.117.254.76/login', 
+        data,
+    );
+}
 export function getMusicInfoFromJSON() {
     return demoJson
 }
