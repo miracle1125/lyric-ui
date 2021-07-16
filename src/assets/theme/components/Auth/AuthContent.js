@@ -1,7 +1,4 @@
 const componentStyles = (theme) => ({
-    authContentWrap: {
-        backgroundColor: "black",
-    },
     authContentContainer: {
         display: "flex",
         justifyContent: "center",

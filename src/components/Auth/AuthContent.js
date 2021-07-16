@@ -40,7 +40,7 @@ export default function AuthContent() {
   }
 
   return (
-    <Box className={classes.authContentWrap}>
+    <Box className="auth-content-wrap">
       <Box className={classes.authContentContainer}>
         <Box>
           <Typography className={classes.registerTitle}>
@@ -73,6 +73,18 @@ export default function AuthContent() {
                   <Grid item sm={12} md={6} style={{paddingRight: "0px", paddingLeft: "5px"}}>
                     <Typography variant="h3" className={classes.authInputLabel}>Last Name</Typography>
                     <input id="last_name" className={classes.authInput} name="last_name"  type="text" placeholder="Last Name"></input>
+                  </Grid>
+                </Grid>
+              </Box>
+              <Box mt={2.5}>
+                <Grid container style={{margin: "0px", justifyContent: "space-between"}}>
+                  <Grid item sm={12} md={6} style={{paddingLeft: "0px", paddingRight: "5px"}}>
+                    <Typography variant="h3" className={classes.authInputLabel}>Email</Typography>
+                    <input id="email" className={classes.authInput} name="email"  type="text" placeholder="Email"></input>
+                  </Grid>
+                  <Grid item sm={12} md={6} style={{paddingRight: "0px", paddingLeft: "5px"}}>
+                    <Typography variant="h3" className={classes.authInputLabel}>Password</Typography>
+                    <input id="password" className={classes.authInput} name="password"  type="password" placeholder="Password"></input>
                   </Grid>
                 </Grid>
               </Box>
