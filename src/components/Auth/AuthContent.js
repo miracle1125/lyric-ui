@@ -60,21 +60,21 @@ export default function AuthContent() {
   }
 
   const handleSignIn = () => {
-    const bodyFormData = {
+    const bodySignInData = {
       email: signInUser.email,
       password: signInUser.password,
     };
-    readUser(bodyFormData)
+    readUser(bodySignInData)
       .then(rlt => {
         history.push('/upload');
       })
       .catch(err => {
-        alert(err);
+        console.log(err);
       })
   }
 
   const handleRegister = () => {
-    const bodyFormData = {
+    const bodyRegisterData = {
       email: registerUser.email,
       password: registerUser.password,
       first: registerUser.first,
@@ -82,10 +82,20 @@ export default function AuthContent() {
       creator_alias: registerUser.creator_alias,
       genres: options
     };
-
-    createUser(bodyFormData)
+    const bodySignInData = {
+      email: registerUser.email,
+      password: registerUser.password,
+    };
+    createUser(bodyRegisterData)
       .then(rlt => {
-        setRegister(!register);
+        readUser(bodySignInData)
+          .then(rlt => {
+            localStorage.setItem('session_token', rlt.data.session_key);
+            history.push('/upload');
+          })
+          .catch(err => {
+            console.log(err);
+          })
       })
       .catch(err => {
         console.log(err)

@@ -3,11 +3,16 @@ import demoJson from './demo.json';
 
 const config = { headers: { 'Content-Type': 'multipart/form-data' } };
 
-export function getMusicInfo(data) {
+export function getMusicInfo(data, session_token) {
     return axios.post(
         'http://18.117.254.76/songs/analysis', 
         data,
-        config
+        {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Cookie': `session_token=${session_token}`
+            },
+        }
     );
 }
 export function createUser(data) {
