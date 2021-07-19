@@ -17,7 +17,6 @@ const useStyles = makeStyles(componentStyles);
 export default function Header({ logo, help }) {
   const classes = useStyles();
   const { url } = useRouteMatch();
-  console.log(url);
   const isUploadVisible = url !== '/upload';
   const storedInfo = localStorage.getItem('musicInfo');
   const musicInfo = storedInfo ? JSON.parse(storedInfo) : demoJson;
@@ -37,7 +36,7 @@ export default function Header({ logo, help }) {
     ) : null;
 
   return (
-    <Box className={classes.bgPrimary} px={4} py={1} >
+    <Box className={classes.bgPrimary} px={4} py={1} position="relative" zIndex="1000">
       <Grid container justify="space-between">
         <Grid container item sm={6} justify="flex-start" alignItems="center">
           <Box mr={1}>{logoObject}</Box>

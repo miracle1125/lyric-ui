@@ -82,29 +82,42 @@ const theme = createMuiTheme({
   overrides: {
     MuiDrawer: {
       paper: {
-        width: "250px",
+        width: "260px",
         paddingTop: "1rem",
         paddingBottom: "1rem",
       },
       paperAnchorDockedLeft: {
-        borderRight: "none",
+        borderRight: "1px solid #424242",
         boxShadow: boxShadows.boxShadow + "!important",
       },
       docked: {
-        width: "250px",
+        width: "260px",
       },
     },
     MuiListItem: {
       root: {
-        display: "block",
-        paddingTop: ".25rem",
-        paddingBottom: ".25rem",
-        color: themeColors.gray[700],
+        display: "flex",
+        paddingTop: ".2rem",
+        paddingBottom: ".2rem",
+        color: "#6B6B6B",
+        cursor: "pointer",
+        "&:hover": {
+          backgroundColor: "black",
+        }
       },
       gutters: {
-        paddingLeft: ".75rem",
+        paddingLeft: "2rem",
         paddingRight: ".75rem",
+        paddingTop: ".7rem",
+        paddingBottom: ".7rem",
+        marginBottom: "1rem"
       },
+      
+    },
+    MuiListItemIcon: {
+      root: {
+        color: "#6B6B6B",
+      }
     },
     MuiMenu: {
       paper: {
@@ -752,11 +765,11 @@ const theme = createMuiTheme({
         textAlign: "center",
         verticalAlign: "baseline",
         whiteSpace: "nowrap",
-        borderRadius: ".375rem",
+        borderRadius: "50%",
         textTransform: "uppercase",
-        border: "3px solid",
         color: themeColors.white.main,
-        backgroundColor: themeColors.dark.badgeBg,
+        backgroundColor: themeColors.primary.main,
+        cursor: "pointer",
       },
       colorPrimary: {
         color: themeColors.primary.badge,
