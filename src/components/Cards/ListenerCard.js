@@ -28,7 +28,7 @@ export default function ListenerCard({ listenerIcon, listenerCardInfo }) {
         <Grid item className={classes.prMobile}>
             <Typography className={classes.listenTitle}>Projected Listeners</Typography>
             <Typography variant="h1" className={classes.listenAmount}>
-              <NumberFormat value={listenerCardInfo["amount"]} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+              <NumberFormat value={listenerCardInfo["amount"]} displayType={'text'} thousandSeparator={true} />
             </Typography>
             <Box py={0.25} px={0.625} className={classes.increaseListener} borderRadius="3px">
               <ArrowUpwardIcon>

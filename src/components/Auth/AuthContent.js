@@ -67,6 +67,7 @@ export default function AuthContent() {
     readUser(bodySignInData)
       .then(rlt => {
         localStorage.setItem('session_token', rlt.data.session_key);
+        localStorage.setItem('musicInfo', JSON.stringify(rlt.data))
         history.push('/dashboard');
       })
       .catch(err => {
