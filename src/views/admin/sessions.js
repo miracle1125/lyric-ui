@@ -77,6 +77,9 @@ const Sessions = () => {
       MuiIconButton: {
         root: {
           color: "#fff",
+          "&.Mui-disabled": {
+            color: "rgba(255, 255, 255, 0.26)"
+          }
         }
       },
       MuiSelect: {
@@ -88,7 +91,15 @@ const Sessions = () => {
         body: {
           color: "#fff"
         }
-      }
+      },
+      MuiOutlinedInput: {
+        input: {
+          "&::placeholder": {
+            color: "#fff",
+            opacity: "100%",
+          }
+        }
+      },
     },
   })
   const columns = [
@@ -163,12 +174,19 @@ const Sessions = () => {
                 rowStyle: {borderColor: "red", color: "#fff"},
                 cellStyle: { fontSize: "14px", verticalAlign: "middle", border: "none", color: "#fff" },
                 filterCellStyle: { color:"#fff" },
-                searchFieldStyle: { color: "#414141", backgroundColor: "#272727", height: "45px" },
+                searchFieldStyle: { color: "#fff", backgroundColor: "#272727", height: "45px" },
                 maxBodyHeight: 500,
                 searchFieldVariant: 'outlined',
                 searchFieldAlignment: "right"
               }}
-              localization={{ toolbar: { searchPlaceholder: 'Search...  ' } }}
+              localization={{ 
+                toolbar: { 
+                  searchPlaceholder: 'Search...' 
+                },
+                pagination: {
+
+                }
+              }}
             />
           </MuiThemeProvider>
         </Box>          
