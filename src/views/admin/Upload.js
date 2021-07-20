@@ -54,13 +54,11 @@ const Upload = () => {
     const session_token = localStorage.getItem('session_token');
     getMusicInfo(bodyFormData, session_token)
       .then(rlt => {
-        alert("success")
         setLoading(false);
         localStorage.setItem('musicInfo', JSON.stringify(rlt))
         history.push("/dashboard")
       })
       .catch(err => {
-        alert("error");
         setLoading(false);
         console.log(err)
       })

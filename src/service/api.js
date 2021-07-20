@@ -10,7 +10,7 @@ export function getMusicInfo(data, session_token) {
         {
             headers: {
                 'Content-Type': 'multipart/form-data',
-                'Authorization': `session_token=${session_token}`
+                'Authorization': `Bearer ${session_token}`
             },
         }
     );

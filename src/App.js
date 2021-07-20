@@ -9,50 +9,48 @@ import Auth from "./views/Auth";
 import "./App.css";
 
 const App = () => {
-  const renderAuth = () => {
+
+  if (localStorage.getItem("session_token") === null) {
     return (
       <Switch>
         <Route path="/auth">
           <Auth></Auth>
         </Route>
+        <Route exact path="/dashboard">
+          <Dashboard></Dashboard>
+        </Route>
+        <Route exact path="/upload">
+          <Upload></Upload>
+        </Route>
+        <Route exact path="/profile">
+          <Profile></Profile>
+        </Route>
+        <Route exact path="/sessions">
+          <Sessions></Sessions>
+        </Route>
         <Redirect from="/" to="/auth" />
       </Switch>
     );
-  };
-
-  const renderMainRoute = () => {
+  }
+  else {
     return (
       <Switch>
-        <Route path="/dashboard">
+        <Route exact path="/dashboard">
           <Dashboard></Dashboard>
         </Route>
-        <Route path="/upload">
+        <Route exact path="/upload">
           <Upload></Upload>
         </Route>
-      </Switch>
-    );
-  };
-
-  return (
-    <Switch>
-      <Route exact path="/">
-        <Auth></Auth>
-      </Route>
-      <Route exact path="/dashboard">
-        <Dashboard></Dashboard>
-      </Route>
-      <Route exact path="/upload">
-        <Upload></Upload>
-      </Route>
-      <Route exact path="/profile">
-        <Profile></Profile>
-      </Route>
-      <Route exact path="/sessions">
-        <Sessions></Sessions>
-      </Route>
-      <Redirect from="/" to="/" />
+        <Route exact path="/profile">
+          <Profile></Profile>
+        </Route>
+        <Route exact path="/sessions">
+          <Sessions></Sessions>
+        </Route>
+        <Redirect from="/" to="/dashboard" />
     </Switch>
-  )
+    );
+  }
 };
 
 export default App;
