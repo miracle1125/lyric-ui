@@ -66,7 +66,8 @@ export default function AuthContent() {
     };
     readUser(bodySignInData)
       .then(rlt => {
-        history.push('/upload');
+        localStorage.setItem('session_token', rlt.data.session_key);
+        history.push('/dashboard');
       })
       .catch(err => {
         console.log(err);
