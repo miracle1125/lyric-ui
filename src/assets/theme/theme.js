@@ -71,8 +71,10 @@ const theme = createMuiTheme({
       ...defaultHeaderStyles,
     },
     h6: {
-      fontSize: ".625rem",
       ...defaultHeaderStyles,
+      fontSize: "1.375rem",
+      fontWeight: "bold",
+      color: "#8D6DC8",
     },
     body2: {
       fontSize: ".75rem",
@@ -266,21 +268,7 @@ const theme = createMuiTheme({
     },
     MuiInputAdornment: {
       root: {
-        transition: "all .2s cubic-bezier(.68,-.55,.265,1.55)",
-        display: "flex",
-        alignItems: "center",
-        padding: ".625rem 0",
-        marginBottom: "0",
-        fontSize: ".875rem",
-        fontWeight: "400",
-        lineHeight: "1.5",
-        color: themeColors.gray[500],
-        textAlign: "center",
-        whiteSpace: "nowrap",
-        backgroundColor: themeColors.white.main,
-        border: "0",
-        marginTop: "0!important",
-        height: "calc(1.5em + 1.25rem + 2px)",
+        
       },
       positionEnd: {
         paddingLeft: 0,
@@ -566,33 +554,25 @@ const theme = createMuiTheme({
     MuiTable: {
       root: {
         width: "100%",
-        marginBottom: "1rem",
-        color: themeColors.gray[700],
-        backgroundColor: themeColors.transparent.main,
+        color: "#fff",
         borderCollapse: "collapse",
       },
     },
     MuiTableCell: {
       root: {
-        fontSize: ".8125rem",
+        fontSize: ".875rem",
         whiteSpace: "nowrap",
         padding: "1rem",
         verticalAlign: "top",
-        borderTop: "1px solid " + themeColors.gray[200],
-        borderBottom: "1px solid " + themeColors.gray[200],
       },
       head: {
         padding: "1rem",
-        borderTop: "1px solid " + themeColors.gray[200],
         fontWeight: "600",
         whiteSpace: "nowrap",
         verticalAlign: "bottom",
         paddingTop: ".75rem",
         paddingBottom: ".75rem",
-        fontSize: ".65rem",
-        textTransform: "uppercase",
-        letterSpacing: "1px",
-        borderBottom: "1px solid " + themeColors.gray[200],
+        backgroundColor: "#323232 !important"
       },
     },
     MuiLinearProgress: {

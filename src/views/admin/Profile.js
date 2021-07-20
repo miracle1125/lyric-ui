@@ -16,12 +16,10 @@ import Header from "../../components/Headers/Header";
 import Sidebar from '../../components/Sidebar/Sidebar';
 
 import componentStyles from "../../assets/theme/views/Profile";
-import demoJson from "../../demo.json"
-
 
 const useStyles = makeStyles(componentStyles);
 
-const Dashboard = () => {
+const Profile = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [options, setOptions] = useState([]);
@@ -123,4 +121,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Profile;

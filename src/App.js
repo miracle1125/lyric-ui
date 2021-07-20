@@ -3,6 +3,7 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import Dashboard from "./views/admin/Dashboard";
 import Upload from "./views/admin/Upload";
 import Profile from "./views/admin/Profile";
+import Sessions from "./views/admin/sessions";
 import Auth from "./views/Auth";
 
 import "./App.css";
@@ -45,6 +46,9 @@ const App = () => {
       </Route>
       <Route exact path="/profile">
         <Profile></Profile>
+      </Route>
+      <Route exact path="/sessions">
+        <Sessions></Sessions>
       </Route>
       <Redirect from="/" to="/" />
     </Switch>
