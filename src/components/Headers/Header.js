@@ -6,7 +6,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from '@material-ui/core/Typography';
-import Button from "@material-ui/core/Button";
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 // core components
 import componentStyles from "../../assets/theme/components/header";
@@ -21,6 +23,15 @@ export default function Header({ logo, help }) {
   const storedInfo = localStorage.getItem('musicInfo');
   const musicInfo = storedInfo ? JSON.parse(storedInfo) : demoJson;
   const  avatar = musicInfo["data"]["profilePhoto"];
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   let logoImage = (
     <img alt={logo.imgAlt} className={classes.logoClasses} src={logo.imgSrc} />
   );
@@ -52,7 +63,30 @@ export default function Header({ logo, help }) {
             <img alt={help.imgAlt} className={classes.verticalAlign} src={help.imgSrc} />
           </Box>
           <Box>
-            <img alt="user-avatar" className={classes.avatarImg} src={avatar} width="34px" height="34px" />
+            <img aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} alt="user-avatar" className={classes.avatarImg} src={avatar} width="34px" height="34px" />
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <Link to="/profile" style={{textDecoration: 'none'}}>
+                <MenuItem onClick={handleClose}>
+                  Profile
+                </MenuItem>
+              </Link>
+              <Link to="/dashboard" style={{textDecoration: 'none'}}>
+                <MenuItem onClick={handleClose}>
+                    Dashboard
+                </MenuItem>
+              </Link>
+              <Link to="/settings" style={{textDecoration: 'none'}}>
+                <MenuItem onClick={handleClose}>
+                  Settings
+                </MenuItem>
+              </Link>
+            </Menu>
           </Box>
         </Grid>
       </Grid>

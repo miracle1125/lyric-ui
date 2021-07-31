@@ -13,7 +13,7 @@ const App = () => {
   if (localStorage.getItem("session_token") === null) {
     return (
       <Switch>
-        <Route path="/auth">
+        <Route path="/">
           <Auth></Auth>
         </Route>
         <Route exact path="/dashboard">
@@ -25,10 +25,10 @@ const App = () => {
         <Route exact path="/profile">
           <Profile></Profile>
         </Route>
-        <Route exact path="/sessions">
+        <Route exact path="/catalog">
           <Sessions></Sessions>
         </Route>
-        <Redirect from="/" to="/auth" />
+        <Redirect from="/" to="/" />
       </Switch>
     );
   }
@@ -44,7 +44,7 @@ const App = () => {
         <Route exact path="/profile">
           <Profile></Profile>
         </Route>
-        <Route exact path="/sessions">
+        <Route exact path="/catalog">
           <Sessions></Sessions>
         </Route>
         <Redirect from="/" to="/dashboard" />

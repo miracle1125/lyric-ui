@@ -152,7 +152,7 @@ const Sessions = () => {
         <Box className="sessions-container">
           <MuiThemeProvider theme={theme}>
             <MaterialTable 
-              title="My Sessions"
+              title="My Catalog"
               data={data} 
               columns={columns}
               icons={tableIcons}
