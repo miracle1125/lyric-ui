@@ -107,26 +107,33 @@ const Sessions = () => {
     { title: "Length", field: "length" },
     { title: "Last Opened", field: "time" },
   ];  
-  const data = [
-    { name: 'Song Name 1', length: '01:23', time: "2:34PM" },
-    { name: 'Song Name 2', length: '02:35', time: "1:30PM" },
-    { name: 'Song Name 3', length: '01:23', time: "2:34PM" },
-    { name: 'Song Name 4', length: '02:35', time: "1:30PM" },
-    { name: 'Song Name 5', length: '01:23', time: "2:34PM" },
-    { name: 'Song Name 6', length: '02:35', time: "1:30PM" },
-    { name: 'Song Name 7', length: '01:23', time: "2:34PM" },
-    { name: 'Song Name 8', length: '02:35', time: "1:30PM" },
-    { name: 'Song Name 9', length: '01:23', time: "2:34PM" },
-    { name: 'Song Name 10', length: '02:35', time: "1:30PM" },
-    { name: 'Song Name 11', length: '01:23', time: "2:34PM" },
-    { name: 'Song Name 12', length: '02:35', time: "1:30PM" },
-    { name: 'Song Name 13', length: '01:23', time: "2:34PM" },
-    { name: 'Song Name 14', length: '02:35', time: "1:30PM" },
-    { name: 'Song Name 15', length: '01:23', time: "2:34PM" },
-    { name: 'Song Name 16', length: '02:35', time: "1:30PM" },
-    { name: 'Song Name 17', length: '01:23', time: "2:34PM" },
-    { name: 'Song Name 18', length: '02:35', time: "1:30PM" },
-  ];
+  const catalogList = localStorage.getItem('catalogsItemList');
+  const data = JSON.parse(catalogList).map(catalogListItem => ({
+    name: JSON.parse(catalogListItem)["data"]["title"],
+    length: JSON.parse(catalogListItem)["length"],
+    time: JSON.parse(catalogListItem)["last_seen_time"]
+  }));
+
+  // const data = [
+  //   { name: 'Song Name 1', length: '01:23', time: "2:34PM" },
+  //   { name: 'Song Name 2', length: '02:35', time: "1:30PM" },
+  //   { name: 'Song Name 3', length: '01:23', time: "2:34PM" },
+  //   { name: 'Song Name 4', length: '02:35', time: "1:30PM" },
+  //   { name: 'Song Name 5', length: '01:23', time: "2:34PM" },
+  //   { name: 'Song Name 6', length: '02:35', time: "1:30PM" },
+  //   { name: 'Song Name 7', length: '01:23', time: "2:34PM" },
+  //   { name: 'Song Name 8', length: '02:35', time: "1:30PM" },
+  //   { name: 'Song Name 9', length: '01:23', time: "2:34PM" },
+  //   { name: 'Song Name 10', length: '02:35', time: "1:30PM" },
+  //   { name: 'Song Name 11', length: '01:23', time: "2:34PM" },
+  //   { name: 'Song Name 12', length: '02:35', time: "1:30PM" },
+  //   { name: 'Song Name 13', length: '01:23', time: "2:34PM" },
+  //   { name: 'Song Name 14', length: '02:35', time: "1:30PM" },
+  //   { name: 'Song Name 15', length: '01:23', time: "2:34PM" },
+  //   { name: 'Song Name 16', length: '02:35', time: "1:30PM" },
+  //   { name: 'Song Name 17', length: '01:23', time: "2:34PM" },
+  //   { name: 'Song Name 18', length: '02:35', time: "1:30PM" },
+  // ];
   const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),

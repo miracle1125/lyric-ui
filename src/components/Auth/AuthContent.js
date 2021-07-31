@@ -69,14 +69,23 @@ export default function AuthContent() {
         localStorage.setItem('session_token', rlt.data.session_key);
         getCatalogs(rlt.data.session_key)
         .then(res => {
-          getCatalogById( res.data[0]['id'], rlt.data.session_key)
-          .then(response => {
-            localStorage.setItem('musicInfo', JSON.stringify(response.data))
-            history.push('/dashboard');
-          })
-          .catch(error => {
-            console.log(error);
-          })
+          localStorage.setItem('catalogs', JSON.stringify(res.data))
+          const catalogs = localStorage.getItem('catalogs');
+          const catalogsItemList = JSON.parse(catalogs).map((catalogsItem) => {
+            return getCatalogById(catalogsItem.id, rlt.data.session_key)
+              .then(response => {
+                return JSON.stringify(response.data)
+              })
+              .catch(error => {
+                console.log(error);
+              })
+          });
+          Promise.all(catalogsItemList)
+            .then(res => {
+              localStorage.setItem('catalogsItemList', JSON.stringify(res));
+              localStorage.setItem('musicInfo', res[0]);
+              history.push('/dashboard');
+            })
         })
         .catch(e => {
           console.log(e);
