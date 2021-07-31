@@ -16,8 +16,8 @@ export default function SongRelatedList({ relatedSongLists }) {
   const classes = useStyles();
   
   let data = relatedSongLists || [];
-  const similarSongList = data.map((similarSongItem) => {
-    return <SongRelatedItem relatedSongList={similarSongItem} />;
+  const similarSongList = data.map((similarSongItem, index) => {
+    return <SongRelatedItem relatedSongList={similarSongItem} key={index} />;
   });
 
   return (

@@ -20,8 +20,8 @@ export default function SongInfoTag({ songInfoTag, bpmImgSrc }) {
 
   let tagsList = songInfoTag["elementsTags"] || [];
 
-  const SongTagsList = tagsList.map((tagsItem) => {
-    return <Button variant="outlined" size="small">{tagsItem}</Button>;
+  const SongTagsList = tagsList.map((tagsItem, index) => {
+    return <Button variant="outlined" size="small" key={index}>{tagsItem}</Button>;
   });
 
   return (

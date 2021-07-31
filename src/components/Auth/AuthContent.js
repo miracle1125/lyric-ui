@@ -14,7 +14,7 @@ import Button from '@material-ui/core/Button';
 // core components
 import componentStyles from "../../assets/theme/components/Auth/AuthContent";
 import { useHistory } from "react-router-dom";
-import { createUser, readUser } from "../../service/api";
+import { createUser, readUser, getCatalogById, getCatalogs } from "../../service/api";
 
 const useStyles = makeStyles(componentStyles);
 
@@ -67,8 +67,20 @@ export default function AuthContent() {
     readUser(bodySignInData)
       .then(rlt => {
         localStorage.setItem('session_token', rlt.data.session_key);
-        localStorage.setItem('musicInfo', JSON.stringify(rlt.data))
-        history.push('/dashboard');
+        getCatalogs(rlt.data.session_key)
+        .then(res => {
+          getCatalogById( res.data[0]['id'], rlt.data.session_key)
+          .then(response => {
+            localStorage.setItem('musicInfo', JSON.stringify(response.data))
+            history.push('/dashboard');
+          })
+          .catch(error => {
+            console.log(error);
+          })
+        })
+        .catch(e => {
+          console.log(e);
+        })
       })
       .catch(err => {
         console.log(err);

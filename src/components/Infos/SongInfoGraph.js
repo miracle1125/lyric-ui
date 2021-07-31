@@ -48,7 +48,9 @@ export default function SongInfoGraph({ songInfoGraph }) {
       }
     },
   );
-  const [pause, setPause] = useState(true);
+  const [pause, setPause] = useState({
+    on: false,
+  });
   const play = useCallback(() => {
     setPause((pause) => ({ on: !pause.on }));
     wavesurferRef.current.playPause();
