@@ -1,5 +1,5 @@
 import React from "react";
-import {useEffect, useState} from "react";
+import { useState, useEffect } from "react";
 import clsx from 'clsx';
 
 // @material-ui/core components
@@ -12,15 +12,15 @@ import Button from '@material-ui/core/Button';
 // @material-ui/icons components
 
 // core components
-import componentStyles from "../../assets/theme/components/Auth/AuthContent";
-import { useHistory } from "react-router-dom";
+import componentStyles from "../../assets/theme/components/Auth/AuthContent"
 import { createUser, readUser, getCatalogById, getCatalogs } from "../../service/api";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(componentStyles);
 
 export default function AuthContent() {
   const classes = useStyles();
-  let history = useHistory();
+  const history = useHistory();
   const [register, setRegister] = useState(false);
   const [options, setOptions] = useState([]);
   const [registerUser, setRegisterUser] = useState({
@@ -82,9 +82,14 @@ export default function AuthContent() {
           });
           Promise.all(catalogsItemList)
             .then(res => {
+              console.log("res => ",res);
               localStorage.setItem('catalogsItemList', JSON.stringify(res));
               localStorage.setItem('musicInfo', res[0]);
               history.push('/dashboard');
+              console.log("after");
+            })
+            .catch(e => {
+              console.log(e);
             })
         })
         .catch(e => {

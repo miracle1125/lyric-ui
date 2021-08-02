@@ -1,8 +1,7 @@
-import React,{useState,useEffect} from 'react';
+import React,{ useState } from 'react';
 import clsx from 'clsx';
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import { useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from '@material-ui/core/Typography';
@@ -21,7 +20,6 @@ const useStyles = makeStyles(componentStyles);
 
 const Profile = () => {
   const classes = useStyles();
-  const theme = useTheme();
   const [options, setOptions] = useState([]);
 
   const handleSaveOption = (val) => {

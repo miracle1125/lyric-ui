@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import { useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import Typography from '@material-ui/core/Typography';
 
 // @material-ui/icons components
 // import PlayArrowIcon from '@material-ui/icons/PlayArrow';
@@ -18,7 +16,6 @@ const useStyles = makeStyles(componentStyles);
 
 export default function SongStructureList({ songStructureInfo }) {
   const classes = useStyles();
-  const theme = useTheme();
 
   return (
     <Box className={classes.structureList} bgcolor="primary.light" borderRadius="4px" pt={2.75} pb={.75} px={2.25}>

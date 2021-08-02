@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import { useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -17,7 +16,6 @@ const useStyles = makeStyles(componentStyles);
 
 export default function SongStructureItem({ structureTitle, Amount, structureColor }) {
   const classes = useStyles();
-  const theme = useTheme();
   const [progress, setProgress] = useState(0);
   
   // progress bar fill up animation

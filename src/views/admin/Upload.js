@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 import { useDropzone } from 'react-dropzone';
 import { useHistory } from "react-router-dom";
 

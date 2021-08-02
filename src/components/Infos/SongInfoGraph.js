@@ -6,7 +6,6 @@ import React, {
 import { WaveSurfer, WaveForm } from "wavesurfer-react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import { useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import TextField from '@material-ui/core/TextField';
@@ -26,7 +25,6 @@ const useStyles = makeStyles(componentStyles);
 
 export default function SongInfoGraph({ songInfoGraph }) {
   const classes = useStyles();  
-  const theme = useTheme();
   const wavesurferRef = useRef();
   const handleWSMount = useCallback(
     waveSurfer => {

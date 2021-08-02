@@ -13,7 +13,7 @@ const App = () => {
   if (localStorage.getItem("session_token") === null) {
     return (
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
           <Auth></Auth>
         </Route>
         <Route exact path="/dashboard">
@@ -28,7 +28,6 @@ const App = () => {
         <Route exact path="/catalog">
           <Sessions></Sessions>
         </Route>
-        <Redirect from="/" to="/" />
       </Switch>
     );
   }

@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 
@@ -9,13 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import AuthBanner from "../components/Auth/AuthBanner";
 import AuthContent from "../components/Auth/AuthContent";
 
-import themeColors from "../assets/theme/colors";
-import componentStyles from "../assets/theme/views/Auth";
-
-const useStyles = makeStyles(componentStyles);
-
 const Register = () => {
-  const classes = useStyles();
   
   return (
       <Box>

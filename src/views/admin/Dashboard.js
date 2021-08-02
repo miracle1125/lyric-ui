@@ -1,7 +1,6 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import { useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 
@@ -20,7 +19,6 @@ const useStyles = makeStyles(componentStyles);
 
 const Dashboard = () => {
   const classes = useStyles();
-  const theme = useTheme();
   const storedInfo = localStorage.getItem('musicInfo');
   const musicInfo = storedInfo ? JSON.parse(storedInfo) : demoJson;
   const songElementsArray = musicInfo["data"]["songCharacteristics"]["elements"];

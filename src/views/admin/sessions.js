@@ -1,12 +1,7 @@
-import React,{useState,useEffect, forwardRef} from 'react';
+import React,{forwardRef} from 'react';
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-import { useTheme } from "@material-ui/core/styles";
 import { createMuiTheme } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import MaterialTable from "material-table";
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -29,13 +24,7 @@ import Moment from 'moment';
 // core components
 import Header from "../../components/Headers/Header";
 
-import componentStyles from "../../assets/theme/views/Sessions";
-
-const useStyles = makeStyles(componentStyles);
-
 const Sessions = () => {
-  const classes = useStyles();
-  // const theme = useTheme();
   const theme = createMuiTheme({
     overrides: {
       MuiInput: {

@@ -63,7 +63,7 @@ export default function Header({ logo, help }) {
             <img alt={help.imgAlt} className={classes.verticalAlign} src={help.imgSrc} />
           </Box>
           <Box>
-            <img aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} alt="user-avatar" className={classes.avatarImg} src={avatar} width="34px" height="34px" />
+            <img aria-controls="simple-menu" onClick={handleClick} alt="user-avatar" className={classes.avatarImg} src={avatar} width="34px" height="34px" />
             <Menu
               id="simple-menu"
               anchorEl={anchorEl}
