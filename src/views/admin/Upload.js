@@ -55,7 +55,7 @@ const Upload = () => {
     getMusicInfo(bodyFormData, session_token)
       .then(rlt => {
         setLoading(false);
-        localStorage.setItem('musicInfo', JSON.stringify(rlt))
+        localStorage.setItem('musicInfo', JSON.stringify(rlt));
         history.push("/dashboard")
       })
       .catch(err => {

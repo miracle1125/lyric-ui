@@ -22,7 +22,7 @@ export default function Header({ logo, help }) {
   const isUploadVisible = url !== '/upload';
   const storedInfo = localStorage.getItem('musicInfo');
   const musicInfo = storedInfo ? JSON.parse(storedInfo) : demoJson;
-  const  avatar = musicInfo["data"]["profilePhoto"];
+  const avatar = musicInfo["data"]["profilePhoto"];
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -79,6 +79,11 @@ export default function Header({ logo, help }) {
               <Link to="/dashboard" style={{textDecoration: 'none'}}>
                 <MenuItem onClick={handleClose}>
                     Dashboard
+                </MenuItem>
+              </Link>
+              <Link to="/catalog" style={{textDecoration: 'none'}}>
+                <MenuItem onClick={handleClose}>
+                    My Catalog
                 </MenuItem>
               </Link>
               <Link to="/settings" style={{textDecoration: 'none'}}>

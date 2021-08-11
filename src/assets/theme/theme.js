@@ -134,6 +134,7 @@ const theme = createMuiTheme({
         borderRadius: ".4375rem",
         boxShadow: boxShadows.menuBoxShadow,
         padding: ".5rem 0",
+        top: "45px !important",
       },
     },
     MuiMenuItem: {

@@ -47,6 +47,17 @@ export function getCatalogById(id, session_token) {
         }
     );
 }
+export function getUserById(id, session_token) {
+    return axios.get(
+        `http://18.117.254.76/v2/admin/users/${id}`,
+        {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${session_token}`
+            },
+        }
+    );
+}
 export function getMusicInfoFromJSON() {
     return demoJson
 }

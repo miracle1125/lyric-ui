@@ -33,6 +33,8 @@ const Profile = () => {
     }
   }
 
+  const userData = JSON.parse(localStorage.getItem('userData'));
+
   return (
     <Box position="relative">
       <Header 
@@ -65,11 +67,11 @@ const Profile = () => {
                 <Grid container style={{margin: "0px", justifyContent: "space-between"}}>
                   <Grid item sm={12} md={6} style={{paddingLeft: "0px", paddingRight: "20px"}}>
                     <Typography variant="h3" className={classes.authInputLabel}>First Name</Typography>
-                    <input id="first_name" className={classes.authInput} name="first_name"  type="text" placeholder="Alice"></input>
+                    <input id="first_name" className={classes.authInput} name="first_name"  type="text" defaultValue={userData["first_name"]}></input>
                   </Grid>
                   <Grid item sm={12} md={6} style={{paddingRight: "0px", paddingLeft: "20px"}}>
                     <Typography variant="h3" className={classes.authInputLabel}>Last Name</Typography>
-                    <input id="last_name" className={classes.authInput} name="last_name"  type="text" placeholder="Quinlan"></input>
+                    <input id="last_name" className={classes.authInput} name="last_name"  type="text" defaultValue={userData["last_name"]}></input>
                   </Grid>
                 </Grid>
               </Box>
@@ -77,11 +79,11 @@ const Profile = () => {
                 <Grid container style={{margin: "0px", justifyContent: "space-between"}}>
                   <Grid item sm={12} md={6} style={{paddingLeft: "0px", paddingRight: "20px"}}>
                     <Typography variant="h3" className={classes.authInputLabel}>Email</Typography>
-                    <input id="email" className={classes.authInput} name="email"  type="text" placeholder="AliceQuinlan@gmail.com"></input>
+                    <input id="email" className={classes.authInput} name="email"  type="text" defaultValue={userData["email"]}></input>
                   </Grid>
                   <Grid item sm={12} md={6} style={{paddingRight: "0px", paddingLeft: "20px"}}>
                       <Typography variant="h3" className={classes.authInputLabel}>Creator Alias</Typography>
-                      <input id="creator" className={classes.authInput} name="creator"  type="text" placeholder="Quinlan_alice"></input>
+                      <input id="creator" className={classes.authInput} name="creator"  type="text" defaultValue={userData["creator_alias"]}></input>
                   </Grid>
                 </Grid>
               </Box>
