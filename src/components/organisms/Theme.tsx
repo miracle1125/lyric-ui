@@ -2,6 +2,7 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import type { FC } from 'react';
 
 const darkTheme = createTheme({
+  spacing: 10,
   palette: {
     type: 'dark',
     primary: {
@@ -53,6 +54,11 @@ const darkTheme = createTheme({
       fontSize: '18px',
       fontWeight: 'normal',
       lineHeight: '25px',
+    },
+    body1: {
+      fontSize: '16px',
+      fontWeight: 'normal',
+      lineHeight: '21px',
     },
     body2: {
       fontSize: '14px',

@@ -1,4 +1,4 @@
-import { Box, makeStyles, Typography } from '@material-ui/core';
+import { Box, Link, makeStyles, Typography } from '@material-ui/core';
 import type { FC } from 'react';
 import { AuthLayout } from '../components/molecules/AuthLayout';
 import { LoginForm } from '../components/organisms/LoginForm';
@@ -22,6 +22,11 @@ export const LoginPage: FC = () => {
       </Typography>
       <Box marginTop={3}>
         <LoginForm />
+      </Box>
+      <Box marginTop={6} component="footer">
+        <Typography color="textSecondary" variant="body1">
+          Don’t have an Account? <Link>Sign Up</Link>
+        </Typography>
       </Box>
     </AuthLayout>
   );

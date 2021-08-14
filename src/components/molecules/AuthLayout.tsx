@@ -1,5 +1,6 @@
-import { Box, Container, makeStyles } from '@material-ui/core';
+import { Box, Container, makeStyles, Typography } from '@material-ui/core';
 import type { FC } from 'react';
+import { Logo } from '../atoms/Logo';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -17,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     objectFit: 'cover',
   },
+  mb1: {
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 export const AuthLayout: FC = ({ children }) => {
@@ -28,6 +32,11 @@ export const AuthLayout: FC = ({ children }) => {
         <Box flex="0 0 540px" height="100%" position="relative">
           <div className={classes.bannerOverlay} />
           <img alt="Auth banner" className={classes.banner} src={require('../../assets/auth.svg').default} />
+          <Box paddingLeft={3} paddingRight={3} position="absolute" bottom="40px">
+            <Logo className={classes.mb1} />
+            <Typography className={classes.mb1} variant="h5">AI Music Assistant Tool</Typography>
+            <Typography variant="h5">Behind the scenes of a hit song</Typography>
+          </Box>
         </Box>
         <Box flex="1" display="flex" flexDirection="column" justifyContent="center" paddingLeft={10} paddingRight={10}>
           {children}
