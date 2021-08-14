@@ -31,10 +31,16 @@ export const AuthLayout: FC = ({ children }) => {
       <Box display="flex" height="100vh">
         <Box flex="0 0 540px" height="100%" position="relative">
           <div className={classes.bannerOverlay} />
-          <img alt="Auth banner" className={classes.banner} src={require('../../assets/auth.svg').default} />
+          <img
+            alt="Auth banner"
+            className={classes.banner}
+            src={require('../../assets/auth.svg').default}
+          />
           <Box paddingLeft={3} paddingRight={3} position="absolute" bottom="40px">
             <Logo className={classes.mb1} />
-            <Typography className={classes.mb1} variant="h5">AI Music Assistant Tool</Typography>
+            <Typography className={classes.mb1} variant="h5">
+              AI Music Assistant Tool
+            </Typography>
             <Typography variant="h5">Behind the scenes of a hit song</Typography>
           </Box>
         </Box>
