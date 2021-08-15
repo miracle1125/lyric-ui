@@ -1,7 +1,9 @@
-import { Box, Button, Link, makeStyles, TextField } from '@material-ui/core';
+import { Box, Button, Link, makeStyles } from '@material-ui/core';
 import type { FC } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { AuthApi } from '../../auth/Auth.api';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { authSlice, logIn } from '../../redux/auth.slice';
 import { InputField } from '../atoms/InputField';
 
 const useStyles = makeStyles((theme) => ({
@@ -17,6 +19,7 @@ interface FormFields {
 
 export const LoginForm: FC = () => {
   const classes = useStyles();
+  const dispatch = useAppDispatch();
   const { handleSubmit, control } = useForm<FormFields>({
     defaultValues: {
       email: '',
@@ -25,8 +28,12 @@ export const LoginForm: FC = () => {
   });
 
   const onSubmit: SubmitHandler<FormFields> = ({ email, password }) => {
-    console.log('on submit ', email, password);
-    AuthApi.login(email, password);
+    dispatch(
+      logIn({
+        email,
+        password,
+      }),
+    );
   };
 
   return (

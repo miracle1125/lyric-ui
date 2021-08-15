@@ -1,14 +1,28 @@
-import { AppBar, Box, Container } from '@material-ui/core';
+import { AppBar, Box, Button, Container } from '@material-ui/core';
 import type { FC } from 'react';
-import { Logo } from '../atoms/Logo';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { authSlice } from '../../redux/auth.slice';
 
 export const InnerLayout: FC = ({ children }) => {
+  const dispatch = useAppDispatch();
+
   return (
-    <Container>
-      <AppBar>
-        <Logo />
+    <>
+      <AppBar position="static">
+        <Container maxWidth={false}>
+          <Button
+            variant="contained"
+            onClick={() => {
+              dispatch(authSlice.actions.logOut());
+            }}
+          >
+            Log Out
+          </Button>
+        </Container>
       </AppBar>
-      <Box paddingTop={4}>{children}</Box>
-    </Container>
+      <Container maxWidth={false}>
+        <Box paddingTop={4}>{children}</Box>
+      </Container>
+    </>
   );
 };

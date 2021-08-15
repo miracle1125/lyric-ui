@@ -1,7 +1,13 @@
 import axios, { AxiosInstance } from 'axios';
 
+/**
+ * Test credentials
+ * 
+ * "email": "marcciosilva@email.com",
+ * "password": "marccio1234"
+ */
 export class HttpClient {
-  private static readonly BASE_URL = 'https://api.lyricai.co/';
+  private static readonly BASE_URL = 'https://api.lyricai.co/v2/';
   private static instance: AxiosInstance;
 
   private constructor() {}

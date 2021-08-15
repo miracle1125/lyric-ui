@@ -9,7 +9,7 @@ const darkTheme = createTheme({
       dark: '#8d6dc8',
       light: '#cabae6',
       main: '#a58ad5',
-      contrastText: '#fff'
+      contrastText: '#fff',
     },
     secondary: {
       dark: '#424242',
@@ -26,7 +26,7 @@ const darkTheme = createTheme({
     },
     common: {
       white: '#ffffff',
-    }
+    },
   },
   typography: {
     fontFamily: 'Inter',
@@ -71,6 +71,11 @@ const darkTheme = createTheme({
       root: {
         textTransform: 'none',
         fontWeight: 500,
+      },
+    },
+    MuiLink: {
+      root: {
+        cursor: 'pointer',
       },
     },
   },
