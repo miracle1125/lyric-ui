@@ -1,14 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { authSlice } from './auth.slice';
+import { authSlice, AuthState } from './auth.slice';
 
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(
+    auth: persistReducer<AuthState>(
       {
         key: 'auth',
         storage,
+        whitelist: ['token', 'userId']
       },
       authSlice.reducer,
     ),

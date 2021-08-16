@@ -6,6 +6,7 @@ import { useAppSelector } from '../../hooks/useAppSelector';
 import { RequestStatus } from '../../model/RequestStatus';
 import { logIn } from '../../redux/auth.slice';
 import { InputField } from '../atoms/InputField';
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
   action: {
@@ -21,7 +22,7 @@ interface FormFields {
 export const LoginForm: FC = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
-  const { status } = useAppSelector((state) => state.auth);
+  const { errorMessage, status } = useAppSelector((state) => state.auth);
   const { handleSubmit, control } = useForm<FormFields>({
     defaultValues: {
       email: '',
@@ -42,6 +43,12 @@ export const LoginForm: FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      {status === RequestStatus.Failed && (
+        <Alert severity="error" variant="filled">
+          {errorMessage}
+        </Alert>
+      )}
+
       <InputField required control={control} name="email" label="Email" type="email" />
       <InputField required control={control} name="password" label="Password" type="password" />
       <Box textAlign="right" fontSize={16}>

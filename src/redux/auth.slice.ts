@@ -3,7 +3,8 @@ import { RequestStatus } from '../model/RequestStatus';
 import { AuthApi } from './../auth/Auth.api';
 import { HttpClient } from './../auth/HttpClient';
 
-interface AuthState {
+export interface AuthState {
+  errorMessage?: string;
   status: RequestStatus;
   token?: string;
   userId?: number;
@@ -35,10 +36,12 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(logIn.pending, (state) => {
+        state.errorMessage = undefined;
         state.status = RequestStatus.Loading;
       })
-      .addCase(logIn.rejected, (state) => {
+      .addCase(logIn.rejected, (state, action) => {
         state.status = RequestStatus.Failed;
+        state.errorMessage = action.error.message;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.token = action.payload.session_key;
