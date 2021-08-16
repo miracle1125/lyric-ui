@@ -1,39 +1,28 @@
 {
-  "name": "my-app",
+  "name": "lyric-ui",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.11.4",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.59",
-    "@mui-treasury/styles": "^1.13.1",
-    "@testing-library/jest-dom": "^5.12.0",
-    "@testing-library/react": "^11.2.6",
-    "@testing-library/user-event": "^12.8.3",
-    "@yaireo/tagify": "3.2.2",
-    "apexcharts": "^3.27.1",
+    "@material-ui/core": "^4.12.3",
+    "@reduxjs/toolkit": "^1.6.1",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
     "axios": "^0.21.1",
-    "clsx": "^1.1.1",
-    "highcharts": "^9.1.2",
-    "material-table": "^1.69.3",
-    "material-ui-dropzone": "^3.5.0",
-    "material-ui-toggle-icon": "^1.1.2",
-    "moment": "^2.29.1",
+    "classnames": "^2.3.1",
     "react": "^17.0.2",
-    "react-apexcharts": "^1.3.9",
     "react-dom": "^17.0.2",
-    "react-dropzone": "^11.3.4",
-    "react-loading-overlay": "^1.0.1",
-    "react-number-format": "^4.6.4",
+    "react-hook-form": "^7.12.2",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "react-wavesurfer": "^0.8.6",
-    "recharts": "^2.0.9",
-    "styled-components": "^5.3.0",
-    "waveform-react": "^0.2.3",
-    "wavesurfer-react": "^2.0.8",
-    "wavesurfer.js": "3.1.0",
-    "web-vitals": "^1.1.1"
+    "redux-persist": "^6.0.0",
+    "typescript": "^4.1.2",
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -60,6 +49,6 @@
     ]
   },
   "devDependencies": {
-    "json-loader": "^0.5.7"
+    "@types/react-router-dom": "^5.1.8"
   }
 }
