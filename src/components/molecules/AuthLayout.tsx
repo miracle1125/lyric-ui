@@ -28,8 +28,8 @@ export const AuthLayout: FC = ({ children }) => {
 
   return (
     <Container disableGutters className={classes.container} maxWidth={false}>
-      <Box display="flex" height="100vh">
-        <Box flex="0 0 540px" height="100%" position="relative">
+      <Box display="flex" alignItems="stretch" minHeight="100vh">
+        <Box flex="0 0 540px" position="relative">
           <div className={classes.bannerOverlay} />
           <img
             alt="Auth banner"
