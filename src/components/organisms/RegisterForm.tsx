@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { RequestStatus } from '../../model/RequestStatus';
-import { signIn } from '../../redux/auth.slice';
+import { signIn, signUp } from '../../redux/auth.slice';
 import { InputField } from '../atoms/InputField';
 import Alert from '@material-ui/lab/Alert';
 
@@ -15,23 +15,38 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface FormFields {
+  alias: string;
   email: string;
+  firstName: string;
+  lastName: string;
   password: string;
 }
 
-export const LoginForm: FC = () => {
+export const RegisterForm: FC = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const { errorMessage, status } = useAppSelector((state) => state.auth);
   const { handleSubmit, control } = useForm<FormFields>({
     defaultValues: {
+      alias: '',
       email: '',
+      firstName: '',
+      lastName: '',
       password: '',
     },
   });
 
-  const onSubmit: SubmitHandler<FormFields> = (data) => {
-    dispatch(signIn(data));
+  const onSubmit: SubmitHandler<FormFields> = ({ alias, email, firstName, lastName, password }) => {
+    dispatch(
+      signUp({
+        creator_alias: alias,
+        email,
+        first: firstName,
+        genres: [],
+        last: lastName,
+        password,
+      }),
+    );
   };
 
   const isLoading = status === RequestStatus.Loading;
