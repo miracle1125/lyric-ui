@@ -5,7 +5,7 @@ interface Props<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends Pick<UseControllerProps<TFieldValues, TName>, 'rules'>,
-    Pick<TextFieldProps, 'disabled' | 'type' | 'placeholder' | 'helperText' | 'variant' | 'required'> {
+    Pick<TextFieldProps, 'disabled' | 'type' | 'placeholder' | 'helperText' | 'variant' | 'required' | 'margin'> {
   control: Control<TFieldValues>;
   label: string;
   name: TName;
@@ -19,6 +19,7 @@ export function InputField<
   disabled = false,
   helperText,
   label,
+  margin = 'normal',
   name,
   placeholder,
   required,
@@ -52,7 +53,7 @@ export function InputField<
       id={name}
       inputRef={ref}
       label={label}
-      margin="normal"
+      margin={margin}
       placeholder={placeholder}
       required={required}
       type={type}

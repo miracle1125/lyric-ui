@@ -16,7 +16,7 @@ export class AuthApi {
   }
 
   public static async signUp(request: RegisterRequest): Promise<LoginResponse> {
-    const { data } = await HttpClient.getInstance().post<LoginResponse>('/login', request);
+    const { data } = await HttpClient.getInstance().post<LoginResponse>('/signup', request);
 
     return data;
   }
