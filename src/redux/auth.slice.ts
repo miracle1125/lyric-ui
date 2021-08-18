@@ -25,7 +25,11 @@ export const signIn = createAsyncThunk('auth/signIn', async (data: LoginRequest)
 });
 
 export const signUp = createAsyncThunk('auth/signUp', async (data: RegisterRequest) => {
-  const response = await AuthApi.signUp(data);
+  await AuthApi.signUp(data);
+  const response = await AuthApi.signIn({
+    email: data.email,
+    password: data.password,
+  });
   HttpClient.setToken(response.session_key);
 
   return response;

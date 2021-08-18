@@ -78,6 +78,15 @@ const darkTheme = createTheme({
         cursor: 'pointer',
       },
     },
+    MuiChip: {
+      root: {
+        borderRadius: 4,
+      },
+      sizeSmall: {
+        fontSize: 12,
+        lineHeight: '20px',
+      }
+    },
   },
 });
 

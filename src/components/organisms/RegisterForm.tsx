@@ -1,5 +1,6 @@
 import { Box, Button, Chip, CircularProgress, Grid, makeStyles, Typography } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
+import classNames from 'classnames';
 import type { FC } from 'react';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -26,6 +27,23 @@ const GENRE_LIST: string[] = [
 const useStyles = makeStyles((theme) => ({
   action: {
     fontSize: '20px',
+  },
+  chip: {
+    backgroundColor: 'rgba(33, 150, 243, 0.29)',
+    borderColor: '#2196f3',
+    color: '#2196f3',
+  },
+  active: {
+    'backgroundColor': '#2196f3',
+    'color': theme.palette.common.white,
+
+    '&:hover': {
+      backgroundColor: '#2196f3 !important',
+    },
+
+    '&:focus': {
+      backgroundColor: '#2196f3 !important',
+    },
   },
 }));
 
@@ -104,17 +122,17 @@ export const RegisterForm: FC = () => {
       </Grid>
 
       <Box marginTop={2}>
-        <Typography variant="h5">
-          Genres of Interest
-        </Typography>
+        <Typography variant="h5">Genres of Interest</Typography>
         <Box marginTop={1} display="flex" flexWrap="wrap" style={{ gap: 10 }}>
           {GENRE_LIST.map((genre) => (
             <Chip
               clickable
-              color={genres.includes(genre) ? 'primary' : 'secondary'}
+              className={classNames(classes.chip, genres.includes(genre) && classes.active)}
               key={genre}
               label={genre}
               onClick={() => selectGenre(genre)}
+              size="small"
+              variant="outlined"
             />
           ))}
         </Box>
