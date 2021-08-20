@@ -10,6 +10,7 @@ import { Routes } from './config/Routes';
 import { LoginPage } from './pages/LoginPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { RegisterPage } from './pages/RegisterPage';
+import { UploadPage } from './pages/UploadPage';
 import { persistor, store } from './redux';
 
 export const App: FC = () => {
@@ -32,6 +33,7 @@ const Content: FC = () => {
         <AuthRoute exact component={LoginPage} path={Routes.Login} />
         <AuthRoute exact component={RegisterPage} path={Routes.Register} />
         <PrivateRoute exact component={ProfilePage} path={Routes.Profile} />
+        <PrivateRoute exact component={UploadPage} path={Routes.Upload} />
 
         <Redirect to={Routes.Login} />
       </Switch>

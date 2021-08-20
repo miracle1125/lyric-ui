@@ -7,7 +7,7 @@ export const AuthRoute: FC<RouteProps> = (props) => {
   const isAuthorized = useAppSelector((state) => Boolean(state.auth.token));
 
   if (isAuthorized) {
-    return <Redirect to={Routes.Profile} />;
+    return <Redirect to={Routes.Upload} />;
   }
 
   return <Route {...props} />;
