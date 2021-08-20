@@ -5,7 +5,10 @@ interface Props<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends Pick<UseControllerProps<TFieldValues, TName>, 'rules'>,
-    Pick<TextFieldProps, 'disabled' | 'type' | 'placeholder' | 'helperText' | 'variant' | 'required' | 'margin'> {
+    Pick<
+      TextFieldProps,
+      'disabled' | 'type' | 'placeholder' | 'helperText' | 'variant' | 'required' | 'margin' | 'multiline' | 'maxRows' | 'rows'
+    > {
   control: Control<TFieldValues>;
   label: string;
   name: TName;
@@ -26,6 +29,7 @@ export function InputField<
   rules = {},
   type = 'text',
   variant = 'outlined',
+  ...rest
 }: Props<TFieldValues, TName>) {
   if (required) {
     rules.required = {
@@ -47,6 +51,7 @@ export function InputField<
     <TextField
       fullWidth
       {...inputProps}
+      {...rest}
       disabled={disabled}
       error={invalid}
       helperText={error?.message ?? helperText}

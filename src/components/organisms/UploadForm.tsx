@@ -30,7 +30,8 @@ export const UploadForm: FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <InputField required control={control} name="title" label="Title" />
-      <InputField required control={control} name="description" label="Description" />
+
+      <InputField required multiline rows={4} control={control} name="description" label="Description" />
 
       <Controller
         control={control}
