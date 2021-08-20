@@ -6,6 +6,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { useHistory } from 'react-router-dom';
 import { Routes } from '../../config/Routes';
 import { InputField } from '../atoms/InputField';
+import { UploadFile } from '../atoms/UploadFile';
 
 interface FormFields {
   description: string;
@@ -29,6 +30,8 @@ export const UploadForm: FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <UploadFile />
+
       <InputField required control={control} name="title" label="Title" />
 
       <InputField required multiline rows={4} control={control} name="description" label="Description" />
