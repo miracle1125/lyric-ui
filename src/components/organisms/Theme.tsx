@@ -12,9 +12,9 @@ const darkTheme = createTheme({
       contrastText: '#fff',
     },
     secondary: {
-      dark: '#424242',
-      light: '##fafafa',
-      main: '#9e9e9e',
+      dark: '#0069c0',
+      light: '#6ec6ff',
+      main: '#2196f3',
     },
     background: {
       default: '#000000',
@@ -72,6 +72,9 @@ const darkTheme = createTheme({
         textTransform: 'none',
         fontWeight: 500,
       },
+      sizeLarge: {
+        fontSize: 20,
+      },
     },
     MuiLink: {
       root: {
@@ -81,11 +84,27 @@ const darkTheme = createTheme({
     MuiChip: {
       root: {
         borderRadius: 4,
+        transition: 'all 0.2s',
       },
       sizeSmall: {
         fontSize: 12,
         lineHeight: '20px',
-      }
+      },
+      outlinedSecondary: {
+        'backgroundColor': 'rgba(33, 150, 243, 0.29)',
+        
+
+        '&:hover': {
+          backgroundColor: 'rgba(33, 150, 243, 0.29) !important',
+        },
+
+        '&:focus': {
+          backgroundColor: 'rgba(33, 150, 243, 0.29) !important',
+        },
+      },
+      colorSecondary: {
+        border: '1px solid #2196f3',
+      },
     },
   },
 });

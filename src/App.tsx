@@ -7,6 +7,7 @@ import { AuthRoute } from './components/atoms/AuthRoute';
 import { Theme } from './components/organisms/Theme';
 import { PrivateRoute } from './components/PrivateRoute';
 import { Routes } from './config/Routes';
+import { DashboardPage } from './pages/DashboardPage';
 import { LoginPage } from './pages/LoginPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { RegisterPage } from './pages/RegisterPage';
@@ -32,6 +33,7 @@ const Content: FC = () => {
       <Switch>
         <AuthRoute exact component={LoginPage} path={Routes.Login} />
         <AuthRoute exact component={RegisterPage} path={Routes.Register} />
+        <PrivateRoute exact component={DashboardPage} path={Routes.Dashboard} />
         <PrivateRoute exact component={ProfilePage} path={Routes.Profile} />
         <PrivateRoute exact component={UploadPage} path={Routes.Upload} />
 

@@ -1,4 +1,5 @@
-import { Box, Button, CircularProgress, Link, makeStyles } from '@material-ui/core';
+import { Box, Button, CircularProgress, Link } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import type { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
@@ -6,13 +7,6 @@ import { useAppSelector } from '../../hooks/useAppSelector';
 import { RequestStatus } from '../../model/RequestStatus';
 import { signIn } from '../../redux/auth.slice';
 import { InputField } from '../atoms/InputField';
-import Alert from '@material-ui/lab/Alert';
-
-const useStyles = makeStyles((theme) => ({
-  action: {
-    fontSize: '20px',
-  },
-}));
 
 interface FormFields {
   email: string;
@@ -20,7 +14,6 @@ interface FormFields {
 }
 
 export const LoginForm: FC = () => {
-  const classes = useStyles();
   const dispatch = useAppDispatch();
   const { errorMessage, status } = useAppSelector((state) => state.auth);
   const { handleSubmit, control } = useForm<FormFields>({
@@ -51,7 +44,6 @@ export const LoginForm: FC = () => {
       </Box>
       <Box component="footer" marginTop={5}>
         <Button
-          className={classes.action}
           color="primary"
           disabled={isLoading}
           size="large"

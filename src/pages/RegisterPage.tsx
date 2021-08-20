@@ -19,7 +19,7 @@ export const RegisterPage: FC = () => {
       <Typography gutterBottom className={classes.title} variant="h1">
         Sign Up
       </Typography>
-      <Typography gutterBottom variant="h5" color="secondary">
+      <Typography gutterBottom variant="h5" color="textSecondary">
         It is a long established fact that a reader will be distracted by the readable content.
       </Typography>
       <Box marginTop={2}>
