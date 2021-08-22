@@ -10,16 +10,38 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontWeight: 600,
-    fontSize: '45px',
+  },
+  large: {
+    fontSize: 45,
+    letterSpacing: 2,
+  },
+  small: {
+    fontSize: 22,
+    letterSpacing: 1,
   },
 }));
 
-export const Logo: FC<HTMLAttributes<HTMLSpanElement>> = ({ children, className, ...rest }) => {
+interface Props extends HTMLAttributes<HTMLSpanElement> {
+  size?: 'large' | 'small';
+}
+
+export const Logo: FC<Props> = ({ children, className, size = 'large', ...rest }) => {
   const classes = useStyles();
+  const imgSize = size === 'small' ? 24 : 50;
 
   return (
-    <span className={classNames(classes.container, className)} {...rest}>
-      <img alt="Logo" height="50px" src={require('../../assets/logo.svg').default} width="50px" />
+    <span
+      className={classNames(
+        {
+          [classes.container]: true,
+          [classes.large]: size === 'large',
+          [classes.small]: size === 'small',
+        },
+        className,
+      )}
+      {...rest}
+    >
+      <img alt="Logo" height={imgSize} width={imgSize} src={require('../../assets/logo.svg').default} />
       <span className={classes.title}>Lyric</span>
     </span>
   );
