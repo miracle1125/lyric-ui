@@ -1,15 +1,16 @@
 import { Box, Button, Chip, TextField } from '@material-ui/core';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import type { FC } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-
 import { useHistory } from 'react-router-dom';
+import { SongsApi } from '../../api/Songs.api';
 import { Routes } from '../../config/Routes';
 import { InputField } from '../atoms/InputField';
 import { UploadFile } from '../atoms/UploadFile';
 
 interface FormFields {
   description: string;
+  file: File;
   tags: string[];
   title: string;
 }
@@ -25,12 +26,26 @@ export const UploadForm: FC = () => {
   });
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
-    console.log('debug: on submit ', data);
+    const formData = new FormData();
+    formData.append('file', data.file, data.file.name);
+    formData.append('title', data.title);
+    formData.append('description', data.description);
+    data.tags.forEach((tag) => {
+      formData.append('tags[]', tag);
+    });
+
+    SongsApi.upload(formData);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <UploadFile />
+      <UploadFile
+        control={control}
+        name="file"
+        rules={{
+          required: true,
+        }}
+      />
 
       <InputField required control={control} name="title" label="Title" />
 
