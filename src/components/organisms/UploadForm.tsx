@@ -1,10 +1,14 @@
-import { Box, Button, Chip, TextField } from '@material-ui/core';
+import { Box, Button, Chip, CircularProgress, TextField } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import axios from 'axios';
 import type { FC } from 'react';
+import { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { SongsApi } from '../../api/Songs.api';
 import { Routes } from '../../config/Routes';
+import { RequestStatus } from '../../model/RequestStatus';
 import { InputField } from '../atoms/InputField';
 import { UploadFile } from '../atoms/UploadFile';
 
@@ -16,6 +20,8 @@ interface FormFields {
 }
 
 export const UploadForm: FC = () => {
+  const [status, setStatus] = useState(RequestStatus.Pending);
+  const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
   const { handleSubmit, control } = useForm<FormFields>({
     defaultValues: {
@@ -25,7 +31,10 @@ export const UploadForm: FC = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<FormFields> = (data) => {
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    setStatus(RequestStatus.Loading);
+    setErrorMessage('');
+
     const formData = new FormData();
     formData.append('file', data.file, data.file.name);
     formData.append('title', data.title);
@@ -34,11 +43,28 @@ export const UploadForm: FC = () => {
       formData.append('tags[]', tag);
     });
 
-    SongsApi.upload(formData);
+    try {
+      await SongsApi.upload(formData);
+    } catch (error) {
+      setStatus(RequestStatus.Failed);
+      if (axios.isAxiosError(error)) {
+        setErrorMessage(error.message);
+      }
+    }
   };
+
+  const isLoading = status === RequestStatus.Loading;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      {!!errorMessage && (
+        <Box marginBottom={2}>
+          <Alert severity="error" variant="filled">
+            {errorMessage}
+          </Alert>
+        </Box>
+      )}
+
       <UploadFile
         control={control}
         name="file"
@@ -82,7 +108,14 @@ export const UploadForm: FC = () => {
         >
           Cancel
         </Button>
-        <Button color="primary" size="large" type="submit" variant="contained">
+        <Button
+          disabled={isLoading}
+          startIcon={isLoading ? <CircularProgress color="inherit" size={16} /> : null}
+          color="primary"
+          size="large"
+          type="submit"
+          variant="contained"
+        >
           Upload
         </Button>
       </Box>
