@@ -45,6 +45,7 @@ export const UploadForm: FC = () => {
 
     try {
       await SongsApi.upload(formData);
+      setStatus(RequestStatus.Successful);
     } catch (error) {
       setStatus(RequestStatus.Failed);
       if (axios.isAxiosError(error)) {
@@ -61,6 +62,14 @@ export const UploadForm: FC = () => {
         <Box marginBottom={2}>
           <Alert severity="error" variant="filled">
             {errorMessage}
+          </Alert>
+        </Box>
+      )}
+
+      {status === RequestStatus.Successful && (
+        <Box marginBottom={2}>
+          <Alert severity="success" variant="filled">
+            Song successfully uploaded
           </Alert>
         </Box>
       )}
