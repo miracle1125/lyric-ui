@@ -1,12 +1,15 @@
 import { CssBaseline } from '@material-ui/core';
 import type { FC } from 'react';
+import { useEffect } from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
+import { HttpClient } from './api/HttpClient';
 import { AuthRoute } from './components/atoms/AuthRoute';
 import { Theme } from './components/organisms/Theme';
 import { PrivateRoute } from './components/PrivateRoute';
 import { Routes } from './config/Routes';
+import { useAppSelector } from './hooks/useAppSelector';
 import { DashboardPage } from './pages/DashboardPage';
 import { LoginPage } from './pages/LoginPage';
 import { ProfilePage } from './pages/ProfilePage';
@@ -28,6 +31,14 @@ export const App: FC = () => {
 };
 
 const Content: FC = () => {
+  const { token } = useAppSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (token) {
+      HttpClient.setToken(token);
+    }
+  }, [token]);
+
   return (
     <BrowserRouter>
       <Switch>

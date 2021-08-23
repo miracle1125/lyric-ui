@@ -1,9 +1,9 @@
-import { RegisterRequest } from './../api/Auth.dto';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { RequestStatus } from '../model/RequestStatus';
 import { AuthApi } from '../api/Auth.api';
-import { HttpClient } from '../api/HttpClient';
 import { LoginRequest } from '../api/Auth.dto';
+import { RequestStatus } from '../model/RequestStatus';
+import { RegisterRequest } from './../api/Auth.dto';
+import { HttpClient } from './../api/HttpClient';
 
 // TODO error message should be separate for signIn and signUp processes
 export interface AuthState {
@@ -19,7 +19,6 @@ const initialState: AuthState = {
 
 export const signIn = createAsyncThunk('auth/signIn', async (data: LoginRequest) => {
   const response = await AuthApi.signIn(data);
-  HttpClient.setToken(response.session_key);
 
   return response;
 });
@@ -30,7 +29,6 @@ export const signUp = createAsyncThunk('auth/signUp', async (data: RegisterReque
     email: data.email,
     password: data.password,
   });
-  HttpClient.setToken(response.session_key);
 
   return response;
 });
@@ -42,6 +40,7 @@ export const authSlice = createSlice({
     logOut(state) {
       delete state.token;
       delete state.userId;
+      HttpClient.clearToken();
     },
   },
   extraReducers: (builder) => {

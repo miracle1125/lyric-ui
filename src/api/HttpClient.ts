@@ -30,4 +30,10 @@ export class HttpClient {
       },
     });
   }
+
+  public static clearToken(): void {
+    HttpClient.instance = axios.create({
+      baseURL: HttpClient.BASE_URL,
+    });
+  }
 }
