@@ -1,6 +1,7 @@
 import { Box, Button, makeStyles, Typography } from '@material-ui/core';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import classNames from 'classnames';
+import { useState } from 'react';
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Control, FieldPath, FieldValues, useController, UseControllerProps } from 'react-hook-form';
@@ -34,6 +35,7 @@ export function UploadFile<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({ control, name, rules = {} }: Props<TFieldValues, TName>) {
+  const [fileName, setFileName] = useState<string>();
   const classes = useStyles();
   const {
     field: { onChange },
@@ -45,7 +47,9 @@ export function UploadFile<
   });
   const onDrop = useCallback(
     (acceptedFiles) => {
-      onChange(acceptedFiles?.[0]);
+      const file = acceptedFiles?.[0];
+      onChange(file);
+      setFileName(file?.name)
     },
     [onChange],
   );
@@ -61,7 +65,7 @@ export function UploadFile<
     >
       <Box display="flex" flexDirection="column" alignItems="center" style={{ gap: '10px' }}>
         <CloudUploadIcon color="primary" style={{ fontSize: 60 }} />
-        <Typography variant="body1">Choose a file or Drag it here</Typography>
+        <Typography variant="body1">{fileName ?? 'Choose a file or Drag it here'}</Typography>
         <label htmlFor="file-upload">
           <Button component="span" color="primary" variant="contained">
             Choose file
@@ -69,7 +73,9 @@ export function UploadFile<
         </label>
         <input
           onChange={(e) => {
-            onChange(e.target.files?.[0]);
+            const file = e.target.files?.[0];
+            onChange(file);
+            setFileName(file?.name)
           }}
           className={classes.input}
           id="file-upload"
