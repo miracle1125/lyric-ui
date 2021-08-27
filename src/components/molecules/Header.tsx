@@ -1,9 +1,9 @@
-import { AppBar, Box, Container, IconButton, makeStyles } from '@material-ui/core';
+import { AppBar, Box, Button, Container, IconButton, makeStyles } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { FC, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 import { Routes } from '../../config/Routes';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { authSlice } from '../../redux/auth.slice';
@@ -35,32 +35,37 @@ export const Header: FC = () => {
         <Box display="flex" justifyContent="space-between">
           <Logo className={classes.logo} onClick={() => history.push(Routes.Dashboard)} size="small" />
 
-          <IconButton
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={openMenu}
-            color="inherit"
-          >
-            <AccountCircle />
-          </IconButton>
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            open={Boolean(anchorEl)}
-            onClose={closeMenu}
-          >
-            <MenuItem onClick={() => dispatch(authSlice.actions.logOut())}>Log Out</MenuItem>
-          </Menu>
+          <Box display="flex" alignItems="center" style={{ gap: 20 }}>
+            <Button variant="contained" size="small" component={RouterLink} to={Routes.Upload}>
+              Upload
+            </Button>
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={openMenu}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorEl)}
+              onClose={closeMenu}
+            >
+              <MenuItem onClick={() => dispatch(authSlice.actions.logOut())}>Log Out</MenuItem>
+            </Menu>
+          </Box>
         </Box>
       </Container>
     </AppBar>
