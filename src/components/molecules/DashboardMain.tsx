@@ -31,7 +31,7 @@ export const DashboardMain: FC = () => {
     waveSurfer.current.on('pause', () => setIsPlaying(false));
     
     return () => {
-      waveSurfer.current?.unAll();
+      waveSurfer.current?.destroy();
     }
   }, []);
 
