@@ -1,6 +1,10 @@
 import { Box, Button, Divider, makeStyles, Paper, Typography } from '@material-ui/core';
 import PlayArrowSharpIcon from '@material-ui/icons/PlayArrowSharp';
-import type { FC } from 'react';
+import PauseIcon from '@material-ui/icons/Pause';
+import { FC, useState } from 'react';
+import { useRef } from 'react';
+import { useEffect } from 'react';
+import WaveSurfer from 'wavesurfer.js';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -9,15 +13,43 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const DashboardMain: FC = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const waveSurfer = useRef<WaveSurfer>();
   const classes = useStyles();
+
+  useEffect(() => {
+    waveSurfer.current = WaveSurfer.create({
+      container: '#waveform',
+      waveColor: '#9c27b0',
+      progressColor: 'purple',
+      height: 150,
+    });
+
+    waveSurfer.current.load(require('../../assets/example.mp3').default);
+
+    waveSurfer.current.on('play', () => setIsPlaying(true));
+    waveSurfer.current.on('pause', () => setIsPlaying(false));
+    
+    return () => {
+      waveSurfer.current?.unAll();
+    }
+  }, []);
 
   return (
     <Paper className={classes.container}>
       <Box component="header" padding={1.5}>
-        <Button color="primary" variant="contained">
-          <PlayArrowSharpIcon />
+        <Button
+          onClick={() => {
+            waveSurfer.current?.playPause();
+          }}
+          color="primary"
+          variant="contained"
+        >
+          {isPlaying ? <PauseIcon /> : <PlayArrowSharpIcon />}
         </Button>
       </Box>
+      <Divider />
+      <Box id="waveform" height="150px" />
       <Divider />
       <Box component="footer" padding={1.5}>
         <Typography gutterBottom variant="h5">
