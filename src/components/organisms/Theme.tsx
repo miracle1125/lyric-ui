@@ -26,8 +26,9 @@ const darkTheme = createTheme({
       secondary: '#bdbdbd',
     },
     common: {
-      white: '#ffffff',
+      white: '#fff',
     },
+    divider: '#000',
   },
   typography: {
     fontFamily: 'Inter',

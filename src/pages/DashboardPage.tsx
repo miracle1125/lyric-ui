@@ -1,6 +1,7 @@
 import { Box, Grid, makeStyles } from '@material-ui/core';
 import type { FC } from 'react';
 import { GridArea } from '../components/atoms/GridArea';
+import { DashboardMain } from '../components/molecules/DashboardMain';
 import { InnerLayout } from '../components/molecules/InnerLayout';
 import { ProjectEarnings } from '../components/molecules/ProjectEarnings';
 import { ProjectListeners } from '../components/molecules/ProjectListeners';
@@ -34,7 +35,7 @@ export const DashboardPage: FC = () => {
           <ProjectListeners />
         </GridArea>
         <GridArea name="main">
-          <Box style={{ backgroundColor: 'red' }}>Main</Box>
+          <DashboardMain />
         </GridArea>
         <GridArea name="stats">
           <ProjectStats />
