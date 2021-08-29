@@ -1,8 +1,9 @@
-import { Box, Grid, Paper } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
 import type { FC } from 'react';
 import { InnerLayout } from '../components/molecules/InnerLayout';
 import { ProjectEarnings } from '../components/molecules/ProjectEarnings';
 import { ProjectListeners } from '../components/molecules/ProjectListeners';
+import { ProjectStats } from '../components/molecules/ProjectStats';
 
 export const DashboardPage: FC = () => {
   return (
@@ -19,7 +20,7 @@ export const DashboardPage: FC = () => {
           </Box>
         </Grid>
         <Grid item sm={4}>
-          <Paper>Stats</Paper>
+          <ProjectStats />
         </Grid>
       </Grid>
     </InnerLayout>
