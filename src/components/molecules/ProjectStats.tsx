@@ -1,6 +1,7 @@
 import { Box, makeStyles, Typography, LinearProgress } from '@material-ui/core';
 import classNames from 'classnames';
 import type { FC } from 'react';
+import { useSongAnalyze } from '../../hooks/useSongAnalyze';
 import { GridArea } from '../atoms/GridArea';
 
 const useStyles = makeStyles((theme) => ({
@@ -59,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const ProjectStats: FC = () => {
+  const { score } = useSongAnalyze();
   const classes = useStyles();
 
   return (
@@ -66,13 +68,13 @@ export const ProjectStats: FC = () => {
       <GridArea name="overall" className={classes.paper}>
         <Typography className={classes.title} variant="body1">Overall</Typography>
         <Typography variant="h5" className={classes.value}>
-          81
+          {score.overall}
         </Typography>
       </GridArea>
       <GridArea name="melody" className={classes.paper}>
         <Typography className={classes.title} variant="body1">Melody</Typography>
         <Typography variant="h5" className={classes.value}>
-          72
+          {score.melody}
         </Typography>
         <Box width="90%">
           <LinearProgress
@@ -80,7 +82,7 @@ export const ProjectStats: FC = () => {
               root: classes.progress,
               bar: classNames(classes.progressBar, classes.melody),
             }}
-            value={72}
+            value={score.melody}
             variant="determinate"
           />
         </Box>
@@ -88,7 +90,7 @@ export const ProjectStats: FC = () => {
       <GridArea name="chords" className={classes.paper}>
         <Typography className={classes.title} variant="body1">Chords</Typography>
         <Typography variant="h5" className={classes.value}>
-          81
+          {score.chords}
         </Typography>
         <Box width="90%">
           <LinearProgress
@@ -96,15 +98,15 @@ export const ProjectStats: FC = () => {
               root: classes.progress,
               bar: classNames(classes.progressBar, classes.chords),
             }}
-            value={81}
+            value={score.chords}
             variant="determinate"
           />
         </Box>
       </GridArea>
       <GridArea name="structure" className={classes.paper}>
-        <Typography className={classes.title} variant="body1">Structure</Typography>
+        <Typography className={classes.title} variant="body1">Star Factor</Typography>
         <Typography variant="h5" className={classes.value}>
-          78
+          {score.starFactor}
         </Typography>
         <Box width="90%">
           <LinearProgress
@@ -112,7 +114,7 @@ export const ProjectStats: FC = () => {
               root: classes.progress,
               bar: classNames(classes.progressBar, classes.structure),
             }}
-            value={78}
+            value={score.starFactor}
             variant="determinate"
           />
         </Box>
@@ -120,7 +122,7 @@ export const ProjectStats: FC = () => {
       <GridArea name="familiarity" className={classes.paper}>
         <Typography className={classes.title} variant="body1">Familiarity</Typography>
         <Typography variant="h5" className={classes.value}>
-          72
+          {score.familiarity}
         </Typography>
         <Box width="90%">
           <LinearProgress
@@ -128,7 +130,7 @@ export const ProjectStats: FC = () => {
               root: classes.progress,
               bar: classNames(classes.progressBar, classes.familiarity),
             }}
-            value={81}
+            value={score.familiarity}
             variant="determinate"
           />
         </Box>

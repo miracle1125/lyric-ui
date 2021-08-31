@@ -4,7 +4,7 @@ import { GridArea } from '../components/atoms/GridArea';
 import { DashboardMain } from '../components/molecules/DashboardMain';
 import { InnerLayout } from '../components/molecules/InnerLayout';
 import { ProjectedEarnings } from '../components/molecules/ProjectedEarnings';
-import { ProjectListeners } from '../components/molecules/ProjectListeners';
+import { ProjectedListeners } from '../components/molecules/ProjectedListeners';
 import { ProjectStats } from '../components/molecules/ProjectStats';
 import { SimilarSongs } from '../components/molecules/SimilarSongs';
 import { SongAnalyzeContext } from '../components/molecules/SongAnalyzeContext';
@@ -35,7 +35,7 @@ export const DashboardPage: FC = () => {
             <ProjectedEarnings />
           </GridArea>
           <GridArea name="listeners">
-            <ProjectListeners />
+            <ProjectedListeners />
           </GridArea>
           <GridArea name="main">
             <DashboardMain />

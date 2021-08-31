@@ -2,6 +2,7 @@ import { Numeric } from '@eo-locale/react';
 import { Box, makeStyles, Paper, Typography } from '@material-ui/core';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import type { FC } from 'react';
+import { useSongAnalyze } from '../../hooks/useSongAnalyze';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -28,19 +29,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ProjectListeners: FC = () => {
+export const ProjectedListeners: FC = () => {
+  const { projectedListeners } = useSongAnalyze();
   const classes = useStyles();
 
   return (
     <Paper className={classes.container}>
       <Box>
-        <Typography variant="body1">Project Listeners</Typography>
+        <Typography variant="body1">Projected Listeners</Typography>
         <Typography className={classes.value} variant="h4">
-          <Numeric value={11235} />
+          <Numeric value={projectedListeners.amount} />
         </Typography>
         <Box alignItems="center" className={classes.changes}>
           <TrendingUpIcon fontSize="small" />
-          &nbsp;+1200
+          &nbsp;+<Numeric value={projectedListeners.historicalChange} />
         </Box>
       </Box>
 

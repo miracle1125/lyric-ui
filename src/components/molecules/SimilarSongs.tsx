@@ -1,6 +1,6 @@
 import { Avatar, List, ListItem, ListItemAvatar, ListItemText, makeStyles, Paper, Typography } from '@material-ui/core';
-import ImageIcon from '@material-ui/icons/Image';
 import type { FC } from 'react';
+import { useSongAnalyze } from '../../hooks/useSongAnalyze';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const SimilarSongs: FC = () => {
+  const { songCharacteristics } = useSongAnalyze();
   const classes = useStyles();
 
   return (
@@ -20,24 +21,14 @@ export const SimilarSongs: FC = () => {
         Similar songs
       </Typography>
       <List dense disablePadding>
-        <ListItem disableGutters>
-          <ListItemAvatar>
-            <Avatar src={require('../../assets/song-1.jpeg').default} variant="rounded" />
-          </ListItemAvatar>
-          <ListItemText primary="The House of the Rising Sun" secondary="The Animals" />
-        </ListItem>
-        <ListItem disableGutters>
-          <ListItemAvatar>
-            <Avatar src={require('../../assets/song-2.jpeg').default} variant="rounded" />
-          </ListItemAvatar>
-          <ListItemText primary="All by Myself" secondary="Eric Carmen" />
-        </ListItem>
-        <ListItem disableGutters>
-          <ListItemAvatar>
-            <Avatar src={require('../../assets/song-3.jpeg').default} variant="rounded" />
-          </ListItemAvatar>
-          <ListItemText primary="Light My Fire" secondary="The Doors" />
-        </ListItem>
+        {songCharacteristics.similarSongs.map((song) => (
+          <ListItem key={song.uri} disableGutters>
+            <ListItemAvatar>
+              <Avatar src={song.albumArt} imgProps={{ width: 58, height: 58 }} variant="rounded" />
+            </ListItemAvatar>
+            <ListItemText primary={song.title} secondary={song.artist} />
+          </ListItem>
+        ))}
       </List>
     </Paper>
   );
