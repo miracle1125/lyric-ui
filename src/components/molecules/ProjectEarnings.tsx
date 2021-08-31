@@ -6,6 +6,10 @@ const useStyles = makeStyles((theme) => ({
   container: {
     height: '100%',
     padding: '10px 20px',
+    backgroundImage: `url(${require('../../assets/wave.svg').default})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'top 15px center',
+    backgroundSize: 'cover',
   },
   value: {
     marginTop: theme.spacing(1),
