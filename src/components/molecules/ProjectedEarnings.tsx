@@ -1,5 +1,6 @@
 import { makeStyles, Paper, Typography } from '@material-ui/core';
 import type { FC } from 'react';
+import { useSongAnalyze } from '../../hooks/useSongAnalyze';
 import { Money } from '../atoms/Money';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,14 +20,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ProjectEarnings: FC = () => {
+export const ProjectedEarnings: FC = () => {
+  const { projectedEarnings } = useSongAnalyze();
   const classes = useStyles();
 
   return (
     <Paper className={classes.container}>
-      <Typography variant="body1">Project Earnings</Typography>
+      <Typography variant="body1">Projected Earnings</Typography>
       <Typography className={classes.value} variant="h4">
-        <Money amount={895.89} language="en" currency="usd" />
+        <Money amount={Number(projectedEarnings.amount)} language="en" currency={projectedEarnings.currency} />
       </Typography>
     </Paper>
   );
