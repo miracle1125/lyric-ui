@@ -1,4 +1,4 @@
-import { Box, Button, Chip, Divider, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Box, Button, Divider, FormControl, makeStyles, MenuItem, Paper, Select, Typography } from '@material-ui/core';
 import PauseIcon from '@material-ui/icons/Pause';
 import PlayArrowSharpIcon from '@material-ui/icons/PlayArrowSharp';
 import classNames from 'classnames';
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const DashboardMain: FC = () => {
-  const { description, songCharacteristics, title, url } = useSongAnalyze();
+  const { description, genres, songCharacteristics, title, url } = useSongAnalyze();
   const [isPlaying, setIsPlaying] = useState(false);
   const waveSurfer = useRef<WaveSurfer>();
   const classes = useStyles();
@@ -73,7 +73,7 @@ export const DashboardMain: FC = () => {
 
   return (
     <Paper className={classes.container}>
-      <Box component="header" padding={1.5}>
+      <Box display="flex" justifyContent="space-between" alignItems="center" component="header" padding={1.5}>
         <Button
           onClick={() => {
             waveSurfer.current?.playPause();
@@ -83,6 +83,17 @@ export const DashboardMain: FC = () => {
         >
           {isPlaying ? <PauseIcon /> : <PlayArrowSharpIcon />}
         </Button>
+
+        <FormControl variant="outlined" size="small">
+          <Select value="no-value">
+            <MenuItem value="no-value">Genre</MenuItem>
+            {genres.map((genre) => (
+              <MenuItem key={genre} value={genre}>
+                {genre}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </Box>
       <Divider />
       <Box id="waveform" height="150px" />
