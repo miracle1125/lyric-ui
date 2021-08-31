@@ -35,15 +35,25 @@ const useStyles = makeStyles((theme) => ({
     padding: '0 10px',
     textTransform: 'capitalize',
   },
-  blue: {
+  color1: {
     color: '#2196f3',
     backgroundColor: 'rgba(33, 150, 243, 0.29)',
     border: '1px solid #2196f3',
   },
-  green: {
+  color2: {
     color: '#34bfa3',
     backgroundColor: 'rgba(52, 191, 163, 0.29)',
     border: '1px solid #34bfa3',
+  },
+  color3: {
+    color: '#f4516c',
+    backgroundColor: 'rgba(244, 81, 108, 0.29)',
+    border: '1px solid #f4516c',
+  },
+  color4: {
+    color: '#c31162',
+    backgroundColor: 'rgba(195, 17, 98, 0.29)',
+    border: '1px solid #c31162',
   },
 }));
 
@@ -113,14 +123,14 @@ export const DashboardMain: FC = () => {
           </Typography>
           <ul className={classes.tagList}>
             {songCharacteristics.elements.map((element) => (
-              <span key={element} className={classNames(classes.tag, classes.blue)}>
+              <span key={element} className={classNames(classes.tag, classes[getRandomColor()])}>
                 {element}
               </span>
             ))}
           </ul>
           <ul className={classes.tagList}>
             {songCharacteristics.tags.map((tag) => (
-              <span key={tag} className={classNames(classes.tag, classes.blue)}>
+              <span key={tag} className={classNames(classes.tag, classes[getRandomColor()])}>
                 {tag}
               </span>
             ))}
@@ -139,3 +149,10 @@ export const DashboardMain: FC = () => {
     </Paper>
   );
 };
+
+type Color = 'color1' | 'color2' | 'color3' | 'color4';
+
+function getRandomColor(): Color {
+  const randomColor = `color${Math.floor(Math.random() * 4) + 1}` as Color;
+  return randomColor;
+}
