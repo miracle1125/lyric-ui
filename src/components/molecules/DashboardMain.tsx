@@ -1,10 +1,8 @@
-import { Box, Button, Divider, FormControl, makeStyles, MenuItem, Paper, Select, Typography } from '@material-ui/core';
-import PauseIcon from '@material-ui/icons/Pause';
-import PlayArrowSharpIcon from '@material-ui/icons/PlayArrowSharp';
+import { Box, Divider, makeStyles, Paper, Typography } from '@material-ui/core';
 import classNames from 'classnames';
-import { FC, useEffect, useRef, useState } from 'react';
-import WaveSurfer from 'wavesurfer.js';
+import { FC } from 'react';
 import { useSongAnalyze } from '../../hooks/useSongAnalyze';
+import { SongPlayer } from '../organisms/SongPlayer';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -58,55 +56,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const DashboardMain: FC = () => {
-  const { description, genres, songCharacteristics, title, url } = useSongAnalyze();
-  const [isPlaying, setIsPlaying] = useState(false);
-  const waveSurfer = useRef<WaveSurfer>();
+  const { description, songCharacteristics, title } = useSongAnalyze();
   const classes = useStyles();
-
-  useEffect(() => {
-    waveSurfer.current = WaveSurfer.create({
-      container: '#waveform',
-      waveColor: '#9c27b0',
-      progressColor: 'purple',
-      height: 150,
-    });
-
-    waveSurfer.current.load(url);
-
-    waveSurfer.current.on('play', () => setIsPlaying(true));
-    waveSurfer.current.on('pause', () => setIsPlaying(false));
-
-    return () => {
-      waveSurfer.current?.destroy();
-    };
-  }, [url]);
 
   return (
     <Paper className={classes.container}>
-      <Box display="flex" justifyContent="space-between" alignItems="center" component="header" padding={1.5}>
-        <Button
-          onClick={() => {
-            waveSurfer.current?.playPause();
-          }}
-          color="primary"
-          variant="contained"
-        >
-          {isPlaying ? <PauseIcon /> : <PlayArrowSharpIcon />}
-        </Button>
-
-        <FormControl variant="outlined" size="small">
-          <Select value="no-value">
-            <MenuItem value="no-value">Genre</MenuItem>
-            {genres.map((genre) => (
-              <MenuItem key={genre} value={genre}>
-                {genre}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Box>
-      <Divider />
-      <Box id="waveform" height="150px" />
+      <SongPlayer />
       <Divider />
       <Box display="flex" justifyContent="space-between" padding={1.5}>
         <Box flex={1}>
