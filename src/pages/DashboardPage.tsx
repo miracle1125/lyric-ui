@@ -24,11 +24,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const DashboardPage: FC = () => {
+interface Props {
+  analyze: SongAnalyze;
+}
+
+export const DashboardPage: FC<Props> = ({ analyze }) => {
   const classes = useStyles();
 
   return (
-    <SongAnalyzeContext.Provider value={FAKE_DATA}>
+    <SongAnalyzeContext.Provider value={analyze}>
       <InnerLayout>
         <Box className={classes.container}>
           <GridArea name="earnings">

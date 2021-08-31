@@ -9,8 +9,13 @@ import { useHistory } from 'react-router-dom';
 import { SongsApi } from '../../api/Songs.api';
 import { Routes } from '../../config/Routes';
 import { RequestStatus } from '../../model/RequestStatus';
+import { SongAnalyze } from '../../model/SongAnalyze';
 import { InputField } from '../atoms/InputField';
 import { UploadFile } from '../atoms/UploadFile';
+
+interface Props {
+  onSuccess(analyze: SongAnalyze): void;
+}
 
 interface FormFields {
   description: string;
@@ -19,7 +24,7 @@ interface FormFields {
   title: string;
 }
 
-export const UploadForm: FC = () => {
+export const UploadForm: FC<Props> = ({ onSuccess }) => {
   const [status, setStatus] = useState(RequestStatus.Pending);
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
@@ -44,7 +49,8 @@ export const UploadForm: FC = () => {
     });
 
     try {
-      await SongsApi.upload(formData);
+      const result = await SongsApi.upload(formData);
+      onSuccess(result);
       setStatus(RequestStatus.Successful);
     } catch (error) {
       setStatus(RequestStatus.Failed);

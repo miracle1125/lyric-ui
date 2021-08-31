@@ -44,7 +44,7 @@ const Content: FC = () => {
       <Switch>
         <AuthRoute exact component={LoginPage} path={Routes.Login} />
         <AuthRoute exact component={RegisterPage} path={Routes.Register} />
-        <PrivateRoute exact component={DashboardPage} path={Routes.Dashboard} />
+        {/* <PrivateRoute exact component={DashboardPage} path={Routes.Dashboard} /> */}
         <PrivateRoute exact component={ProfilePage} path={Routes.Profile} />
         <PrivateRoute exact component={UploadPage} path={Routes.Upload} />
 
