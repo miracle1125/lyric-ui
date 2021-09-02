@@ -3,7 +3,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { FC, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Routes } from '../../config/Routes';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { analyzeSlice } from '../../redux/analyze.slice';
@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const Header: FC = () => {
   const classes = useStyles();
+  const location = useLocation();
   const history = useHistory();
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useAppDispatch();
@@ -37,15 +38,17 @@ export const Header: FC = () => {
           <Logo className={classes.logo} onClick={() => history.push(Routes.Dashboard)} size="small" />
 
           <Box display="flex" alignItems="center" style={{ gap: 20 }}>
-            <Button
-              variant="contained"
-              size="small"
-              onClick={() => {
-                dispatch(analyzeSlice.actions.reset());
-              }}
-            >
-              Upload
-            </Button>
+            {location.pathname !== Routes.Upload && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => {
+                  dispatch(analyzeSlice.actions.reset());
+                }}
+              >
+                Upload
+              </Button>
+            )}
             <IconButton
               aria-label="account of current user"
               aria-controls="menu-appbar"
