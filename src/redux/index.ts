@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { analyzeSlice } from './analyze.slice';
 import { authSlice, AuthState } from './auth.slice';
 
 export const store = configureStore({
@@ -9,10 +10,11 @@ export const store = configureStore({
       {
         key: 'auth',
         storage,
-        whitelist: ['token', 'userId']
+        whitelist: ['token', 'userId'],
       },
       authSlice.reducer,
     ),
+    analyze: analyzeSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

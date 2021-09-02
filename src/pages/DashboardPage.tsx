@@ -1,5 +1,6 @@
 import { Box, makeStyles } from '@material-ui/core';
 import type { FC } from 'react';
+import { Redirect } from 'react-router-dom';
 import { GridArea } from '../components/atoms/GridArea';
 import { DashboardMain } from '../components/molecules/DashboardMain';
 import { InnerLayout } from '../components/molecules/InnerLayout';
@@ -8,6 +9,8 @@ import { ProjectedListeners } from '../components/molecules/ProjectedListeners';
 import { ProjectStats } from '../components/molecules/ProjectStats';
 import { SimilarSongs } from '../components/molecules/SimilarSongs';
 import { SongAnalyzeContext } from '../components/molecules/SongAnalyzeContext';
+import { Routes } from '../config/Routes';
+import { useAppSelector } from '../hooks/useAppSelector';
 import { SongAnalyze } from '../model/SongAnalyze';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,12 +27,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface Props {
-  analyze: SongAnalyze;
-}
-
-export const DashboardPage: FC<Props> = ({ analyze }) => {
+export const DashboardPage: FC = () => {
+  const { analyze } = useAppSelector((state) => state.analyze);
   const classes = useStyles();
+
+  if (!analyze) {
+    return <Redirect to={Routes.Upload} />;
+  }
 
   return (
     <SongAnalyzeContext.Provider value={analyze}>

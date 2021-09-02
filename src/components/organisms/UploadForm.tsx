@@ -1,22 +1,18 @@
 import { Box, Button, Chip, TextField } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import axios from 'axios';
 import type { FC, KeyboardEvent } from 'react';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import { SongsApi } from '../../api/Songs.api';
 import { Routes } from '../../config/Routes';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { RequestStatus } from '../../model/RequestStatus';
-import { SongAnalyze } from '../../model/SongAnalyze';
+import { doAnalyze } from '../../redux/analyze.slice';
 import { FullscreenOverlay } from '../atoms/FullscreenOverlay';
 import { InputField } from '../atoms/InputField';
 import { UploadFile } from '../atoms/UploadFile';
-
-interface Props {
-  onSuccess(analyze: SongAnalyze): void;
-}
 
 interface FormFields {
   description: string;
@@ -25,10 +21,10 @@ interface FormFields {
   title: string;
 }
 
-export const UploadForm: FC<Props> = ({ onSuccess }) => {
-  const [status, setStatus] = useState(RequestStatus.Pending);
-  const [errorMessage, setErrorMessage] = useState('');
+export const UploadForm: FC = () => {
+  const dispatch = useAppDispatch();
   const history = useHistory();
+  const { errorMessage, status } = useAppSelector((state) => state.analyze);
   const { handleSubmit, control, setValue, watch } = useForm<FormFields>({
     defaultValues: {
       description: '',
@@ -38,28 +34,14 @@ export const UploadForm: FC<Props> = ({ onSuccess }) => {
   });
   const tags = watch('tags');
 
-  const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    setStatus(RequestStatus.Loading);
-    setErrorMessage('');
-
-    const formData = new FormData();
-    formData.append('file', data.file, data.file.name);
-    formData.append('title', data.title);
-    formData.append('description', data.description);
-    data.tags.forEach((tag) => {
-      formData.append('tags[]', tag);
-    });
-
-    try {
-      const result = await SongsApi.upload(formData);
-      onSuccess(result);
-      setStatus(RequestStatus.Successful);
-    } catch (error) {
-      setStatus(RequestStatus.Failed);
-      if (axios.isAxiosError(error)) {
-        setErrorMessage(error.message);
-      }
+  useEffect(() => {
+    if (status === RequestStatus.Successful) {
+      history.push(Routes.Dashboard);
     }
+  }, [history, status]);
+
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    dispatch(doAnalyze(data));
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
@@ -127,7 +109,7 @@ export const UploadForm: FC<Props> = ({ onSuccess }) => {
       />
 
       <Box component="footer" display="flex" justifyContent="flex-end" marginTop={2} style={{ gap: 10 }}>
-        <Button
+        {/* <Button
           onClick={() => {
             history.push(Routes.Dashboard);
           }}
@@ -136,7 +118,7 @@ export const UploadForm: FC<Props> = ({ onSuccess }) => {
           variant="contained"
         >
           Cancel
-        </Button>
+        </Button> */}
         <Button color="primary" size="large" type="submit" variant="contained">
           Upload
         </Button>
