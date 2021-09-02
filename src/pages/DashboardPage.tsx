@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const DashboardPage: FC = () => {
-  const { analyze } = useAppSelector((state) => state.analyze);
+  // const { analyze } = useAppSelector((state) => state.analyze);
+  const analyze = FAKE_DATA;
   const classes = useStyles();
 
   if (!analyze) {
