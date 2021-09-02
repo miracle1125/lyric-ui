@@ -1,4 +1,4 @@
-import { Box, Button, Chip, CircularProgress, TextField } from '@material-ui/core';
+import { Box, Button, Chip, TextField } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
@@ -10,6 +10,7 @@ import { SongsApi } from '../../api/Songs.api';
 import { Routes } from '../../config/Routes';
 import { RequestStatus } from '../../model/RequestStatus';
 import { SongAnalyze } from '../../model/SongAnalyze';
+import { FullscreenOverlay } from '../atoms/FullscreenOverlay';
 import { InputField } from '../atoms/InputField';
 import { UploadFile } from '../atoms/UploadFile';
 
@@ -123,17 +124,12 @@ export const UploadForm: FC<Props> = ({ onSuccess }) => {
         >
           Cancel
         </Button>
-        <Button
-          disabled={isLoading}
-          startIcon={isLoading ? <CircularProgress color="inherit" size={16} /> : null}
-          color="primary"
-          size="large"
-          type="submit"
-          variant="contained"
-        >
+        <Button color="primary" size="large" type="submit" variant="contained">
           Upload
         </Button>
       </Box>
+
+      <FullscreenOverlay open={isLoading} />
     </form>
   );
 };
