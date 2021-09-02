@@ -2,7 +2,7 @@ import { Box, Button, Chip, TextField } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
-import type { FC } from 'react';
+import type { FC, KeyboardEvent } from 'react';
 import { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
@@ -29,13 +29,14 @@ export const UploadForm: FC<Props> = ({ onSuccess }) => {
   const [status, setStatus] = useState(RequestStatus.Pending);
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
-  const { handleSubmit, control } = useForm<FormFields>({
+  const { handleSubmit, control, setValue, watch } = useForm<FormFields>({
     defaultValues: {
       description: '',
       tags: [],
       title: '',
     },
   });
+  const tags = watch('tags');
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     setStatus(RequestStatus.Loading);
@@ -57,6 +58,16 @@ export const UploadForm: FC<Props> = ({ onSuccess }) => {
       setStatus(RequestStatus.Failed);
       if (axios.isAxiosError(error)) {
         setErrorMessage(error.message);
+      }
+    }
+  };
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    const { key, target } = event;
+    if (target instanceof HTMLInputElement) {
+      if (key.toLowerCase() === 'tab' && target.value.length > 0) {
+        event.preventDefault();
+        setValue('tags', tags.concat([target.value]));
       }
     }
   };
@@ -97,18 +108,20 @@ export const UploadForm: FC<Props> = ({ onSuccess }) => {
         control={control}
         name="tags"
         render={(props) => (
-          <Autocomplete
+          <Autocomplete<string, true, false, true>
             freeSolo
             multiple
             id="tags"
             options={[]}
+            onKeyDown={handleKeyDown}
             onChange={(_, data) => props.field.onChange(data)}
-            renderTags={(value: string[], getTagProps) =>
+            renderTags={(value, getTagProps) =>
               value.map((option: string, index: number) => (
                 <Chip color="secondary" size="small" variant="outlined" label={option} {...getTagProps({ index })} />
               ))
             }
             renderInput={(params) => <TextField {...params} margin="normal" variant="outlined" label="Tags" />}
+            value={tags}
           />
         )}
       />
