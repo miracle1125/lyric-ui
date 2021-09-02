@@ -1,6 +1,6 @@
-import { Avatar, ListItem, ListItemAvatar, ListItemText, makeStyles } from '@material-ui/core';
-import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
+import { Avatar, Link, ListItem, ListItemAvatar, ListItemText, makeStyles } from '@material-ui/core';
 import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import { FC, useEffect, useRef, useState } from 'react';
 import { SimilarSong } from '../../model/SongAnalyze';
 
@@ -79,9 +79,9 @@ export const SimilarSongPreview: FC<Props> = ({ song }) => {
       <ListItemAvatar className={classes.listItemAvatar}>
         <div className={classes.avatarWrapper}>
           {isPlaying ? (
-            <PauseCircleOutlineIcon className={classes.play} color="primary" fontSize="large" onClick={pause} />
+            <PauseCircleOutlineIcon className={classes.play} fontSize="large" onClick={pause} />
           ) : (
-            <PlayCircleOutlineIcon className={classes.play} color="primary" fontSize="large" onClick={play} />
+            <PlayCircleOutlineIcon className={classes.play} fontSize="large" onClick={play} />
           )}
           <Avatar className={classes.avatar} src={song.albumArt} variant="rounded" />
         </div>
@@ -91,7 +91,11 @@ export const SimilarSongPreview: FC<Props> = ({ song }) => {
           primary: classes.title,
           secondary: classes.subtitle,
         }}
-        primary={song.title}
+        primary={
+          <Link href={song.url} target="_blank" rel="noreferrer">
+            {song.title}
+          </Link>
+        }
         secondary={song.artist}
       />
     </ListItem>

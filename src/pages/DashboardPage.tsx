@@ -28,8 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const DashboardPage: FC = () => {
-  // const { analyze } = useAppSelector((state) => state.analyze);
-  const analyze = FAKE_DATA;
+  const { analyze } = useAppSelector((state) => state.analyze);
   const classes = useStyles();
 
   if (!analyze) {
@@ -88,7 +87,7 @@ const FAKE_DATA: SongAnalyze = {
     bpm: 140,
     timeSignature: '4/4',
     elements: ['dark', 'ethereal', 'sad'],
-    tags: [],
+    tags: ['one', 'two', 'three'],
     similarSongs: [
       {
         title: 'Dudelywah',
