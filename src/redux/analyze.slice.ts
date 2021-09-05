@@ -39,7 +39,7 @@ export const analyzeSlice = createSlice({
   initialState,
   reducers: {
     reset(state) {
-      delete state.analyze;
+      // delete state.analyze;
       state.status = RequestStatus.Pending;
     },
   },

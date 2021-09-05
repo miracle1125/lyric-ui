@@ -24,7 +24,7 @@ interface FormFields {
 export const UploadForm: FC = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const { errorMessage, status } = useAppSelector((state) => state.analyze);
+  const { analyze, errorMessage, status } = useAppSelector((state) => state.analyze);
   const { handleSubmit, control, setValue, watch } = useForm<FormFields>({
     defaultValues: {
       description: '',
@@ -109,16 +109,18 @@ export const UploadForm: FC = () => {
       />
 
       <Box component="footer" display="flex" justifyContent="flex-end" marginTop={2} style={{ gap: 10 }}>
-        {/* <Button
-          onClick={() => {
-            history.push(Routes.Dashboard);
-          }}
-          size="large"
-          type="submit"
-          variant="contained"
-        >
-          Cancel
-        </Button> */}
+        {Boolean(analyze) && (
+          <Button
+            onClick={() => {
+              history.push(Routes.Dashboard);
+            }}
+            size="large"
+            type="submit"
+            variant="contained"
+          >
+            Cancel
+          </Button>
+        )}
         <Button color="primary" size="large" type="submit" variant="contained">
           Upload
         </Button>

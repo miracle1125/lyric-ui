@@ -44,6 +44,7 @@ export const Header: FC = () => {
                 size="small"
                 onClick={() => {
                   dispatch(analyzeSlice.actions.reset());
+                  history.push(Routes.Upload);
                 }}
               >
                 Upload
