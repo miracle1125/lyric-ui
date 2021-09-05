@@ -11,7 +11,6 @@ import { SimilarSongs } from '../components/molecules/SimilarSongs';
 import { SongAnalyzeContext } from '../components/molecules/SongAnalyzeContext';
 import { Routes } from '../config/Routes';
 import { useAppSelector } from '../hooks/useAppSelector';
-import { SongAnalyze } from '../model/SongAnalyze';
 
 const useStyles = makeStyles((theme) => ({
   container: {
