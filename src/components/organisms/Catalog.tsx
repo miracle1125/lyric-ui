@@ -64,7 +64,7 @@ export const Catalog: FC = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
+                <TableCell>Title</TableCell>
                 <TableCell>Length</TableCell>
                 <TableCell>Created Time</TableCell>
                 <TableCell>Last Seen Time</TableCell>
@@ -74,7 +74,7 @@ export const Catalog: FC = () => {
             <TableBody>
               {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item, index) => (
                 <StyledTableRow key={item.id}>
-                  <TableCell>{item.id}</TableCell>
+                  <TableCell>{item.title}</TableCell>
                   <TableCell>
                     <Numeric value={Number(item.length)} />
                   </TableCell>

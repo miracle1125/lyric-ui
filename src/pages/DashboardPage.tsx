@@ -1,4 +1,4 @@
-import { Box, makeStyles, Typography } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import type { FC } from 'react';
 import { useQuery } from 'react-query';
