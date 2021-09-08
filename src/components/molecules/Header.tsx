@@ -6,7 +6,6 @@ import { FC, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Routes } from '../../config/Routes';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { analyzeSlice } from '../../redux/analyze.slice';
 import { authSlice } from '../../redux/auth.slice';
 import { Logo } from '../atoms/Logo';
 
@@ -35,7 +34,7 @@ export const Header: FC = () => {
     <AppBar position="static">
       <Container maxWidth={false}>
         <Box display="flex" justifyContent="space-between">
-          <Logo className={classes.logo} onClick={() => history.push(Routes.Dashboard)} size="small" />
+          <Logo className={classes.logo} onClick={() => history.push(Routes.Catalog)} size="small" />
 
           <Box display="flex" alignItems="center" style={{ gap: 20 }}>
             {location.pathname !== Routes.Upload && (
@@ -43,7 +42,6 @@ export const Header: FC = () => {
                 variant="contained"
                 size="small"
                 onClick={() => {
-                  dispatch(analyzeSlice.actions.reset());
                   history.push(Routes.Upload);
                 }}
               >

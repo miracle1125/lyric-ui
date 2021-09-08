@@ -4,12 +4,10 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import type { FC, KeyboardEvent } from 'react';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { useMutation } from 'react-query';
+import { generatePath, useHistory } from 'react-router-dom';
+import { SongsApi } from '../../api/Songs.api';
 import { Routes } from '../../config/Routes';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useAppSelector } from '../../hooks/useAppSelector';
-import { RequestStatus } from '../../model/RequestStatus';
-import { doAnalyze } from '../../redux/analyze.slice';
 import { FullscreenOverlay } from '../atoms/FullscreenOverlay';
 import { InputField } from '../atoms/InputField';
 import { UploadFile } from '../atoms/UploadFile';
@@ -22,9 +20,9 @@ interface FormFields {
 }
 
 export const UploadForm: FC = () => {
-  const dispatch = useAppDispatch();
   const history = useHistory();
-  const { analyze, errorMessage, status } = useAppSelector((state) => state.analyze);
+  const { error, isLoading, mutate, data } = useMutation(SongsApi.upload);
+
   const { handleSubmit, control, setValue, watch } = useForm<FormFields>({
     defaultValues: {
       description: '',
@@ -35,13 +33,17 @@ export const UploadForm: FC = () => {
   const tags = watch('tags');
 
   useEffect(() => {
-    if (status === RequestStatus.Successful) {
-      history.push(Routes.Dashboard);
+    if (!!data) {
+      history.push(
+        generatePath(Routes.Dashboard, {
+          id: data.catalog_id,
+        }),
+      );
     }
-  }, [history, status]);
+  }, [data, history]);
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    dispatch(doAnalyze(data));
+    mutate(data);
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
@@ -54,22 +56,12 @@ export const UploadForm: FC = () => {
     }
   };
 
-  const isLoading = status === RequestStatus.Loading;
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {!!errorMessage && (
+      {!!error && (
         <Box marginBottom={2}>
           <Alert severity="error" variant="filled">
-            {errorMessage}
-          </Alert>
-        </Box>
-      )}
-
-      {status === RequestStatus.Successful && (
-        <Box marginBottom={2}>
-          <Alert severity="success" variant="filled">
-            Song successfully uploaded
+            {String(error)}
           </Alert>
         </Box>
       )}
@@ -109,18 +101,16 @@ export const UploadForm: FC = () => {
       />
 
       <Box component="footer" display="flex" justifyContent="flex-end" marginTop={2} style={{ gap: 10 }}>
-        {Boolean(analyze) && (
-          <Button
-            onClick={() => {
-              history.push(Routes.Dashboard);
-            }}
-            size="large"
-            type="submit"
-            variant="contained"
-          >
-            Cancel
-          </Button>
-        )}
+        <Button
+          onClick={() => {
+            history.push(Routes.Catalog);
+          }}
+          size="large"
+          type="submit"
+          variant="contained"
+        >
+          Cancel
+        </Button>
         <Button color="primary" size="large" type="submit" variant="contained">
           Upload
         </Button>

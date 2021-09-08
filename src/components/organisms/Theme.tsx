@@ -94,7 +94,6 @@ const darkTheme = createTheme({
       },
       outlinedSecondary: {
         'backgroundColor': 'rgba(33, 150, 243, 0.29)',
-        
 
         '&:hover': {
           backgroundColor: 'rgba(33, 150, 243, 0.29) !important',

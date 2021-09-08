@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { analyzeSlice, AnalyzeState } from './analyze.slice';
 import { authSlice, AuthState } from './auth.slice';
 
 export const store = configureStore({
@@ -13,14 +12,6 @@ export const store = configureStore({
         whitelist: ['token', 'userId'],
       },
       authSlice.reducer,
-    ),
-    analyze: persistReducer<AnalyzeState>(
-      {
-        key: 'analyze',
-        storage,
-        whitelist: ['analyze', 'status'],
-      },
-      analyzeSlice.reducer,
     ),
   },
   middleware: (getDefaultMiddleware) =>

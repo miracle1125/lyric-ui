@@ -56,6 +56,7 @@ export const authSlice = createSlice({
       .addCase(signIn.fulfilled, (state, action) => {
         state.token = action.payload.session_key;
         state.userId = action.payload.user_id;
+        HttpClient.setToken(action.payload.session_key);
         state.status = RequestStatus.Successful;
       });
 
@@ -71,6 +72,7 @@ export const authSlice = createSlice({
       .addCase(signUp.fulfilled, (state, action) => {
         state.token = action.payload.session_key;
         state.userId = action.payload.user_id;
+        HttpClient.setToken(action.payload.session_key);
         state.status = RequestStatus.Successful;
       });
   },

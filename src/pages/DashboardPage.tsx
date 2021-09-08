@@ -1,6 +1,10 @@
-import { Box, makeStyles } from '@material-ui/core';
+import { Box, makeStyles, Typography } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import type { FC } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { RouteComponentProps } from 'react-router-dom';
+import { CatalogApi } from '../api/Catalog.api';
+import { FullscreenOverlay } from '../components/atoms/FullscreenOverlay';
 import { GridArea } from '../components/atoms/GridArea';
 import { DashboardMain } from '../components/molecules/DashboardMain';
 import { InnerLayout } from '../components/molecules/InnerLayout';
@@ -9,8 +13,6 @@ import { ProjectedListeners } from '../components/molecules/ProjectedListeners';
 import { ProjectStats } from '../components/molecules/ProjectStats';
 import { SimilarSongs } from '../components/molecules/SimilarSongs';
 import { SongAnalyzeContext } from '../components/molecules/SongAnalyzeContext';
-import { Routes } from '../config/Routes';
-import { useAppSelector } from '../hooks/useAppSelector';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -26,35 +28,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const DashboardPage: FC = () => {
-  const { analyze } = useAppSelector((state) => state.analyze);
+export const DashboardPage: FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
+  const songId = Number(match.params.id);
+  const { isLoading, error, data } = useQuery(['songAnalyze', songId], () => CatalogApi.fetch(songId));
   const classes = useStyles();
 
-  if (!analyze) {
-    return <Redirect to={Routes.Upload} />;
-  }
-
   return (
-    <SongAnalyzeContext.Provider value={analyze}>
-      <InnerLayout>
-        <Box className={classes.container}>
-          <GridArea name="earnings">
-            <ProjectedEarnings />
-          </GridArea>
-          <GridArea name="listeners">
-            <ProjectedListeners />
-          </GridArea>
-          <GridArea name="main">
-            <DashboardMain />
-          </GridArea>
-          <GridArea name="stats">
-            <ProjectStats />
-          </GridArea>
-          <GridArea name="similar">
-            <SimilarSongs />
-          </GridArea>
+    <InnerLayout>
+      <FullscreenOverlay open={isLoading} />
+
+      {!!error && (
+        <Box marginBottom={2}>
+          <Alert severity="error" variant="filled">
+            {String(error)}
+          </Alert>
         </Box>
-      </InnerLayout>
-    </SongAnalyzeContext.Provider>
+      )}
+
+      {!!data && (
+        <SongAnalyzeContext.Provider value={data}>
+          <Box className={classes.container}>
+            <GridArea name="earnings">
+              <ProjectedEarnings />
+            </GridArea>
+            <GridArea name="listeners">
+              <ProjectedListeners />
+            </GridArea>
+            <GridArea name="main">
+              <DashboardMain />
+            </GridArea>
+            <GridArea name="stats">
+              <ProjectStats />
+            </GridArea>
+            <GridArea name="similar">
+              <SimilarSongs />
+            </GridArea>
+          </Box>
+        </SongAnalyzeContext.Provider>
+      )}
+    </InnerLayout>
   );
 };
