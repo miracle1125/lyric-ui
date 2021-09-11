@@ -5,3 +5,10 @@ export function addOrDelete<Value>(arr: Value[], value: Value): Value[] {
 
   return arr.concat([value]);
 }
+
+export function formatSongLength(length: number): string {
+  const minutes = Math.floor(length / 60);
+  const seconds = length - minutes * 60;
+
+  return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}

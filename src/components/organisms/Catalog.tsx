@@ -1,4 +1,4 @@
-import { DateTime, Numeric } from '@eo-locale/react';
+import { DateTime } from '@eo-locale/react';
 import {
   Box,
   Button,
@@ -20,6 +20,7 @@ import { useQuery } from 'react-query';
 import { generatePath, useHistory } from 'react-router';
 import { CatalogApi } from '../../api/Catalog.api';
 import { Routes } from '../../config/Routes';
+import { formatSongLength } from '../../utils/common';
 import { FullscreenOverlay } from '../atoms/FullscreenOverlay';
 
 const StyledTableRow = withStyles((theme) =>
@@ -75,17 +76,14 @@ export const Catalog: FC = () => {
               {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item, index) => (
                 <StyledTableRow key={item.id}>
                   <TableCell>{item.title}</TableCell>
-                  <TableCell>
-                    <Numeric value={Number(item.length)} />
-                  </TableCell>
+                  <TableCell>{formatSongLength(Number(item.length))}</TableCell>
                   <TableCell>
                     <DateTime
                       day="numeric"
                       hour="numeric"
                       minute="numeric"
                       month="long"
-                      hour12={false}
-                      value={new Date(item.last_seen_time)}
+                      value={new Date(item.created_time)}
                     />
                   </TableCell>
                   <TableCell>
@@ -94,7 +92,6 @@ export const Catalog: FC = () => {
                       hour="numeric"
                       minute="numeric"
                       month="long"
-                      hour12={false}
                       value={new Date(item.last_seen_time)}
                     />
                   </TableCell>
