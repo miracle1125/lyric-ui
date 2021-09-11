@@ -3,7 +3,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { FC, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation, Link as RouterLink } from 'react-router-dom';
 import { Routes } from '../../config/Routes';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { authSlice } from '../../redux/auth.slice';
@@ -72,6 +72,8 @@ export const Header: FC = () => {
               open={Boolean(anchorEl)}
               onClose={closeMenu}
             >
+              <MenuItem component={RouterLink} to={Routes.Catalog}>Catalog</MenuItem>
+              <MenuItem component={RouterLink} to={Routes.Profile}>Profile</MenuItem>
               <MenuItem onClick={() => dispatch(authSlice.actions.logOut())}>Log Out</MenuItem>
             </Menu>
           </Box>
