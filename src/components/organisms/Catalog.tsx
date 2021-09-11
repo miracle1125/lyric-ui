@@ -11,9 +11,9 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  withStyles,
+  withStyles
 } from '@material-ui/core';
-import EqualizerIcon from '@material-ui/icons/Equalizer';
+import LaunchIcon from '@material-ui/icons/Launch';
 import { Alert } from '@material-ui/lab';
 import { FC, useState } from 'react';
 import { useQuery } from 'react-query';
@@ -108,11 +108,11 @@ export const Catalog: FC = () => {
                           }),
                         );
                       }}
-                      startIcon={<EqualizerIcon />}
+                      startIcon={<LaunchIcon />}
                       size="small"
                       variant="contained"
                     >
-                      Stats
+                      Open
                     </Button>
                   </TableCell>
                 </StyledTableRow>
