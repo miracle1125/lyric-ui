@@ -77,3 +77,7 @@ export const authSlice = createSlice({
       });
   },
 });
+
+export function getIsAuthorized(state: AuthState): boolean {
+  return Boolean(state.token && state.userId);
+}
