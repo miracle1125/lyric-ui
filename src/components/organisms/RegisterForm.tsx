@@ -3,25 +3,13 @@ import Alert from '@material-ui/lab/Alert';
 import type { FC } from 'react';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { GENRE_LIST } from '../../config/Genres';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { RequestStatus } from '../../model/RequestStatus';
 import { signUp } from '../../redux/auth.slice';
 import { addOrDelete } from '../../utils/common';
 import { InputField } from '../atoms/InputField';
-
-const GENRE_LIST: string[] = [
-  'Pop',
-  'Hip-Hop/Rap',
-  'Rock',
-  'Dance/Electronic',
-  'Latin',
-  'Alternative',
-  'Classical',
-  'K-Pop',
-  'Country',
-  'Metal',
-];
 
 interface FormFields {
   alias: string;
