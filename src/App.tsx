@@ -38,8 +38,8 @@ export const App: FC = () => {
             <CssBaseline />
             <BrowserRouter>
               <Switch>
-                <AuthRoute exact component={LoginPage} path={Routes.Login} />
-                <AuthRoute exact component={RegisterPage} path={Routes.Register} />
+                <AuthRoute exact component={LoginPage} redirect={Routes.Catalog} path={Routes.Login} />
+                <AuthRoute exact component={RegisterPage} redirect={Routes.Upload} path={Routes.Register} />
                 <PrivateRoute exact component={DashboardPage} path={Routes.Dashboard} />
                 <PrivateRoute exact component={ProfilePage} path={Routes.Profile} />
                 <PrivateRoute exact component={UploadPage} path={Routes.Upload} />

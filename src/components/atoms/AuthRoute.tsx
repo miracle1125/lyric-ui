@@ -1,15 +1,18 @@
 import type { FC } from 'react';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
-import { Routes } from '../../config/Routes';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { getIsAuthorized } from '../../redux/auth.slice';
 
-export const AuthRoute: FC<RouteProps> = (props) => {
+interface Props extends RouteProps {
+  redirect: string;
+}
+
+export const AuthRoute: FC<Props> = ({ redirect, ...rest }) => {
   const isAuthorized = useAppSelector((state) => getIsAuthorized(state.auth));
 
   if (isAuthorized) {
-    return <Redirect to={Routes.Upload} />;
+    return <Redirect to={redirect} />;
   }
 
-  return <Route {...props} />;
+  return <Route {...rest} />;
 };
