@@ -8,7 +8,7 @@ export function addOrDelete<Value>(arr: Value[], value: Value): Value[] {
 
 export function formatSongLength(length: number): string {
   const minutes = Math.floor(length / 60);
-  const seconds = length - minutes * 60;
+  const seconds = Math.floor(length - minutes * 60);
 
   return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
