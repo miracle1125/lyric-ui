@@ -8,7 +8,8 @@ import axios, { AxiosInstance } from 'axios';
  */
 export class HttpClient {
   // private static readonly BASE_URL = 'http://localhost:4000/v2';
-  private static readonly BASE_URL = 'https://api.lyricai.co/v2';
+  private static readonly BASE_URL = 'http://api.lyricai.co/v2';
+  
   private static instance: AxiosInstance;
 
   private constructor() {}
