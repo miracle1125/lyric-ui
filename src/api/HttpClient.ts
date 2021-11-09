@@ -7,7 +7,7 @@ import axios, { AxiosInstance } from 'axios';
  * "password": "marccio1234"
  */
 export class HttpClient {
-  private static readonly BASE_URL = 'https://api.lyricai.co/v2';
+  private static readonly BASE_URL = 'http://api.lyricai.co/v2';
   // private static readonly BASE_URL = 'http://18.117.254.76/v2';
   // private static readonly BASE_URL = 'http://localhost:4000/v2';
   private static instance: AxiosInstance;
