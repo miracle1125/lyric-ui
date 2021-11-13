@@ -32,7 +32,7 @@ export interface SongScore {
 
 export interface SongCharacteristics {
   bpm: number;
-  elements: string[];
+  elements: string[] | null;
   key: string;
   similarSongs: SimilarSong[];
   tags: string[];

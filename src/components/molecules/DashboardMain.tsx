@@ -77,7 +77,7 @@ export const DashboardMain: FC = () => {
             Elements/Tags:
           </Typography>
           <ul className={classes.tagList}>
-            {songCharacteristics.elements.map((element) => (
+            {songCharacteristics.elements?.map((element) => (
               <span key={element} className={classNames(classes.tag, classes[getRandomColor()])}>
                 {element}
               </span>
