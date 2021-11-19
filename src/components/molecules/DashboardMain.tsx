@@ -76,8 +76,8 @@ export const DashboardMain: FC = () => {
           <Typography gutterBottom variant="h5">
             Elements/Tags:
           </Typography>
-          {/* <ul className={classes.tagList}>
-            {songCharacteristics.elements.map((element) => (
+          <ul className={classes.tagList}>
+            {songCharacteristics.elements?.map((element) => (
               <span key={element} className={classNames(classes.tag, classes[getRandomColor()])}>
                 {element}
               </span>
@@ -89,7 +89,7 @@ export const DashboardMain: FC = () => {
                 {tag}
               </span>
             ))}
-          </ul> */}
+          </ul>
         </Box>
       </Box>
       <Divider />
