@@ -8,6 +8,7 @@ import axios, { AxiosInstance } from 'axios';
  */
 export class SecondaryHttpClient {
   private static readonly BASE_URL = 'https://data.lyricai.co';
+  private static readonly TIMEOUT = 40_000;
   private static instance: AxiosInstance;
 
   private constructor() {}
@@ -16,6 +17,7 @@ export class SecondaryHttpClient {
     if (!SecondaryHttpClient.instance) {
       SecondaryHttpClient.instance = axios.create({
         baseURL: SecondaryHttpClient.BASE_URL,
+        timeout: SecondaryHttpClient.TIMEOUT,
       });
     }
 
@@ -28,12 +30,14 @@ export class SecondaryHttpClient {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      timeout: SecondaryHttpClient.TIMEOUT,
     });
   }
 
   public static clearToken(): void {
     SecondaryHttpClient.instance = axios.create({
       baseURL: SecondaryHttpClient.BASE_URL,
+      timeout: SecondaryHttpClient.TIMEOUT,
     });
   }
 }
