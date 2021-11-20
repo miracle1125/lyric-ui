@@ -17,6 +17,7 @@ import { UploadPage } from './pages/UploadPage';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { persistor, store } from './redux';
+import { SecondaryHttpClient } from './api/SecondaryHttpClient';
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ export const App: FC = () => {
               const appState = store.getState();
               if (appState.auth.token) {
                 HttpClient.setToken(appState.auth.token);
+                SecondaryHttpClient.setToken(appState.auth.token);
               }
             }}
           >

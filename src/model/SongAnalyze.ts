@@ -37,6 +37,7 @@ export interface SongCharacteristics {
   similarSongs: SimilarSong[];
   tags: string[];
   timeSignature: string;
+  TrackID: string;
 }
 
 export interface SimilarSong {
