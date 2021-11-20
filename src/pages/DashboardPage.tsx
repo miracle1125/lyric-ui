@@ -48,6 +48,7 @@ export const DashboardPage: FC<RouteComponentProps<{ id: string }>> = ({ match }
     songAnalyzeQuery.data.projectedEarnings = trackQuery.data.projectedEarnings;
     songAnalyzeQuery.data.projectedListeners = trackQuery.data.projectedListeners;
     songAnalyzeQuery.data.songCharacteristics = trackQuery.data.songCharacteristics;
+    songAnalyzeQuery.data.score.overall = trackQuery.data.score.overall;
   }
 
   return (
@@ -75,7 +76,21 @@ export const DashboardPage: FC<RouteComponentProps<{ id: string }>> = ({ match }
               <DashboardMain />
             </GridArea>
             <GridArea name="stats">
-              <ProjectStats />
+              <ProjectStats
+                items={
+                  trackQuery.data?.score.impactful_attributes
+                    .map((item) => ({
+                      score: item.attribute_score,
+                      title: item.attribute_name,
+                    }))
+                    .concat([
+                      {
+                        title: 'Star Factor',
+                        score: trackQuery.data?.score.starFactor,
+                      },
+                    ]) ?? []
+                }
+              />
             </GridArea>
             <GridArea name="similar">
               <SimilarSongs />
