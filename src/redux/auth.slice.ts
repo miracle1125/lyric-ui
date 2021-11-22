@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AuthApi } from '../api/Auth.api';
 import { LoginRequest } from '../api/Auth.dto';
+import { SecondaryHttpClient } from '../api/SecondaryHttpClient';
 import { RequestStatus } from '../model/RequestStatus';
 import { RegisterRequest } from './../api/Auth.dto';
 import { HttpClient } from './../api/HttpClient';
@@ -41,6 +42,7 @@ export const authSlice = createSlice({
       delete state.token;
       delete state.userId;
       HttpClient.clearToken();
+      SecondaryHttpClient.clearToken();
     },
   },
   extraReducers: (builder) => {
@@ -57,6 +59,7 @@ export const authSlice = createSlice({
         state.token = action.payload.session_key;
         state.userId = action.payload.user_id;
         HttpClient.setToken(action.payload.session_key);
+        SecondaryHttpClient.setToken(action.payload.session_key);
         state.status = RequestStatus.Successful;
       });
 
@@ -73,6 +76,7 @@ export const authSlice = createSlice({
         state.token = action.payload.session_key;
         state.userId = action.payload.user_id;
         HttpClient.setToken(action.payload.session_key);
+        SecondaryHttpClient.setToken(action.payload.session_key);
         state.status = RequestStatus.Successful;
       });
   },

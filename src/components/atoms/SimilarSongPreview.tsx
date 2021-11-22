@@ -57,8 +57,8 @@ export const SimilarSongPreview: FC<Props> = ({ song }) => {
   const classes = useStyles();
 
   useEffect(() => {
-    audio.current = new Audio(song.previewUrl);
-  }, [song.previewUrl]);
+    audio.current = new Audio(song.url);
+  }, [song.url]);
 
   const play = () => {
     if (audio.current) {

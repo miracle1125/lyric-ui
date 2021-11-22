@@ -37,7 +37,7 @@ export const Catalog: FC = () => {
   const history = useHistory();
   const { isLoading, error, data = [] } = useQuery('catalog', CatalogApi.fetchAll);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(15);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -118,7 +118,7 @@ export const Catalog: FC = () => {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[5, 15, 25]}
           component="footer"
           count={data.length}
           rowsPerPage={rowsPerPage}

@@ -4,6 +4,13 @@ import type { FC } from 'react';
 import { useSongAnalyze } from '../../hooks/useSongAnalyze';
 import { GridArea } from '../atoms/GridArea';
 
+interface Props {
+  items: Array<{
+    score: number;
+    title: string;
+  }>;
+}
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'grid',
@@ -12,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     gridTemplateAreas: `
       "overall overall"
-      "melody chords"
-      "structure familiarity"
+      "item1 item2"
+      "item3 item4"
     `,
     gridTemplateColumns: '1fr 1fr',
     gridTemplateRows: '120px 120px 120px',
@@ -32,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     lineHeight: '16px',
+    textTransform: 'capitalize',
   },
   value: {
     fontWeight: 'bold',
@@ -45,96 +53,54 @@ const useStyles = makeStyles((theme) => ({
   progressBar: {
     borderRadius: 6,
   },
-  melody: {
+  item1: {
     backgroundColor: '#f4516c',
   },
-  chords: {
+  item2: {
     backgroundColor: '#4db6ac',
   },
-  structure: {
+  item3: {
     backgroundColor: '#4fc3f7',
   },
-  familiarity: {
+  item4: {
     backgroundColor: '#ffb74d',
   },
 }));
 
-export const ProjectStats: FC = () => {
+export const ProjectStats: FC<Props> = ({ items }) => {
   const { score } = useSongAnalyze();
   const classes = useStyles();
 
   return (
     <Box className={classes.container}>
       <GridArea name="overall" className={classes.paper}>
-        <Typography className={classes.title} variant="body1">Overall</Typography>
+        <Typography className={classes.title} variant="body1">
+          Overall
+        </Typography>
         <Typography variant="h5" className={classes.value}>
           {score.overall}
         </Typography>
       </GridArea>
-      <GridArea name="melody" className={classes.paper}>
-        <Typography className={classes.title} variant="body1">Melody</Typography>
-        <Typography variant="h5" className={classes.value}>
-          {score.melody}
-        </Typography>
-        <Box width="90%">
-          <LinearProgress
-            classes={{
-              root: classes.progress,
-              bar: classNames(classes.progressBar, classes.melody),
-            }}
-            value={score.melody}
-            variant="determinate"
-          />
-        </Box>
-      </GridArea>
-      <GridArea name="chords" className={classes.paper}>
-        <Typography className={classes.title} variant="body1">Chords</Typography>
-        <Typography variant="h5" className={classes.value}>
-          {score.chords}
-        </Typography>
-        <Box width="90%">
-          <LinearProgress
-            classes={{
-              root: classes.progress,
-              bar: classNames(classes.progressBar, classes.chords),
-            }}
-            value={score.chords}
-            variant="determinate"
-          />
-        </Box>
-      </GridArea>
-      <GridArea name="structure" className={classes.paper}>
-        <Typography className={classes.title} variant="body1">Star Factor</Typography>
-        <Typography variant="h5" className={classes.value}>
-          {score.starFactor}
-        </Typography>
-        <Box width="90%">
-          <LinearProgress
-            classes={{
-              root: classes.progress,
-              bar: classNames(classes.progressBar, classes.structure),
-            }}
-            value={score.starFactor}
-            variant="determinate"
-          />
-        </Box>
-      </GridArea>
-      <GridArea name="familiarity" className={classes.paper}>
-        <Typography className={classes.title} variant="body1">Familiarity</Typography>
-        <Typography variant="h5" className={classes.value}>
-          {score.familiarity}
-        </Typography>
-        <Box width="90%">
-          <LinearProgress
-            classes={{
-              root: classes.progress,
-              bar: classNames(classes.progressBar, classes.familiarity),
-            }}
-            value={score.familiarity}
-            variant="determinate"
-          />
-        </Box>
-      </GridArea>
+      {items.map((item, index) => (
+        <GridArea key={item.title} name={`item${index + 1}`} className={classes.paper}>
+          <Typography className={classes.title} variant="body1">
+            {item.title}
+          </Typography>
+          <Typography variant="h5" className={classes.value}>
+            {item.score}
+          </Typography>
+          <Box width="90%">
+            <LinearProgress
+              classes={{
+                root: classes.progress,
+                bar: classNames(classes.progressBar, (classes as any)[`item${index + 1}`]),
+              }}
+              value={item.score}
+              variant="determinate"
+            />
+          </Box>
+        </GridArea>
+      ))}
     </Box>
   );
 };

@@ -2,15 +2,13 @@ import axios, { AxiosInstance } from 'axios';
 
 /**
  * Test credentials
- * 
+ *
  * "email": "marcciosilva@email.com",
  * "password": "marccio1234"
  */
 export class HttpClient {
-  // private static readonly BASE_URL = 'http://localhost:4000/v2';
   private static readonly BASE_URL = 'https://api.lyricai.co/v2';
-  private static readonly BASE_URL_1 = 'https://data.lyricai.co'; // This is for a second api -- tbd
-  
+  private static readonly TIMEOUT = 20_000;
   private static instance: AxiosInstance;
 
   private constructor() {}
@@ -19,6 +17,7 @@ export class HttpClient {
     if (!HttpClient.instance) {
       HttpClient.instance = axios.create({
         baseURL: HttpClient.BASE_URL,
+        timeout: HttpClient.TIMEOUT,
       });
     }
 
@@ -31,12 +30,14 @@ export class HttpClient {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      timeout: HttpClient.TIMEOUT,
     });
   }
 
   public static clearToken(): void {
     HttpClient.instance = axios.create({
       baseURL: HttpClient.BASE_URL,
+      timeout: HttpClient.TIMEOUT,
     });
   }
 }

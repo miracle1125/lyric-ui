@@ -4,6 +4,7 @@ import type { FC } from 'react';
 import { useQuery } from 'react-query';
 import { RouteComponentProps } from 'react-router-dom';
 import { CatalogApi } from '../api/Catalog.api';
+import { SongsApi } from '../api/Songs.api';
 import { FullscreenOverlay } from '../components/atoms/FullscreenOverlay';
 import { GridArea } from '../components/atoms/GridArea';
 import { DashboardMain } from '../components/molecules/DashboardMain';
@@ -30,23 +31,40 @@ const useStyles = makeStyles((theme) => ({
 
 export const DashboardPage: FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
   const songId = Number(match.params.id);
-  const { isLoading, error, data } = useQuery(['songAnalyze', songId], () => CatalogApi.fetch(songId));
+  const songAnalyzeQuery = useQuery(['songAnalyze', songId], () => CatalogApi.fetch(songId));
+  const trackQuery = useQuery(
+    ['track', songAnalyzeQuery.data?.songCharacteristics.TrackID],
+    () => SongsApi.get(String(songId), String(songAnalyzeQuery.data?.songCharacteristics.TrackID)),
+    {
+      enabled: Boolean(songAnalyzeQuery.data?.songCharacteristics.TrackID),
+    },
+  );
   const classes = useStyles();
+
+  console.log('debug: trackQuery.data ', trackQuery.data);
+
+  if (trackQuery.data && songAnalyzeQuery.data) {
+    songAnalyzeQuery.data.genres = trackQuery.data.genres;
+    songAnalyzeQuery.data.projectedEarnings = trackQuery.data.projectedEarnings;
+    songAnalyzeQuery.data.projectedListeners = trackQuery.data.projectedListeners;
+    songAnalyzeQuery.data.songCharacteristics = trackQuery.data.songCharacteristics;
+    songAnalyzeQuery.data.score.overall = trackQuery.data.score.overall;
+  }
 
   return (
     <InnerLayout>
-      <FullscreenOverlay open={isLoading} />
+      <FullscreenOverlay open={songAnalyzeQuery.isLoading} />
 
-      {!!error && (
+      {!!songAnalyzeQuery.error && (
         <Box marginBottom={2}>
           <Alert severity="error" variant="filled">
-            {String(error)}
+            {String(songAnalyzeQuery.error)}
           </Alert>
         </Box>
       )}
 
-      {!!data && (
-        <SongAnalyzeContext.Provider value={data}>
+      {!!songAnalyzeQuery.data && (
+        <SongAnalyzeContext.Provider value={songAnalyzeQuery.data}>
           <Box className={classes.container}>
             <GridArea name="earnings">
               <ProjectedEarnings />
@@ -58,7 +76,21 @@ export const DashboardPage: FC<RouteComponentProps<{ id: string }>> = ({ match }
               <DashboardMain />
             </GridArea>
             <GridArea name="stats">
-              <ProjectStats />
+              <ProjectStats
+                items={
+                  trackQuery.data?.score.impactful_attributes
+                    .map((item) => ({
+                      score: item.attribute_score,
+                      title: item.attribute_name,
+                    }))
+                    .concat([
+                      {
+                        title: 'Star Factor',
+                        score: trackQuery.data?.score.starFactor,
+                      },
+                    ]) ?? []
+                }
+              />
             </GridArea>
             <GridArea name="similar">
               <SimilarSongs />

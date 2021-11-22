@@ -24,7 +24,7 @@ export const SimilarSongs: FC = () => {
       </Typography>
       <List dense disablePadding>
         {songCharacteristics.similarSongs.map((song) => (
-          <SimilarSongPreview key={song.uri} song={song} />
+          <SimilarSongPreview key={song.url} song={song} />
         ))}
       </List>
     </Paper>

@@ -1,5 +1,7 @@
+import { TrackInformation } from '../model/TrackInformation';
 import { SongAnalyze } from './../model/SongAnalyze';
 import { HttpClient } from './HttpClient';
+import { SecondaryHttpClient } from './SecondaryHttpClient';
 
 export interface DataForAnalyze {
   description: string;
@@ -31,5 +33,10 @@ export class SongsApi {
     });
 
     return data;
+  }
+
+  public static async get(dashboardId: string, trackId: string): Promise<TrackInformation> {
+    const { data } = await SecondaryHttpClient.getInstance().get(`/songs/${dashboardId}/${trackId}`);
+    return data.data;
   }
 }
