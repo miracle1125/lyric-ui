@@ -37,6 +37,7 @@ export const DashboardPage: FC<RouteComponentProps<{ id: string }>> = ({ match }
     () => SongsApi.get(String(songId), String(songAnalyzeQuery.data?.songCharacteristics.TrackID)),
     {
       enabled: Boolean(songAnalyzeQuery.data?.songCharacteristics.TrackID),
+      retry: 15,
     },
   );
   const classes = useStyles();
