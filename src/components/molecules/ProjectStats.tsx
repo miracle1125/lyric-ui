@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import type { FC } from 'react';
 import { useSongAnalyze } from '../../hooks/useSongAnalyze';
 import { GridArea } from '../atoms/GridArea';
+import { SectionOverlay } from '../atoms/SectionOverlay';
 
 interface Props {
   items: Array<{
@@ -13,6 +14,7 @@ interface Props {
 
 const useStyles = makeStyles((theme) => ({
   container: {
+    position: 'relative',
     display: 'grid',
     backgroundColor: theme.palette.primary.main,
     borderRadius: 4,
@@ -73,6 +75,7 @@ export const ProjectStats: FC<Props> = ({ items }) => {
 
   return (
     <Box className={classes.container}>
+      <SectionOverlay open={items.length === 0} />
       <GridArea name="overall" className={classes.paper}>
         <Typography className={classes.title} variant="body1">
           Overall

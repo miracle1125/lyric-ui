@@ -2,6 +2,7 @@ import { Box, Divider, makeStyles, Paper, Typography } from '@material-ui/core';
 import classNames from 'classnames';
 import { FC } from 'react';
 import { useSongAnalyze } from '../../hooks/useSongAnalyze';
+import { SectionOverlay } from '../atoms/SectionOverlay';
 import { SongPlayer } from '../organisms/SongPlayer';
 
 const useStyles = makeStyles((theme) => ({
@@ -63,7 +64,8 @@ export const DashboardMain: FC = () => {
     <Paper className={classes.container}>
       <SongPlayer />
       <Divider />
-      <Box display="flex" justifyContent="space-between" padding={1.5}>
+      <Box position="relative" display="flex" justifyContent="space-between" padding={1.5}>
+        <SectionOverlay open={!songCharacteristics.key && !songCharacteristics.bpm} />
         <Box flex={1}>
           <Typography gutterBottom variant="h5">
             Key: {songCharacteristics.key}
