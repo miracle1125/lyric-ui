@@ -8,7 +8,7 @@ import axios, { AxiosInstance } from 'axios';
  */
 export class HttpClient {
   private static readonly BASE_URL = 'https://api.lyricai.co/v2';
-  private static readonly TIMEOUT = 20_000;
+  private static readonly TIMEOUT = 30_000;
   private static instance: AxiosInstance;
 
   private constructor() {}
