@@ -1,11 +1,12 @@
-import { Avatar, Link, ListItem, ListItemAvatar, ListItemText, makeStyles } from '@material-ui/core';
+import { Avatar, Box, Link, ListItem, ListItemAvatar, ListItemText, makeStyles } from '@material-ui/core';
 import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
+import { Skeleton } from '@material-ui/lab';
 import { FC, useEffect, useRef, useState } from 'react';
 import { SimilarSong } from '../../model/SongAnalyze';
 
 interface Props {
-  song: SimilarSong;
+  song?: SimilarSong;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -52,13 +53,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const SimilarSongPreview: FC<Props> = ({ song }) => {
+  const isLoading = !song;
   const audio = useRef<HTMLAudioElement>();
   const [isPlaying, setIsPlayng] = useState(false);
   const classes = useStyles();
 
   useEffect(() => {
-    audio.current = new Audio(song.url);
-  }, [song.url]);
+    audio.current = new Audio(song?.url);
+  }, [song?.url]);
 
   const play = () => {
     if (audio.current) {
@@ -75,29 +77,44 @@ export const SimilarSongPreview: FC<Props> = ({ song }) => {
   };
 
   return (
-    <ListItem key={song.uri} disableGutters>
+    <ListItem disableGutters>
       <ListItemAvatar className={classes.listItemAvatar}>
         <div className={classes.avatarWrapper}>
-          {isPlaying ? (
-            <PauseCircleOutlineIcon className={classes.play} fontSize="large" onClick={pause} />
+          {isLoading ? (
+            <Skeleton variant="circle">
+              <Avatar />
+            </Skeleton>
           ) : (
-            <PlayCircleOutlineIcon className={classes.play} fontSize="large" onClick={play} />
+            <>
+              {isPlaying ? (
+                <PauseCircleOutlineIcon className={classes.play} fontSize="large" onClick={pause} />
+              ) : (
+                <PlayCircleOutlineIcon className={classes.play} fontSize="large" onClick={play} />
+              )}
+              <Avatar className={classes.avatar} src={song.albumArt} variant="rounded" />
+            </>
           )}
-          <Avatar className={classes.avatar} src={song.albumArt} variant="rounded" />
         </div>
       </ListItemAvatar>
-      <ListItemText
-        classes={{
-          primary: classes.title,
-          secondary: classes.subtitle,
-        }}
-        primary={
-          <Link href={song.url} target="_blank" rel="noreferrer">
-            {song.title}
-          </Link>
-        }
-        secondary={song.artist}
-      />
+      {isLoading ? (
+        <Box flex="1 0 auto">
+          <Skeleton width="100%" />
+          <Skeleton width="100%" />
+        </Box>
+      ) : (
+        <ListItemText
+          classes={{
+            primary: classes.title,
+            secondary: classes.subtitle,
+          }}
+          primary={
+            <Link href={song?.url} target="_blank" rel="noreferrer">
+              {song?.title}
+            </Link>
+          }
+          secondary={song?.artist}
+        />
+      )}
     </ListItem>
   );
 };

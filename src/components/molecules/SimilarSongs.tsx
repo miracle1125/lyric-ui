@@ -27,6 +27,13 @@ export const SimilarSongs: FC = () => {
         Similar songs
       </Typography>
       <List dense disablePadding>
+        {songCharacteristics.similarSongs.length === 0 && (
+          <>
+            <SimilarSongPreview />
+            <SimilarSongPreview />
+            <SimilarSongPreview />
+          </>
+        )}
         {songCharacteristics.similarSongs.map((song) => (
           <SimilarSongPreview key={song.url} song={song} />
         ))}
