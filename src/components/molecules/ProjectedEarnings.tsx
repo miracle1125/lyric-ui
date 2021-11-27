@@ -1,7 +1,5 @@
 import { makeStyles, Paper, Typography } from '@material-ui/core';
-import { Skeleton } from '@material-ui/lab';
 import type { FC } from 'react';
-import { useAnimatedNumericValue } from '../../hooks/useAnimatedNumericValue';
 import { useSongAnalyze } from '../../hooks/useSongAnalyze';
 import { Money } from '../atoms/Money';
 import { SectionOverlay } from '../atoms/SectionOverlay';
@@ -30,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const ProjectedEarnings: FC<Props> = ({ loading }) => {
   const { projectedEarnings } = useSongAnalyze();
-  const amount = useAnimatedNumericValue(loading ? 0 : Number(projectedEarnings.amount));
   const classes = useStyles();
 
   return (
@@ -38,7 +35,11 @@ export const ProjectedEarnings: FC<Props> = ({ loading }) => {
       <SectionOverlay open={loading} />
       <Typography variant="body1">Projected Earnings</Typography>
       <Typography className={classes.value} variant="h4">
-        <Money amount={amount} language="en" currency={projectedEarnings.currency} />
+        <Money
+          amount={loading ? 0 : Number(projectedEarnings.amount)}
+          language="en"
+          currency={projectedEarnings.currency}
+        />
       </Typography>
     </Paper>
   );

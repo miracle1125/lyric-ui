@@ -2,7 +2,6 @@ import { Numeric } from '@eo-locale/react';
 import { Box, makeStyles, Paper, Typography } from '@material-ui/core';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import type { FC } from 'react';
-import { useAnimatedNumericValue } from '../../hooks/useAnimatedNumericValue';
 import { useSongAnalyze } from '../../hooks/useSongAnalyze';
 import { SectionOverlay } from '../atoms/SectionOverlay';
 
@@ -38,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const ProjectedListeners: FC<Props> = ({ loading }) => {
   const { projectedListeners } = useSongAnalyze();
-  const historicalChange = useAnimatedNumericValue(loading ? 0 : projectedListeners.historicalChange);
   const classes = useStyles();
 
   return (
@@ -52,7 +50,7 @@ export const ProjectedListeners: FC<Props> = ({ loading }) => {
         <Box alignItems="center" className={classes.changes}>
           <TrendingUpIcon fontSize="small" />
           &nbsp;+
-          <Numeric value={historicalChange} />
+          <Numeric value={loading ? 0 : projectedListeners.historicalChange} />
         </Box>
       </Box>
 

@@ -5,8 +5,12 @@ export function useAnimatedNumericValue(targetValue: number, delay = 1): number 
 
   useEffect(() => {
     const interval = window.setTimeout(() => {
-      if (value !== targetValue) {
+      if (value < targetValue) {
         setValue(value + 1);
+      }
+
+      if (value > targetValue) {
+        setValue(targetValue);
       }
     }, delay);
 
