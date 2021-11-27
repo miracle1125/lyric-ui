@@ -52,6 +52,8 @@ export const DashboardPage: FC<RouteComponentProps<{ id: string }>> = ({ match }
     songAnalyzeQuery.data.score.overall = trackQuery.data.score.overall;
   }
 
+  const isLoading = !trackQuery.data;
+
   return (
     <InnerLayout>
       <FullscreenOverlay open={songAnalyzeQuery.isLoading} />
@@ -68,16 +70,17 @@ export const DashboardPage: FC<RouteComponentProps<{ id: string }>> = ({ match }
         <SongAnalyzeContext.Provider value={songAnalyzeQuery.data}>
           <Box className={classes.container}>
             <GridArea name="earnings">
-              <ProjectedEarnings loading={!trackQuery.data} />
+              <ProjectedEarnings loading={isLoading} />
             </GridArea>
             <GridArea name="listeners">
-              <ProjectedListeners loading={!trackQuery.data} />
+              <ProjectedListeners loading={isLoading} />
             </GridArea>
             <GridArea name="main">
               <DashboardMain />
             </GridArea>
             <GridArea name="stats">
               <ProjectStats
+                loading={isLoading}
                 items={
                   trackQuery.data?.score.impactful_attributes
                     .map((item) => ({

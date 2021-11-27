@@ -1,11 +1,13 @@
-import { Box, makeStyles, Typography, LinearProgress } from '@material-ui/core';
-import classNames from 'classnames';
+import { Box, makeStyles, Typography } from '@material-ui/core';
 import type { FC } from 'react';
+import { useAnimatedNumericValue } from '../../hooks/useAnimatedNumericValue';
 import { useSongAnalyze } from '../../hooks/useSongAnalyze';
 import { GridArea } from '../atoms/GridArea';
 import { SectionOverlay } from '../atoms/SectionOverlay';
+import { ProjectStatsItem } from './ProjectStatsItem';
 
 interface Props {
+  loading: boolean;
   items: Array<{
     score: number;
     title: string;
@@ -48,29 +50,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 50,
     lineHeight: '55px',
   },
-  progress: {
-    backgroundColor: 'rgba(255, 255, 255, 0.68)',
-    borderRadius: 6,
-  },
-  progressBar: {
-    borderRadius: 6,
-  },
-  item1: {
-    backgroundColor: '#f4516c',
-  },
-  item2: {
-    backgroundColor: '#4db6ac',
-  },
-  item3: {
-    backgroundColor: '#4fc3f7',
-  },
-  item4: {
-    backgroundColor: '#ffb74d',
-  },
 }));
 
-export const ProjectStats: FC<Props> = ({ items }) => {
+export const ProjectStats: FC<Props> = ({ loading, items }) => {
   const { score } = useSongAnalyze();
+  const overall = useAnimatedNumericValue(loading ? 0 : score.overall, 20);
   const classes = useStyles();
 
   return (
@@ -81,28 +65,11 @@ export const ProjectStats: FC<Props> = ({ items }) => {
           Overall
         </Typography>
         <Typography variant="h5" className={classes.value}>
-          {score.overall}
+          {overall}
         </Typography>
       </GridArea>
       {items.map((item, index) => (
-        <GridArea key={item.title} name={`item${index + 1}`} className={classes.paper}>
-          <Typography className={classes.title} variant="body1">
-            {item.title}
-          </Typography>
-          <Typography variant="h5" className={classes.value}>
-            {item.score}
-          </Typography>
-          <Box width="90%">
-            <LinearProgress
-              classes={{
-                root: classes.progress,
-                bar: classNames(classes.progressBar, (classes as any)[`item${index + 1}`]),
-              }}
-              value={item.score}
-              variant="determinate"
-            />
-          </Box>
-        </GridArea>
+        <ProjectStatsItem score={item.score} title={item.title} key={item.title} name={`item${index + 1}`} />
       ))}
     </Box>
   );
