@@ -68,7 +68,7 @@ export const DashboardPage: FC<RouteComponentProps<{ id: string }>> = ({ match }
         <SongAnalyzeContext.Provider value={songAnalyzeQuery.data}>
           <Box className={classes.container}>
             <GridArea name="earnings">
-              <ProjectedEarnings loading />
+              <ProjectedEarnings loading={!trackQuery.data} />
             </GridArea>
             <GridArea name="listeners">
               <ProjectedListeners loading={!trackQuery.data} />
