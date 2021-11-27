@@ -1,4 +1,5 @@
 import { Box, Divider, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 import classNames from 'classnames';
 import { FC } from 'react';
 import { useSongAnalyze } from '../../hooks/useSongAnalyze';
@@ -59,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
 export const DashboardMain: FC = () => {
   const { description, songCharacteristics, title } = useSongAnalyze();
   const classes = useStyles();
+  const isLoadingTags = songCharacteristics.elements?.length === 0 && songCharacteristics.tags.length === 0;
 
   return (
     <Paper className={classes.container}>
@@ -67,17 +69,33 @@ export const DashboardMain: FC = () => {
       <Box position="relative" display="flex" justifyContent="space-between" padding={1.5}>
         <SectionOverlay open={!songCharacteristics.key && !songCharacteristics.bpm} />
         <Box flex={1}>
-          <Typography gutterBottom variant="h5">
-            Key: {songCharacteristics.key}
-          </Typography>
-          <Typography className={classes.bpm} variant="h5">
-            BPM: {songCharacteristics.bpm}
-          </Typography>
+          {!songCharacteristics.key ? (
+            <Skeleton height={30} width={200} />
+          ) : (
+            <Typography gutterBottom variant="h5">
+              Key: {songCharacteristics.key}
+            </Typography>
+          )}
+          {!songCharacteristics.bpm ? (
+            <Skeleton style={{ backgroundColor: '#4db6ac' }} height={30} width={200} />
+          ) : (
+            <Typography className={classes.bpm} variant="h5">
+              BPM: {songCharacteristics.bpm}
+            </Typography>
+          )}
         </Box>
         <Box flex={1}>
-          <Typography gutterBottom variant="h5">
-            Elements/Tags:
-          </Typography>
+          {songCharacteristics.elements?.length === 0 && songCharacteristics.tags.length === 0 && (
+            <>
+              <Skeleton height={30} width={200} />
+              <Skeleton height={30} width={200} />
+            </>
+          )}
+          {!isLoadingTags && (
+            <Typography gutterBottom variant="h5">
+              Elements/Tags:
+            </Typography>
+          )}
           <ul className={classes.tagList}>
             {songCharacteristics.elements?.map((element) => (
               <span key={element} className={classNames(classes.tag, classes[getRandomColor()])}>
