@@ -41,7 +41,7 @@ export const Logo: FC<Props> = ({ children, className, size = 'large', ...rest }
       )}
       {...rest}
     >
-      <img alt="Logo" height={imgSize} width={imgSize} src={require('../../assets/logo.svg').default} />
+      <img alt="Logo" height={imgSize} width={imgSize} src={require('../../assets/logo.png').default} />
       <span className={classes.title}>Lyric</span>
     </span>
   );
