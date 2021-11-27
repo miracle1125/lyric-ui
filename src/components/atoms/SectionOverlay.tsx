@@ -1,4 +1,4 @@
-import { Backdrop, BackdropProps, CircularProgress, makeStyles } from '@material-ui/core';
+import { Backdrop, BackdropProps, Box, CircularProgress, makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import type { FC } from 'react';
 
@@ -15,7 +15,10 @@ export const SectionOverlay: FC<BackdropProps> = ({ className, children, ...rest
 
   return (
     <Backdrop className={classNames(classes.backdrop, className)} {...rest}>
-      <CircularProgress color="inherit" />
+      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+        <CircularProgress color="inherit" />
+        Analyzing
+      </Box>
     </Backdrop>
   );
 };
