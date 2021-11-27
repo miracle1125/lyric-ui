@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const ProjectedListeners: FC<Props> = ({ loading }) => {
   const { projectedListeners } = useSongAnalyze();
-  const amount = useAnimatedNumericValue(loading ? 0 : projectedListeners.amount);
+  const historicalChange = useAnimatedNumericValue(loading ? 0 : projectedListeners.historicalChange);
   const classes = useStyles();
 
   return (
@@ -47,12 +47,12 @@ export const ProjectedListeners: FC<Props> = ({ loading }) => {
       <Box>
         <Typography variant="body1">Projected Listeners</Typography>
         <Typography className={classes.value} variant="h4">
-          <Numeric value={amount} />
+          <Numeric value={loading ? 0 : projectedListeners.amount} />
         </Typography>
         <Box alignItems="center" className={classes.changes}>
           <TrendingUpIcon fontSize="small" />
           &nbsp;+
-          <Numeric value={projectedListeners.historicalChange} />
+          <Numeric value={historicalChange} />
         </Box>
       </Box>
 

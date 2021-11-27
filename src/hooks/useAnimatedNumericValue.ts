@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export function useAnimatedNumericValue(targetValue: number, delay = 10): number {
+export function useAnimatedNumericValue(targetValue: number, delay = 1): number {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
