@@ -17,7 +17,7 @@ export const SectionOverlay: FC<BackdropProps> = ({ className, children, ...rest
     <Backdrop className={classNames(classes.backdrop, className)} {...rest}>
       <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
         <img alt="Loading" src={require('../../assets/loading.gif').default} width={30} height={30} />
-        Analyzing
+        Analyzing...
       </Box>
     </Backdrop>
   );
