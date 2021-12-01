@@ -42,8 +42,6 @@ export const DashboardPage: FC<RouteComponentProps<{ id: string }>> = ({ match }
   );
   const classes = useStyles();
 
-  console.log('debug: trackQuery.data ', trackQuery.data);
-
   if (trackQuery.data && songAnalyzeQuery.data) {
     songAnalyzeQuery.data.genres = trackQuery.data.genres;
     songAnalyzeQuery.data.projectedEarnings = trackQuery.data.projectedEarnings;

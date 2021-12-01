@@ -1,4 +1,4 @@
-import { Backdrop, BackdropProps, CircularProgress, makeStyles } from '@material-ui/core';
+import { Backdrop, BackdropProps, makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import type { FC } from 'react';
 
@@ -14,7 +14,7 @@ export const FullscreenOverlay: FC<BackdropProps> = ({ className, children, ...r
 
   return (
     <Backdrop className={classNames(classes.backdrop, className)} {...rest}>
-      <CircularProgress color="inherit" />
+      <img alt="Loading" src={require('../../assets/loading.gif').default} width={80} height={80} />
     </Backdrop>
   );
 };
