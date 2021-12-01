@@ -58,6 +58,8 @@ export const UploadForm: FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <FullscreenOverlay open={isLoading}>Uploading your track...</FullscreenOverlay>
+
       {!!error && (
         <Box marginBottom={2}>
           <Alert severity="error" variant="filled">
@@ -115,8 +117,6 @@ export const UploadForm: FC = () => {
           Upload
         </Button>
       </Box>
-
-      <FullscreenOverlay open={isLoading} />
     </form>
   );
 };

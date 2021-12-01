@@ -1,4 +1,4 @@
-import { Backdrop, BackdropProps, makeStyles } from '@material-ui/core';
+import { Backdrop, BackdropProps, Box, makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import type { FC } from 'react';
 
@@ -14,7 +14,17 @@ export const FullscreenOverlay: FC<BackdropProps> = ({ className, children, ...r
 
   return (
     <Backdrop className={classNames(classes.backdrop, className)} {...rest}>
-      <img alt="Loading" src={require('../../assets/loading.gif').default} width={80} height={80} />
+      <Box
+        alignItems="center"
+        display="flex"
+        flexDirection="column"
+        fontSize={16}
+        justifyContent="center"
+        style={{ gap: 5 }}
+      >
+        <img alt="Loading" src={require('../../assets/loading.gif').default} width={80} height={80} />
+        {children}
+      </Box>
     </Backdrop>
   );
 };

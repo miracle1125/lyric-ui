@@ -11,7 +11,7 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  withStyles
+  withStyles,
 } from '@material-ui/core';
 import LaunchIcon from '@material-ui/icons/Launch';
 import { Alert } from '@material-ui/lab';
@@ -50,7 +50,7 @@ export const Catalog: FC = () => {
 
   return (
     <>
-      <FullscreenOverlay open={isLoading} />
+      <FullscreenOverlay open={isLoading}>Loading your Catalog...</FullscreenOverlay>
 
       {!!error && (
         <Box marginBottom={2}>
