@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
 export const DashboardMain: FC = () => {
   const { description, songCharacteristics, title } = useSongAnalyze();
   const classes = useStyles();
-  const isLoadingTags = songCharacteristics.elements?.length === 0 && songCharacteristics.tags.length === 0;
+  const isLoadingTags = !songCharacteristics.elements && songCharacteristics.tags.length === 0;
 
   return (
     <Paper className={classes.container}>
@@ -86,17 +86,16 @@ export const DashboardMain: FC = () => {
           )}
         </Box>
         <Box flex={1}>
-          {songCharacteristics.elements?.length === 0 && songCharacteristics.tags.length === 0 && (
+          {isLoadingTags ? (
             <>
               <Skeleton height={30} width={200} />
               <Skeleton height={30} width={200} />
             </>
-          )}
-          {!isLoadingTags && (
+          ) : (
             <Typography gutterBottom variant="h5">
               <InfoTooltip
                 title="Tags are ways to capture what makes your song unique. We use these labels to make our predictions more
-                accurate, so you can create with confidence"
+            accurate, so you can create with confidence"
               >
                 <span>Elements/Tags:</span>
               </InfoTooltip>
