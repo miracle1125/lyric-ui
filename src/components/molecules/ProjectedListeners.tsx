@@ -3,6 +3,7 @@ import { Box, makeStyles, Paper, Typography } from '@material-ui/core';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import type { FC } from 'react';
 import { useSongAnalyze } from '../../hooks/useSongAnalyze';
+import { InfoTooltip } from '../atoms/InfoTooltip';
 import { SectionOverlay } from '../atoms/SectionOverlay';
 
 interface Props {
@@ -43,7 +44,11 @@ export const ProjectedListeners: FC<Props> = ({ loading }) => {
     <Paper className={classes.container}>
       <SectionOverlay open={loading} />
       <Box>
-        <Typography variant="body1">Projected Listeners</Typography>
+        <Typography variant="body1">
+          <InfoTooltip title="Lyric predicts how many listeners your songs will get on streaming platforms based on the performance of similar songs to yours in your genre">
+            <span>Projected Listeners</span>
+          </InfoTooltip>
+        </Typography>
         <Typography className={classes.value} variant="h4">
           <Numeric value={loading ? 0 : projectedListeners.amount} />
         </Typography>

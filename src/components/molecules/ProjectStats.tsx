@@ -3,6 +3,7 @@ import type { FC } from 'react';
 import { useAnimatedNumericValue } from '../../hooks/useAnimatedNumericValue';
 import { useSongAnalyze } from '../../hooks/useSongAnalyze';
 import { GridArea } from '../atoms/GridArea';
+import { InfoTooltip } from '../atoms/InfoTooltip';
 import { SectionOverlay } from '../atoms/SectionOverlay';
 import { ProjectStatsItem } from './ProjectStatsItem';
 
@@ -62,7 +63,9 @@ export const ProjectStats: FC<Props> = ({ loading, items }) => {
       <SectionOverlay open={items.length === 0} />
       <GridArea name="overall" className={classes.paper}>
         <Typography className={classes.title} variant="body1">
-          Overall
+          <InfoTooltip title="Lyric’s algorithm “scores” your song to predict how well your audience will receive your music based on genre. The top 3 most important factors that influence your song’s popularity by genre is used for your score">
+            <span>Overall</span>
+          </InfoTooltip>
         </Typography>
         <Typography variant="h5" className={classes.value}>
           {overall}

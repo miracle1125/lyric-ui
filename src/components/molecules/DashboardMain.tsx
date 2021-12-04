@@ -3,6 +3,7 @@ import { Skeleton } from '@material-ui/lab';
 import classNames from 'classnames';
 import { FC } from 'react';
 import { useSongAnalyze } from '../../hooks/useSongAnalyze';
+import { InfoTooltip } from '../atoms/InfoTooltip';
 import { SectionOverlay } from '../atoms/SectionOverlay';
 import { SongPlayer } from '../organisms/SongPlayer';
 
@@ -93,7 +94,12 @@ export const DashboardMain: FC = () => {
           )}
           {!isLoadingTags && (
             <Typography gutterBottom variant="h5">
-              Elements/Tags:
+              <InfoTooltip
+                title="Tags are ways to capture what makes your song unique. We use these labels to make our predictions more
+                accurate, so you can create with confidence"
+              >
+                <span>Elements/Tags:</span>
+              </InfoTooltip>
             </Typography>
           )}
           <ul className={classes.tagList}>
